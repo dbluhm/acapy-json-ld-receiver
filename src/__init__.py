@@ -1,4 +1,4 @@
-"""ACA-Py Webhook Example."""
+"""ACA-Py JSON-LD Receiver."""
 
 from enum import Enum
 from typing import Any
@@ -32,6 +32,7 @@ app = fastapi.FastAPI(openapi_tags=tag_metadata)
 
 
 class Tags(Enum):
+    """Tag names for OpenAPI documentation."""
     credentials = "credentials"
     connections = "connections"
     other = "other"
@@ -40,6 +41,7 @@ class Tags(Enum):
 @app.post("/topic/connections", summary="Connection updates", tags=[Tags.connections])
 @app.post("/topic/connections/", include_in_schema=False)
 async def connections(body: ConnRecord):
+    """Connections webhook."""
     print("connections topic called with:", body.json(indent=2))
 
 
@@ -48,12 +50,14 @@ async def connections(body: ConnRecord):
 )
 @app.post("/topic/oob_invitation", include_in_schema=False)
 async def oob_invitation(body: InvitationRecord):
+    """Out-of-band webhook."""
     print("oob_invitation topic called with:", body.json(indent=2))
 
 
 @app.post("/topic/mediation", summary="Mediation updates", tags=[Tags.connections])
 @app.post("/topic/mediation", include_in_schema=False)
 async def mediation(body: MediationRecord):
+    """Mediation webhook."""
     print("mediation topic called with:", body.json(indent=2))
 
 
@@ -64,6 +68,7 @@ async def mediation(body: MediationRecord):
 )
 @app.post("/topic/revocation_registry", include_in_schema=False)
 async def revocation_registry(body: IssuerRevRegRecord):
+    """Revocation registry webhook."""
     print("revocation_registry topic called with:", body.json(indent=2))
 
 
@@ -74,6 +79,7 @@ async def revocation_registry(body: IssuerRevRegRecord):
 )
 @app.post("/topic/issuer_cred_rev", include_in_schema=False)
 async def issuer_cred_rev(body: IssuerCredRevRecord):
+    """Issuer cred rev webhook."""
     print("issuer_cred_rev topic called with:", body.json(indent=2))
 
 
@@ -84,6 +90,7 @@ async def issuer_cred_rev(body: IssuerCredRevRecord):
 )
 @app.post("/topic/issue_credential", include_in_schema=False)
 async def issue_credential(body: V10CredentialExchange):
+    """ICv1 webhook."""
     print("issue_credential topic called with:", body.json(indent=2))
 
 
@@ -94,6 +101,7 @@ async def issue_credential(body: V10CredentialExchange):
 )
 @app.post("/topic/issue_credential_v2_0", include_in_schema=False)
 async def issue_credential_v2_0(body: V20CredExRecord):
+    """ICv2 webhook."""
     print("issue_credential_v2_0 topic called with:", body.json(indent=2))
 
 
@@ -104,6 +112,7 @@ async def issue_credential_v2_0(body: V20CredExRecord):
 )
 @app.post("/topic/present_proof", include_in_schema=False)
 async def present_proof(body: V10PresentationExchange):
+    """PPv1 webhook."""
     print("present_proof topic called with:", body.json(indent=2))
 
 
@@ -114,12 +123,14 @@ async def present_proof(body: V10PresentationExchange):
 )
 @app.post("/topic/present_proof_v2_0", include_in_schema=False)
 async def present_proof_v2_0(body: V20PresExRecord):
+    """PPv2 webhook."""
     print("present_proof_v2_0 topic called with:", body.json(indent=2))
 
 
 @app.post("/topic/discover_feature", summary="Discover Feature 1.0", tags=[Tags.other])
 @app.post("/topic/discover_feature", include_in_schema=False)
 async def discover_feature(body: Any):
+    """Discover Features v1 webhook."""
     print("discover_feature topic called with:", body)
 
 
@@ -128,6 +139,7 @@ async def discover_feature(body: Any):
 )
 @app.post("/topic/discover_feature_v2_0", include_in_schema=False)
 async def discover_feature_v2_0(body: Any):
+    """Discover feature v2 webhook."""
     print("discover_feature_v2_0 topic called with:", body)
 
 
@@ -138,9 +150,11 @@ async def discover_feature_v2_0(body: Any):
 )
 @app.post("/topic/endorse_transaction", include_in_schema=False)
 async def endorse_transaction(body: TransactionRecord):
+    """Endorse transaction webhook."""
     print("endorse_transaction topic called with:", body.json(indent=2))
 
 
 @app.post("/topic/{topic}")
 async def webhook_received(topic: str, body: Any = Body(...)):
+    """Catch-all webhook."""
     print(f"/topic/{topic}", body)

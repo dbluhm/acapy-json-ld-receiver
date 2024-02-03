@@ -32,3 +32,5 @@ ${CONTAINER_RUNTIME} run --rm -v "$(pwd)/../:/usr/src/app:z" ${NAME} \
     --allow-population-by-field-name \
     --aliases ./scripts/aliases.json \
     $@
+
+poetry run black ../src/models.py

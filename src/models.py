@@ -17,7 +17,7 @@ class AMLRecord(BaseModel):
         allow_population_by_field_name = True
 
     aml: Optional[Dict[str, str]] = None
-    aml_context: Optional[str] = Field(None, alias='amlContext')
+    aml_context: Optional[str] = Field(None, alias="amlContext")
     version: Optional[str] = None
 
 
@@ -32,7 +32,7 @@ class AdminConfig(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    config: Optional[Dict[str, Any]] = Field(None, description='Configuration settings')
+    config: Optional[Dict[str, Any]] = Field(None, description="Configuration settings")
 
 
 class AdminMediationDeny(BaseModel):
@@ -40,10 +40,10 @@ class AdminMediationDeny(BaseModel):
         allow_population_by_field_name = True
 
     mediator_terms: Optional[List[str]] = Field(
-        None, description='List of mediator rules for recipient'
+        None, description="List of mediator rules for recipient"
     )
     recipient_terms: Optional[List[str]] = Field(
-        None, description='List of recipient rules for mediation'
+        None, description="List of recipient rules for mediation"
     )
 
 
@@ -51,7 +51,7 @@ class AdminModules(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    result: Optional[List[str]] = Field(None, description='List of admin modules')
+    result: Optional[List[str]] = Field(None, description="List of admin modules")
 
 
 class AdminReset(ActionMenuModulesResult):
@@ -67,25 +67,25 @@ class AdminStatus(BaseModel):
         allow_population_by_field_name = True
 
     conductor: Optional[Dict[str, Any]] = Field(
-        None, description='Conductor statistics'
+        None, description="Conductor statistics"
     )
-    label: Optional[str] = Field(None, description='Default label')
-    timing: Optional[Dict[str, Any]] = Field(None, description='Timing results')
-    version: Optional[str] = Field(None, description='Version code')
+    label: Optional[str] = Field(None, description="Default label")
+    timing: Optional[Dict[str, Any]] = Field(None, description="Timing results")
+    version: Optional[str] = Field(None, description="Version code")
 
 
 class AdminStatusLiveliness(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    alive: Optional[bool] = Field(None, description='Liveliness status', example=True)
+    alive: Optional[bool] = Field(None, description="Liveliness status", example=True)
 
 
 class AdminStatusReadiness(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    ready: Optional[bool] = Field(None, description='Readiness status', example=True)
+    ready: Optional[bool] = Field(None, description="Readiness status", example=True)
 
 
 class AttachDecoratorDataJWSHeader(BaseModel):
@@ -94,9 +94,9 @@ class AttachDecoratorDataJWSHeader(BaseModel):
 
     kid: str = Field(
         ...,
-        description='Key identifier, in W3C did:key or DID URL format',
-        example='did:sov:LjgpST2rjsoxYegQDRm7EL#keys-4',
-        regex='^did:(?:key:z[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]+|sov:[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}(;.*)?(\\?.*)?#.+)$',
+        description="Key identifier, in W3C did:key or DID URL format",
+        example="did:sov:LjgpST2rjsoxYegQDRm7EL#keys-4",
+        regex="^did:(?:key:z[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]+|sov:[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}(;.*)?(\\?.*)?#.+)$",
     )
 
 
@@ -105,10 +105,10 @@ class AttachmentDef(BaseModel):
         allow_population_by_field_name = True
 
     id: Optional[str] = Field(
-        None, description='Attachment identifier', example='attachment-0'
+        None, description="Attachment identifier", example="attachment-0"
     )
-    type: Optional[Literal['credential-offer', 'present-proof']] = Field(
-        None, description='Attachment type', example='present-proof'
+    type: Optional[Literal["credential-offer", "present-proof"]] = Field(
+        None, description="Attachment type", example="present-proof"
     )
 
 
@@ -141,9 +141,9 @@ class PurgeItem(BaseModel):
 
     __root__: str = Field(
         ...,
-        description='Credential revocation identifier',
-        example='12345',
-        regex='^[1-9][0-9]*$',
+        description="Credential revocation identifier",
+        example="12345",
+        regex="^[1-9][0-9]*$",
     )
 
 
@@ -153,7 +153,7 @@ class ClearPendingRevocationsRequest(BaseModel):
 
     purge: Optional[Dict[str, List[PurgeItem]]] = Field(
         None,
-        description='Credential revocation ids by revocation registry id: omit for all, specify null or empty list for all pending per revocation registry',
+        description="Credential revocation ids by revocation registry id: omit for all, specify null or empty list for all pending per revocation registry",
     )
 
 
@@ -162,7 +162,7 @@ class ConfigurableWriteLedgers(BaseModel):
         allow_population_by_field_name = True
 
     write_ledgers: Optional[List[str]] = Field(
-        None, description='List of configurable write ledgers identifiers'
+        None, description="List of configurable write ledgers identifiers"
     )
 
 
@@ -170,96 +170,98 @@ class ConnRecord(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    accept: Optional[Literal['manual', 'auto']] = Field(
-        None, description='Connection acceptance: manual or auto', example='auto'
+    accept: Optional[Literal["manual", "auto"]] = Field(
+        None, description="Connection acceptance: manual or auto", example="auto"
     )
     alias: Optional[str] = Field(
         None,
-        description='Optional alias to apply to connection for later use',
-        example='Bob, providing quotes',
+        description="Optional alias to apply to connection for later use",
+        example="Bob, providing quotes",
     )
     connection_id: Optional[str] = Field(
         None,
-        description='Connection identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Connection identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
-    connection_protocol: Optional[
-        Literal['connections/1.0', 'didexchange/1.0']
-    ] = Field(None, description='Connection protocol used', example='connections/1.0')
+    connection_protocol: Optional[Literal["connections/1.0", "didexchange/1.0"]] = (
+        Field(None, description="Connection protocol used", example="connections/1.0")
+    )
     created_at: Optional[str] = Field(
         None,
-        description='Time of record creation',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of record creation",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
     error_msg: Optional[str] = Field(
         None,
-        description='Error message',
-        example='No DIDDoc provided; cannot connect to public DID',
+        description="Error message",
+        example="No DIDDoc provided; cannot connect to public DID",
     )
     inbound_connection_id: Optional[str] = Field(
         None,
-        description='Inbound routing connection id to use',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Inbound routing connection id to use",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     invitation_key: Optional[str] = Field(
         None,
-        description='Public key for connection',
-        example='H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV',
-        regex='^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$',
+        description="Public key for connection",
+        example="H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV",
+        regex="^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$",
     )
-    invitation_mode: Optional[Literal['once', 'multi', 'static']] = Field(
-        None, description='Invitation mode', example='once'
+    invitation_mode: Optional[Literal["once", "multi", "static"]] = Field(
+        None, description="Invitation mode", example="once"
     )
     invitation_msg_id: Optional[str] = Field(
         None,
-        description='ID of out-of-band invitation message',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="ID of out-of-band invitation message",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     my_did: Optional[str] = Field(
         None,
-        description='Our DID for connection',
-        example='WgWxqztrNooG92RXvxSTWv',
-        regex='^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$',
+        description="Our DID for connection",
+        example="WgWxqztrNooG92RXvxSTWv",
+        regex="^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
     )
     request_id: Optional[str] = Field(
         None,
-        description='Connection request identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Connection request identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     rfc23_state: Optional[str] = Field(
-        None, description='State per RFC 23', example='invitation-sent'
+        None, description="State per RFC 23", example="invitation-sent"
     )
-    routing_state: Optional[Literal['none', 'request', 'active', 'error']] = Field(
-        None, description='Routing state of connection', example='active'
+    routing_state: Optional[Literal["none", "request", "active", "error"]] = Field(
+        None, description="Routing state of connection", example="active"
     )
     state: Optional[str] = Field(
-        None, description='Current record state', example='active'
+        None, description="Current record state", example="active"
     )
     their_did: Optional[str] = Field(
         None,
-        description='Their DID for connection',
-        example='WgWxqztrNooG92RXvxSTWv',
-        regex='^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$',
+        description="Their DID for connection",
+        example="WgWxqztrNooG92RXvxSTWv",
+        regex="^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
     )
     their_label: Optional[str] = Field(
-        None, description='Their label for connection', example='Bob'
+        None, description="Their label for connection", example="Bob"
     )
     their_public_did: Optional[str] = Field(
         None,
         description="Other agent's public DID for connection",
-        example='2cpBmR3FqGKWi5EyUbpRY8',
+        example="2cpBmR3FqGKWi5EyUbpRY8",
     )
-    their_role: Optional[
-        Literal['invitee', 'requester', 'inviter', 'responder']
-    ] = Field(
-        None, description='Their role in the connection protocol', example='requester'
+    their_role: Optional[Literal["invitee", "requester", "inviter", "responder"]] = (
+        Field(
+            None,
+            description="Their role in the connection protocol",
+            example="requester",
+        )
     )
     updated_at: Optional[str] = Field(
         None,
-        description='Time of last record update',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of last record update",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
 
 
@@ -269,9 +271,9 @@ class RecipientKey(BaseModel):
 
     __root__: str = Field(
         ...,
-        description='Recipient public key',
-        example='H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV',
-        regex='^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$',
+        description="Recipient public key",
+        example="H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV",
+        regex="^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$",
     )
 
 
@@ -281,9 +283,9 @@ class RoutingKey(BaseModel):
 
     __root__: str = Field(
         ...,
-        description='Routing key',
-        example='H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV',
-        regex='^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$',
+        description="Routing key",
+        example="H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV",
+        regex="^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$",
     )
 
 
@@ -293,42 +295,42 @@ class ConnectionInvitation(BaseModel):
 
     id: Optional[str] = Field(
         None,
-        alias='@id',
-        description='Message identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        alias="@id",
+        description="Message identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     type: Optional[str] = Field(
         None,
-        alias='@type',
-        description='Message type',
-        example='https://didcomm.org/my-family/1.0/my-message-type',
+        alias="@type",
+        description="Message type",
+        example="https://didcomm.org/my-family/1.0/my-message-type",
     )
     did: Optional[str] = Field(
         None,
-        description='DID for connection invitation',
-        example='did:peer:WgWxqztrNooG92RXvxSTWv',
-        regex='^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\\/[^#?]*)?([?][^#]*)?(\\#.*)?$$',
+        description="DID for connection invitation",
+        example="did:peer:WgWxqztrNooG92RXvxSTWv",
+        regex="^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\\/[^#?]*)?([?][^#]*)?(\\#.*)?$$",
     )
     image_url: Optional[str] = Field(
         None,
-        alias='imageUrl',
-        description='Optional image URL for connection invitation',
-        example='http://192.168.56.101/img/logo.jpg',
+        alias="imageUrl",
+        description="Optional image URL for connection invitation",
+        example="http://192.168.56.101/img/logo.jpg",
     )
     label: Optional[str] = Field(
-        None, description='Optional label for connection invitation', example='Bob'
+        None, description="Optional label for connection invitation", example="Bob"
     )
     recipient_keys: Optional[List[RecipientKey]] = Field(
-        None, alias='recipientKeys', description='List of recipient keys'
+        None, alias="recipientKeys", description="List of recipient keys"
     )
     routing_keys: Optional[List[RoutingKey]] = Field(
-        None, alias='routingKeys', description='List of routing keys'
+        None, alias="routingKeys", description="List of routing keys"
     )
     service_endpoint: Optional[str] = Field(
         None,
-        alias='serviceEndpoint',
-        description='Service endpoint at which to reach this agent',
-        example='http://192.168.56.101:8020',
+        alias="serviceEndpoint",
+        description="Service endpoint at which to reach this agent",
+        example="http://192.168.56.101:8020",
     )
 
 
@@ -337,7 +339,7 @@ class ConnectionList(BaseModel):
         allow_population_by_field_name = True
 
     results: Optional[List[ConnRecord]] = Field(
-        None, description='List of connection records'
+        None, description="List of connection records"
     )
 
 
@@ -346,7 +348,7 @@ class ConnectionMetadata(BaseModel):
         allow_population_by_field_name = True
 
     results: Optional[Dict[str, Any]] = Field(
-        None, description='Dictionary of metadata associated with connection.'
+        None, description="Dictionary of metadata associated with connection."
     )
 
 
@@ -355,7 +357,7 @@ class ConnectionMetadataSetRequest(BaseModel):
         allow_population_by_field_name = True
 
     metadata: Dict[str, Any] = Field(
-        ..., description='Dictionary of metadata to set for connection.'
+        ..., description="Dictionary of metadata to set for connection."
     )
 
 
@@ -367,33 +369,33 @@ class ConnectionStaticRequest(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    alias: Optional[str] = Field(None, description='Alias to assign to this connection')
+    alias: Optional[str] = Field(None, description="Alias to assign to this connection")
     my_did: Optional[str] = Field(
         None,
-        description='Local DID',
-        example='WgWxqztrNooG92RXvxSTWv',
-        regex='^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$',
+        description="Local DID",
+        example="WgWxqztrNooG92RXvxSTWv",
+        regex="^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
     )
-    my_seed: Optional[str] = Field(None, description='Seed to use for the local DID')
+    my_seed: Optional[str] = Field(None, description="Seed to use for the local DID")
     their_did: Optional[str] = Field(
         None,
-        description='Remote DID',
-        example='WgWxqztrNooG92RXvxSTWv',
-        regex='^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$',
+        description="Remote DID",
+        example="WgWxqztrNooG92RXvxSTWv",
+        regex="^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
     )
     their_endpoint: Optional[str] = Field(
         None,
-        description='URL endpoint for other party',
-        example='https://myhost:8021',
-        regex='^[A-Za-z0-9\\.\\-\\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$',
+        description="URL endpoint for other party",
+        example="https://myhost:8021",
+        regex="^[A-Za-z0-9\\.\\-\\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$",
     )
     their_label: Optional[str] = Field(
         None, description="Other party's label for this connection"
     )
     their_seed: Optional[str] = Field(
-        None, description='Seed to use for the remote DID'
+        None, description="Seed to use for the remote DID"
     )
-    their_verkey: Optional[str] = Field(None, description='Remote verification key')
+    their_verkey: Optional[str] = Field(None, description="Remote verification key")
 
 
 class ConnectionStaticResult(BaseModel):
@@ -402,34 +404,34 @@ class ConnectionStaticResult(BaseModel):
 
     my_did: str = Field(
         ...,
-        description='Local DID',
-        example='WgWxqztrNooG92RXvxSTWv',
-        regex='^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$',
+        description="Local DID",
+        example="WgWxqztrNooG92RXvxSTWv",
+        regex="^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
     )
     my_endpoint: str = Field(
         ...,
-        description='My URL endpoint',
-        example='https://myhost:8021',
-        regex='^[A-Za-z0-9\\.\\-\\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$',
+        description="My URL endpoint",
+        example="https://myhost:8021",
+        regex="^[A-Za-z0-9\\.\\-\\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$",
     )
     my_verkey: str = Field(
         ...,
-        description='My verification key',
-        example='H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV',
-        regex='^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$',
+        description="My verification key",
+        example="H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV",
+        regex="^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$",
     )
     record: ConnRecord
     their_did: str = Field(
         ...,
-        description='Remote DID',
-        example='WgWxqztrNooG92RXvxSTWv',
-        regex='^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$',
+        description="Remote DID",
+        example="WgWxqztrNooG92RXvxSTWv",
+        regex="^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
     )
     their_verkey: str = Field(
         ...,
-        description='Remote verification key',
-        example='H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV',
-        regex='^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$',
+        description="Remote verification key",
+        example="H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV",
+        regex="^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$",
     )
 
 
@@ -439,25 +441,25 @@ class CreateInvitationRequest(BaseModel):
 
     mediation_id: Optional[str] = Field(
         None,
-        description='Identifier for active mediation record to be used',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
-        regex='[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}',
+        description="Identifier for active mediation record to be used",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        regex="[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
     )
     metadata: Optional[Dict[str, Any]] = Field(
         None,
-        description='Optional metadata to attach to the connection created with the invitation',
+        description="Optional metadata to attach to the connection created with the invitation",
     )
     my_label: Optional[str] = Field(
-        None, description='Optional label for connection invitation', example='Bob'
+        None, description="Optional label for connection invitation", example="Bob"
     )
     recipient_keys: Optional[List[RecipientKey]] = Field(
-        None, description='List of recipient keys'
+        None, description="List of recipient keys"
     )
     routing_keys: Optional[List[RoutingKey]] = Field(
-        None, description='List of routing keys'
+        None, description="List of routing keys"
     )
     service_endpoint: Optional[str] = Field(
-        None, description='Connection endpoint', example='http://192.168.56.102:8020'
+        None, description="Connection endpoint", example="http://192.168.56.102:8020"
     )
 
 
@@ -466,44 +468,44 @@ class CreateWalletRequest(BaseModel):
         allow_population_by_field_name = True
 
     extra_settings: Optional[Dict[str, Any]] = Field(
-        None, description='Agent config key-value pairs'
+        None, description="Agent config key-value pairs"
     )
     image_url: Optional[str] = Field(
         None,
-        description='Image url for this wallet. This image url is publicized        (self-attested) to other agents as part of forming a connection.',
-        example='https://aries.ca/images/sample.png',
+        description="Image url for this wallet. This image url is publicized        (self-attested) to other agents as part of forming a connection.",
+        example="https://aries.ca/images/sample.png",
     )
-    key_management_mode: Optional[Literal['managed']] = Field(
+    key_management_mode: Optional[Literal["managed"]] = Field(
         None,
-        description='Key management method to use for this wallet.',
-        example='managed',
+        description="Key management method to use for this wallet.",
+        example="managed",
     )
     label: Optional[str] = Field(
         None,
-        description='Label for this wallet. This label is publicized        (self-attested) to other agents as part of forming a connection.',
-        example='Alice',
+        description="Label for this wallet. This label is publicized        (self-attested) to other agents as part of forming a connection.",
+        example="Alice",
     )
-    wallet_dispatch_type: Optional[Literal['default', 'both', 'base']] = Field(
+    wallet_dispatch_type: Optional[Literal["default", "both", "base"]] = Field(
         None,
-        description='Webhook target dispatch type for this wallet.         default - Dispatch only to webhooks associated with this wallet.         base - Dispatch only to webhooks associated with the base wallet.         both - Dispatch to both webhook targets.',
-        example='default',
+        description="Webhook target dispatch type for this wallet.         default - Dispatch only to webhooks associated with this wallet.         base - Dispatch only to webhooks associated with the base wallet.         both - Dispatch to both webhook targets.",
+        example="default",
     )
     wallet_key: Optional[str] = Field(
         None,
-        description='Master key used for key derivation.',
-        example='MySecretKey123',
+        description="Master key used for key derivation.",
+        example="MySecretKey123",
     )
-    wallet_key_derivation: Optional[
-        Literal['ARGON2I_MOD', 'ARGON2I_INT', 'RAW']
-    ] = Field(None, description='Key derivation', example='RAW')
+    wallet_key_derivation: Optional[Literal["ARGON2I_MOD", "ARGON2I_INT", "RAW"]] = (
+        Field(None, description="Key derivation", example="RAW")
+    )
     wallet_name: Optional[str] = Field(
-        None, description='Wallet name', example='MyNewWallet'
+        None, description="Wallet name", example="MyNewWallet"
     )
-    wallet_type: Optional[Literal['askar', 'in_memory', 'indy']] = Field(
-        None, description='Type of the wallet to create', example='indy'
+    wallet_type: Optional[Literal["askar", "in_memory", "indy"]] = Field(
+        None, description="Type of the wallet to create", example="indy"
     )
     wallet_webhook_urls: Optional[List[str]] = Field(
-        None, description='List of Webhook URLs associated with this subwallet'
+        None, description="List of Webhook URLs associated with this subwallet"
     )
 
 
@@ -513,34 +515,34 @@ class CreateWalletResponse(BaseModel):
 
     created_at: Optional[str] = Field(
         None,
-        description='Time of record creation',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of record creation",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
-    key_management_mode: Literal['managed', 'unmanaged'] = Field(
-        ..., description='Mode regarding management of wallet key'
+    key_management_mode: Literal["managed", "unmanaged"] = Field(
+        ..., description="Mode regarding management of wallet key"
     )
     settings: Optional[Dict[str, Any]] = Field(
-        None, description='Settings for this wallet.'
+        None, description="Settings for this wallet."
     )
     state: Optional[str] = Field(
-        None, description='Current record state', example='active'
+        None, description="Current record state", example="active"
     )
     token: Optional[str] = Field(
         None,
-        description='Authorization token to authenticate wallet requests',
-        example='eyJhbGciOiJFZERTQSJ9.eyJhIjogIjAifQ.dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk',
+        description="Authorization token to authenticate wallet requests",
+        example="eyJhbGciOiJFZERTQSJ9.eyJhIjogIjAifQ.dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk",
     )
     updated_at: Optional[str] = Field(
         None,
-        description='Time of last record update',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of last record update",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
     wallet_id: str = Field(
         ...,
-        description='Wallet record ID',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Wallet record ID",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
 
 
@@ -550,8 +552,8 @@ class CreateWalletTokenRequest(BaseModel):
 
     wallet_key: Optional[str] = Field(
         None,
-        description='Master key used for key derivation. Only required for         unamanged wallets.',
-        example='MySecretKey123',
+        description="Master key used for key derivation. Only required for         unamanged wallets.",
+        example="MySecretKey123",
     )
 
 
@@ -561,8 +563,8 @@ class CreateWalletTokenResponse(BaseModel):
 
     token: Optional[str] = Field(
         None,
-        description='Authorization token to authenticate wallet requests',
-        example='eyJhbGciOiJFZERTQSJ9.eyJhIjogIjAifQ.dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk',
+        description="Authorization token to authenticate wallet requests",
+        example="eyJhbGciOiJFZERTQSJ9.eyJhIjogIjAifQ.dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk",
     )
 
 
@@ -572,15 +574,15 @@ class CredAttrSpec(BaseModel):
 
     mime_type: Optional[str] = Field(
         None,
-        alias='mime-type',
-        description='MIME type: omit for (null) default',
-        example='image/jpeg',
+        alias="mime-type",
+        description="MIME type: omit for (null) default",
+        example="image/jpeg",
     )
-    name: str = Field(..., description='Attribute name', example='favourite_drink')
+    name: str = Field(..., description="Attribute name", example="favourite_drink")
     value: str = Field(
         ...,
-        description='Attribute value: base64-encode if MIME type is present',
-        example='martini',
+        description="Attribute value: base64-encode if MIME type is present",
+        example="martini",
     )
 
 
@@ -588,26 +590,26 @@ class CredDefValueRevocation(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    g: Optional[str] = Field(None, example='1 1F14F&ECB578F 2 095E45DDF417D')
+    g: Optional[str] = Field(None, example="1 1F14F&ECB578F 2 095E45DDF417D")
     g_dash: Optional[str] = Field(
-        None, example='1 1D64716fCDC00C 1 0C781960FA66E3D3 2 095E45DDF417D'
+        None, example="1 1D64716fCDC00C 1 0C781960FA66E3D3 2 095E45DDF417D"
     )
-    h: Optional[str] = Field(None, example='1 16675DAE54BFAE8 2 095E45DD417D')
-    h0: Optional[str] = Field(None, example='1 21E5EF9476EAF18 2 095E45DDF417D')
-    h1: Optional[str] = Field(None, example='1 236D1D99236090 2 095E45DDF417D')
-    h2: Optional[str] = Field(None, example='1 1C3AE8D1F1E277 2 095E45DDF417D')
+    h: Optional[str] = Field(None, example="1 16675DAE54BFAE8 2 095E45DD417D")
+    h0: Optional[str] = Field(None, example="1 21E5EF9476EAF18 2 095E45DDF417D")
+    h1: Optional[str] = Field(None, example="1 236D1D99236090 2 095E45DDF417D")
+    h2: Optional[str] = Field(None, example="1 1C3AE8D1F1E277 2 095E45DDF417D")
     h_cap: Optional[str] = Field(
-        None, example='1 1B2A32CF3167 1 2490FEBF6EE55 1 0000000000000000'
+        None, example="1 1B2A32CF3167 1 2490FEBF6EE55 1 0000000000000000"
     )
-    htilde: Optional[str] = Field(None, example='1 1D8549E8C0F8 2 095E45DDF417D')
+    htilde: Optional[str] = Field(None, example="1 1D8549E8C0F8 2 095E45DDF417D")
     pk: Optional[str] = Field(
-        None, example='1 142CD5E5A7DC 1 153885BD903312 2 095E45DDF417D'
+        None, example="1 142CD5E5A7DC 1 153885BD903312 2 095E45DDF417D"
     )
     u: Optional[str] = Field(
-        None, example='1 0C430AAB2B4710 1 1CB3A0932EE7E 1 0000000000000000'
+        None, example="1 0C430AAB2B4710 1 1CB3A0932EE7E 1 0000000000000000"
     )
     y: Optional[str] = Field(
-        None, example='1 153558BD903312 2 095E45DDF417D 1 0000000000000000'
+        None, example="1 153558BD903312 2 095E45DDF417D 1 0000000000000000"
     )
 
 
@@ -616,7 +618,7 @@ class CredRevIndyRecordsResult(BaseModel):
         allow_population_by_field_name = True
 
     rev_reg_delta: Optional[Dict[str, Any]] = Field(
-        None, description='Indy revocation registry delta'
+        None, description="Indy revocation registry delta"
     )
 
 
@@ -625,7 +627,7 @@ class CredRevokedResult(BaseModel):
         allow_population_by_field_name = True
 
     revoked: Optional[bool] = Field(
-        None, description='Whether credential is revoked on the ledger'
+        None, description="Whether credential is revoked on the ledger"
     )
 
 
@@ -634,19 +636,19 @@ class CredentialDefinitionSendRequest(BaseModel):
         allow_population_by_field_name = True
 
     revocation_registry_size: Optional[int] = Field(
-        None, description='Revocation registry size', example=1000, ge=4, le=32768
+        None, description="Revocation registry size", example=1000, ge=4, le=32768
     )
     schema_id: Optional[str] = Field(
         None,
-        description='Schema identifier',
-        example='WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0',
-        regex='^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$',
+        description="Schema identifier",
+        example="WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0",
+        regex="^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$",
     )
     support_revocation: Optional[bool] = Field(
-        None, description='Revocation supported flag'
+        None, description="Revocation supported flag"
     )
     tag: Optional[str] = Field(
-        None, description='Credential definition identifier tag', example='default'
+        None, description="Credential definition identifier tag", example="default"
     )
 
 
@@ -656,9 +658,9 @@ class CredentialDefinitionSendResult(BaseModel):
 
     credential_definition_id: str = Field(
         ...,
-        description='Credential definition identifier',
-        example='WgWxqztrNooG92RXvxSTWv:3:CL:20:tag',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$',
+        description="Credential definition identifier",
+        example="WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
     )
 
 
@@ -668,9 +670,9 @@ class CredentialDefinitionId(BaseModel):
 
     __root__: str = Field(
         ...,
-        description='Credential definition identifiers',
-        example='WgWxqztrNooG92RXvxSTWv:3:CL:20:tag',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$',
+        description="Credential definition identifiers",
+        example="WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
     )
 
 
@@ -687,9 +689,9 @@ class CredentialPreview(BaseModel):
 
     type: Optional[str] = Field(
         None,
-        alias='@type',
-        description='Message type identifier',
-        example='issue-credential/1.0/credential-preview',
+        alias="@type",
+        description="Message type identifier",
+        example="issue-credential/1.0/credential-preview",
     )
     attributes: List[CredAttrSpec]
 
@@ -700,40 +702,40 @@ class CredentialProposal(BaseModel):
 
     id: Optional[str] = Field(
         None,
-        alias='@id',
-        description='Message identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        alias="@id",
+        description="Message identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     type: Optional[str] = Field(
         None,
-        alias='@type',
-        description='Message type',
-        example='https://didcomm.org/my-family/1.0/my-message-type',
+        alias="@type",
+        description="Message type",
+        example="https://didcomm.org/my-family/1.0/my-message-type",
     )
-    comment: Optional[str] = Field(None, description='Human-readable comment')
+    comment: Optional[str] = Field(None, description="Human-readable comment")
     cred_def_id: Optional[str] = Field(
         None,
-        example='WgWxqztrNooG92RXvxSTWv:3:CL:20:tag',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$',
+        example="WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
     )
     credential_proposal: Optional[CredentialPreview] = None
     issuer_did: Optional[str] = Field(
         None,
-        example='WgWxqztrNooG92RXvxSTWv',
-        regex='^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$',
+        example="WgWxqztrNooG92RXvxSTWv",
+        regex="^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
     )
     schema_id: Optional[str] = Field(
         None,
-        example='WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0',
-        regex='^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$',
+        example="WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0",
+        regex="^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$",
     )
     schema_issuer_did: Optional[str] = Field(
         None,
-        example='WgWxqztrNooG92RXvxSTWv',
-        regex='^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$',
+        example="WgWxqztrNooG92RXvxSTWv",
+        regex="^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
     )
     schema_name: Optional[str] = None
-    schema_version: Optional[str] = Field(None, example='1.0', regex='^[0-9.]+$')
+    schema_version: Optional[str] = Field(None, example="1.0", regex="^[0-9.]+$")
 
 
 class CredentialStatusOptions(BaseModel):
@@ -742,8 +744,8 @@ class CredentialStatusOptions(BaseModel):
 
     type: str = Field(
         ...,
-        description='Credential status method type to use for the credential. Should match status method registered in the Verifiable Credential Extension Registry',
-        example='CredentialStatusList2017',
+        description="Credential status method type to use for the credential. Should match status method registered in the Verifiable Credential Extension Registry",
+        example="CredentialStatusList2017",
     )
 
 
@@ -753,26 +755,26 @@ class DID(BaseModel):
 
     did: Optional[str] = Field(
         None,
-        description='DID of interest',
-        example='did:peer:WgWxqztrNooG92RXvxSTWv',
-        regex='^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\\/[^#?]*)?([?][^#]*)?(\\#.*)?$$',
+        description="DID of interest",
+        example="did:peer:WgWxqztrNooG92RXvxSTWv",
+        regex="^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\\/[^#?]*)?([?][^#]*)?(\\#.*)?$$",
     )
-    key_type: Optional[Literal['ed25519', 'bls12381g2']] = Field(
-        None, description='Key type associated with the DID', example='ed25519'
+    key_type: Optional[Literal["ed25519", "bls12381g2"]] = Field(
+        None, description="Key type associated with the DID", example="ed25519"
     )
     method: Optional[str] = Field(
-        None, description='Did method associated with the DID', example='sov'
+        None, description="Did method associated with the DID", example="sov"
     )
-    posture: Optional[Literal['public', 'posted', 'wallet_only']] = Field(
+    posture: Optional[Literal["public", "posted", "wallet_only"]] = Field(
         None,
-        description='Whether DID is current public DID, posted to ledger but not current public DID, or local to the wallet',
-        example='wallet_only',
+        description="Whether DID is current public DID, posted to ledger but not current public DID, or local to the wallet",
+        example="wallet_only",
     )
     verkey: Optional[str] = Field(
         None,
-        description='Public verification key',
-        example='H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV',
-        regex='^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$',
+        description="Public verification key",
+        example="H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV",
+        regex="^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$",
     )
 
 
@@ -782,14 +784,14 @@ class DIDCreateOptions(BaseModel):
 
     did: Optional[str] = Field(
         None,
-        description='Specify final value of the did (including did:<method>: prefix)if the method supports or requires so.',
-        example='did:peer:WgWxqztrNooG92RXvxSTWv',
-        regex='^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\\/[^#?]*)?([?][^#]*)?(\\#.*)?$$',
+        description="Specify final value of the did (including did:<method>: prefix)if the method supports or requires so.",
+        example="did:peer:WgWxqztrNooG92RXvxSTWv",
+        regex="^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\\/[^#?]*)?([?][^#]*)?(\\#.*)?$$",
     )
-    key_type: Literal['ed25519', 'bls12381g2'] = Field(
+    key_type: Literal["ed25519", "bls12381g2"] = Field(
         ...,
         description="Key type to use for the DID keypair. Validated with the chosen DID method's supported key types.",
-        example='ed25519',
+        example="ed25519",
     )
 
 
@@ -799,15 +801,15 @@ class DIDEndpoint(BaseModel):
 
     did: str = Field(
         ...,
-        description='DID of interest',
-        example='WgWxqztrNooG92RXvxSTWv',
-        regex='^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$',
+        description="DID of interest",
+        example="WgWxqztrNooG92RXvxSTWv",
+        regex="^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
     )
     endpoint: Optional[str] = Field(
         None,
-        description='Endpoint to set (omit to delete)',
-        example='https://myhost:8021',
-        regex='^[A-Za-z0-9\\.\\-\\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$',
+        description="Endpoint to set (omit to delete)",
+        example="https://myhost:8021",
+        regex="^[A-Za-z0-9\\.\\-\\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$",
     )
 
 
@@ -817,20 +819,20 @@ class DIDEndpointWithType(BaseModel):
 
     did: str = Field(
         ...,
-        description='DID of interest',
-        example='WgWxqztrNooG92RXvxSTWv',
-        regex='^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$',
+        description="DID of interest",
+        example="WgWxqztrNooG92RXvxSTWv",
+        regex="^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
     )
     endpoint: Optional[str] = Field(
         None,
-        description='Endpoint to set (omit to delete)',
-        example='https://myhost:8021',
-        regex='^[A-Za-z0-9\\.\\-\\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$',
+        description="Endpoint to set (omit to delete)",
+        example="https://myhost:8021",
+        regex="^[A-Za-z0-9\\.\\-\\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$",
     )
-    endpoint_type: Optional[Literal['Endpoint', 'Profile', 'LinkedDomains']] = Field(
+    endpoint_type: Optional[Literal["Endpoint", "Profile", "LinkedDomains"]] = Field(
         None,
         description="Endpoint type to set (default 'Endpoint'); affects only public or posted DIDs",
-        example='Endpoint',
+        example="Endpoint",
     )
 
 
@@ -838,7 +840,7 @@ class DIDList(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    results: Optional[List[DID]] = Field(None, description='DID list')
+    results: Optional[List[DID]] = Field(None, description="DID list")
 
 
 class DIDResult(BaseModel):
@@ -854,8 +856,8 @@ class DIDXRejectRequest(BaseModel):
 
     reason: Optional[str] = Field(
         None,
-        description='Reason for rejecting the DID Exchange',
-        example='Request rejected',
+        description="Reason for rejecting the DID Exchange",
+        example="Request rejected",
     )
 
 
@@ -865,9 +867,9 @@ class FieldIdItem(BaseModel):
 
     __root__: str = Field(
         ...,
-        description='FieldID',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
-        regex='[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}',
+        description="FieldID",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        regex="[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
     )
 
 
@@ -875,8 +877,8 @@ class DIFHolder(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    directive: Optional[Literal['required', 'preferred']] = Field(
-        None, description='Preference'
+    directive: Optional[Literal["required", "preferred"]] = Field(
+        None, description="Preference"
     )
     field_id: Optional[List[FieldIdItem]] = None
 
@@ -887,12 +889,12 @@ class DIFOptions(BaseModel):
 
     challenge: Optional[str] = Field(
         None,
-        description='Challenge protect against replay attack',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
-        regex='[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}',
+        description="Challenge protect against replay attack",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        regex="[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
     )
     domain: Optional[str] = Field(
-        None, description='Domain protect against replay attack', example='4jt78h47fh47'
+        None, description="Domain protect against replay attack", example="4jt78h47fh47"
     )
 
 
@@ -901,7 +903,7 @@ class Date(BaseModel):
         allow_population_by_field_name = True
 
     expires_time: datetime = Field(
-        ..., description='Expiry Date', example='2021-03-29 05:22:19+00:00'
+        ..., description="Expiry Date", example="2021-03-29 05:22:19+00:00"
     )
 
 
@@ -911,18 +913,18 @@ class Disclosures(BaseModel):
 
     id: Optional[str] = Field(
         None,
-        alias='@id',
-        description='Message identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        alias="@id",
+        description="Message identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     type: Optional[str] = Field(
         None,
-        alias='@type',
-        description='Message type',
-        example='https://didcomm.org/my-family/1.0/my-message-type',
+        alias="@type",
+        description="Message type",
+        example="https://didcomm.org/my-family/1.0/my-message-type",
     )
     disclosures: List[Dict[str, Any]] = Field(
-        ..., description='List of protocol or goal_code descriptors'
+        ..., description="List of protocol or goal_code descriptors"
     )
 
 
@@ -930,8 +932,8 @@ class EndorserInfo(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    endorser_did: str = Field(..., description='Endorser DID')
-    endorser_name: Optional[str] = Field(None, description='Endorser Name')
+    endorser_did: str = Field(..., description="Endorser DID")
+    endorser_name: Optional[str] = Field(None, description="Endorser Name")
 
 
 class EndpointsResult(BaseModel):
@@ -940,15 +942,15 @@ class EndpointsResult(BaseModel):
 
     my_endpoint: Optional[str] = Field(
         None,
-        description='My endpoint',
-        example='https://myhost:8021',
-        regex='^[A-Za-z0-9\\.\\-\\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$',
+        description="My endpoint",
+        example="https://myhost:8021",
+        regex="^[A-Za-z0-9\\.\\-\\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$",
     )
     their_endpoint: Optional[str] = Field(
         None,
-        description='Their endpoint',
-        example='https://myhost:8021',
-        regex='^[A-Za-z0-9\\.\\-\\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$',
+        description="Their endpoint",
+        example="https://myhost:8021",
+        regex="^[A-Za-z0-9\\.\\-\\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$",
     )
 
 
@@ -957,36 +959,36 @@ class Filter(BaseModel):
         allow_population_by_field_name = True
 
     const: Optional[Union[str, float, int, bool, List, Dict[str, Any]]] = Field(
-        None, description='Const'
+        None, description="Const"
     )
     enum: Optional[List[Dict[str, Any]]] = None
     exclusive_maximum: Optional[Dict[str, Any]] = Field(
-        None, alias='exclusiveMaximum', description='ExclusiveMaximum'
+        None, alias="exclusiveMaximum", description="ExclusiveMaximum"
     )
     exclusive_minimum: Optional[Dict[str, Any]] = Field(
-        None, alias='exclusiveMinimum', description='ExclusiveMinimum'
+        None, alias="exclusiveMinimum", description="ExclusiveMinimum"
     )
-    format: Optional[str] = Field(None, description='Format')
+    format: Optional[str] = Field(None, description="Format")
     max_length: Optional[int] = Field(
-        None, alias='maxLength', description='Max Length', example=1234
+        None, alias="maxLength", description="Max Length", example=1234
     )
-    maximum: Optional[Dict[str, Any]] = Field(None, description='Maximum')
+    maximum: Optional[Dict[str, Any]] = Field(None, description="Maximum")
     min_length: Optional[int] = Field(
-        None, alias='minLength', description='Min Length', example=1234
+        None, alias="minLength", description="Min Length", example=1234
     )
-    minimum: Optional[Dict[str, Any]] = Field(None, description='Minimum')
-    not_: Optional[bool] = Field(None, alias='not', description='Not', example=False)
-    pattern: Optional[str] = Field(None, description='Pattern')
-    type: Optional[str] = Field(None, description='Type')
+    minimum: Optional[Dict[str, Any]] = Field(None, description="Minimum")
+    not_: Optional[bool] = Field(None, alias="not", description="Not", example=False)
+    pattern: Optional[str] = Field(None, description="Pattern")
+    type: Optional[str] = Field(None, description="Type")
 
 
 class Generated(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    master_secret: Optional[str] = Field(None, example='0', regex='^[0-9]*$')
-    number: Optional[str] = Field(None, example='0', regex='^[0-9]*$')
-    remainder: Optional[str] = Field(None, example='0', regex='^[0-9]*$')
+    master_secret: Optional[str] = Field(None, example="0", regex="^[0-9]*$")
+    number: Optional[str] = Field(None, example="0", regex="^[0-9]*$")
+    remainder: Optional[str] = Field(None, example="0", regex="^[0-9]*$")
 
 
 class GetDIDEndpointResponse(BaseModel):
@@ -995,9 +997,9 @@ class GetDIDEndpointResponse(BaseModel):
 
     endpoint: Optional[str] = Field(
         None,
-        description='Full verification key',
-        example='https://myhost:8021',
-        regex='^[A-Za-z0-9\\.\\-\\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$',
+        description="Full verification key",
+        example="https://myhost:8021",
+        regex="^[A-Za-z0-9\\.\\-\\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$",
     )
 
 
@@ -1007,9 +1009,9 @@ class GetDIDVerkeyResponse(BaseModel):
 
     verkey: Optional[str] = Field(
         None,
-        description='Full verification key',
-        example='H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV',
-        regex='^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$',
+        description="Full verification key",
+        example="H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV",
+        regex="^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$",
     )
 
 
@@ -1019,9 +1021,9 @@ class GetNymRoleResponse(BaseModel):
 
     role: Optional[
         Literal[
-            'STEWARD', 'TRUSTEE', 'ENDORSER', 'NETWORK_MONITOR', 'USER', 'ROLE_REMOVE'
+            "STEWARD", "TRUSTEE", "ENDORSER", "NETWORK_MONITOR", "USER", "ROLE_REMOVE"
         ]
-    ] = Field(None, description='Ledger role', example='ENDORSER')
+    ] = Field(None, description="Ledger role", example="ENDORSER")
 
 
 class HolderModuleResponse(ActionMenuModulesResult):
@@ -1033,9 +1035,9 @@ class IndyAttrValue(BaseModel):
         allow_population_by_field_name = True
 
     encoded: str = Field(
-        ..., description='Attribute encoded value', example=-1, regex='^-?[0-9]*$'
+        ..., description="Attribute encoded value", example=-1, regex="^-?[0-9]*$"
     )
-    raw: str = Field(..., description='Attribute raw value')
+    raw: str = Field(..., description="Attribute raw value")
 
 
 class IndyCredInfo(BaseModel):
@@ -1043,36 +1045,36 @@ class IndyCredInfo(BaseModel):
         allow_population_by_field_name = True
 
     attrs: Optional[Dict[str, str]] = Field(
-        None, description='Attribute names and value'
+        None, description="Attribute names and value"
     )
     cred_def_id: Optional[str] = Field(
         None,
-        description='Credential definition identifier',
-        example='WgWxqztrNooG92RXvxSTWv:3:CL:20:tag',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$',
+        description="Credential definition identifier",
+        example="WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
     )
     cred_rev_id: Optional[str] = Field(
         None,
-        description='Credential revocation identifier',
-        example='12345',
-        regex='^[1-9][0-9]*$',
+        description="Credential revocation identifier",
+        example="12345",
+        regex="^[1-9][0-9]*$",
     )
     referent: Optional[str] = Field(
         None,
-        description='Wallet referent',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Wallet referent",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     rev_reg_id: Optional[str] = Field(
         None,
-        description='Revocation registry identifier',
-        example='WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)',
+        description="Revocation registry identifier",
+        example="WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)",
     )
     schema_id: Optional[str] = Field(
         None,
-        description='Schema identifier',
-        example='WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0',
-        regex='^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$',
+        description="Schema identifier",
+        example="WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0",
+        regex="^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$",
     )
 
 
@@ -1080,24 +1082,24 @@ class IndyCredRequest(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    blinded_ms: Dict[str, Any] = Field(..., description='Blinded master secret')
+    blinded_ms: Dict[str, Any] = Field(..., description="Blinded master secret")
     blinded_ms_correctness_proof: Dict[str, Any] = Field(
-        ..., description='Blinded master secret correctness proof'
+        ..., description="Blinded master secret correctness proof"
     )
     cred_def_id: str = Field(
         ...,
-        description='Credential definition identifier',
-        example='WgWxqztrNooG92RXvxSTWv:3:CL:20:tag',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$',
+        description="Credential definition identifier",
+        example="WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
     )
     nonce: str = Field(
-        ..., description='Nonce in credential request', example='0', regex='^[0-9]*$'
+        ..., description="Nonce in credential request", example="0", regex="^[0-9]*$"
     )
     prover_did: str = Field(
         ...,
-        description='Prover DID',
-        example='WgWxqztrNooG92RXvxSTWv',
-        regex='^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$',
+        description="Prover DID",
+        example="WgWxqztrNooG92RXvxSTWv",
+        regex="^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
     )
 
 
@@ -1107,32 +1109,32 @@ class IndyCredential(BaseModel):
 
     cred_def_id: str = Field(
         ...,
-        description='Credential definition identifier',
-        example='WgWxqztrNooG92RXvxSTWv:3:CL:20:tag',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$',
+        description="Credential definition identifier",
+        example="WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
     )
     rev_reg: Optional[Dict[str, Any]] = Field(
-        None, description='Revocation registry state'
+        None, description="Revocation registry state"
     )
     rev_reg_id: Optional[str] = Field(
         None,
-        description='Revocation registry identifier',
-        example='WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)',
+        description="Revocation registry identifier",
+        example="WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)",
     )
     schema_id: str = Field(
         ...,
-        description='Schema identifier',
-        example='WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0',
-        regex='^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$',
+        description="Schema identifier",
+        example="WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0",
+        regex="^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$",
     )
-    signature: Dict[str, Any] = Field(..., description='Credential signature')
+    signature: Dict[str, Any] = Field(..., description="Credential signature")
     signature_correctness_proof: Dict[str, Any] = Field(
-        ..., description='Credential signature correctness proof'
+        ..., description="Credential signature correctness proof"
     )
-    values: Dict[str, IndyAttrValue] = Field(..., description='Credential attributes')
+    values: Dict[str, IndyAttrValue] = Field(..., description="Credential attributes")
     witness: Optional[Dict[str, Any]] = Field(
-        None, description='Witness for revocation proof'
+        None, description="Witness for revocation proof"
     )
 
 
@@ -1140,12 +1142,12 @@ class IndyEQProof(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    a_prime: Optional[str] = Field(None, example='0', regex='^[0-9]*$')
-    e: Optional[str] = Field(None, example='0', regex='^[0-9]*$')
+    a_prime: Optional[str] = Field(None, example="0", regex="^[0-9]*$")
+    e: Optional[str] = Field(None, example="0", regex="^[0-9]*$")
     m: Optional[Dict[str, str]] = None
-    m2: Optional[str] = Field(None, example='0', regex='^[0-9]*$')
+    m2: Optional[str] = Field(None, example="0", regex="^[0-9]*$")
     revealed_attrs: Optional[Dict[str, str]] = None
-    v: Optional[str] = Field(None, example='0', regex='^[0-9]*$')
+    v: Optional[str] = Field(None, example="0", regex="^[0-9]*$")
 
 
 class IndyGEProofPred(BaseModel):
@@ -1153,12 +1155,12 @@ class IndyGEProofPred(BaseModel):
         allow_population_by_field_name = True
 
     attr_name: Optional[str] = Field(
-        None, description='Attribute name, indy-canonicalized'
+        None, description="Attribute name, indy-canonicalized"
     )
-    p_type: Optional[Literal['LT', 'LE', 'GE', 'GT']] = Field(
-        None, description='Predicate type'
+    p_type: Optional[Literal["LT", "LE", "GE", "GT"]] = Field(
+        None, description="Predicate type"
     )
-    value: Optional[int] = Field(None, description='Predicate threshold value')
+    value: Optional[int] = Field(None, description="Predicate threshold value")
 
 
 class IndyKeyCorrectnessProof(BaseModel):
@@ -1166,14 +1168,14 @@ class IndyKeyCorrectnessProof(BaseModel):
         allow_population_by_field_name = True
 
     c: str = Field(
-        ..., description='c in key correctness proof', example='0', regex='^[0-9]*$'
+        ..., description="c in key correctness proof", example="0", regex="^[0-9]*$"
     )
-    xr_cap: List[List[str]] = Field(..., description='xr_cap in key correctness proof')
+    xr_cap: List[List[str]] = Field(..., description="xr_cap in key correctness proof")
     xz_cap: str = Field(
         ...,
-        description='xz_cap in key correctness proof',
-        example='0',
-        regex='^[0-9]*$',
+        description="xz_cap in key correctness proof",
+        example="0",
+        regex="^[0-9]*$",
     )
 
 
@@ -1191,15 +1193,15 @@ class IndyNonRevocationInterval(BaseModel):
 
     from_: Optional[int] = Field(
         None,
-        alias='from',
-        description='Earliest time of interest in non-revocation interval',
+        alias="from",
+        description="Earliest time of interest in non-revocation interval",
         example=1640995199,
         ge=0,
         le=18446744073709551615,
     )
     to: Optional[int] = Field(
         None,
-        description='Latest time of interest in non-revocation interval',
+        description="Latest time of interest in non-revocation interval",
         example=1640995199,
         ge=0,
         le=18446744073709551615,
@@ -1212,20 +1214,20 @@ class IndyPresAttrSpec(BaseModel):
 
     cred_def_id: Optional[str] = Field(
         None,
-        example='WgWxqztrNooG92RXvxSTWv:3:CL:20:tag',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$',
+        example="WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
     )
     mime_type: Optional[str] = Field(
         None,
-        alias='mime-type',
-        description='MIME type (default null)',
-        example='image/jpeg',
+        alias="mime-type",
+        description="MIME type (default null)",
+        example="image/jpeg",
     )
-    name: str = Field(..., description='Attribute name', example='favourite_drink')
+    name: str = Field(..., description="Attribute name", example="favourite_drink")
     referent: Optional[str] = Field(
-        None, description='Credential referent', example='0'
+        None, description="Credential referent", example="0"
     )
-    value: Optional[str] = Field(None, description='Attribute value', example='martini')
+    value: Optional[str] = Field(None, description="Attribute value", example="martini")
 
 
 class IndyPresPredSpec(BaseModel):
@@ -1234,15 +1236,15 @@ class IndyPresPredSpec(BaseModel):
 
     cred_def_id: Optional[str] = Field(
         None,
-        description='Credential definition identifier',
-        example='WgWxqztrNooG92RXvxSTWv:3:CL:20:tag',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$',
+        description="Credential definition identifier",
+        example="WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
     )
-    name: str = Field(..., description='Attribute name', example='high_score')
-    predicate: Literal['<', '<=', '>=', '>'] = Field(
-        ..., description="Predicate type ('<', '<=', '>=', or '>')", example='>='
+    name: str = Field(..., description="Attribute name", example="high_score")
+    predicate: Literal["<", "<=", ">=", ">"] = Field(
+        ..., description="Predicate type ('<', '<=', '>=', or '>')", example=">="
     )
-    threshold: int = Field(..., description='Threshold value')
+    threshold: int = Field(..., description="Threshold value")
 
 
 class IndyPresPreview(BaseModel):
@@ -1251,9 +1253,9 @@ class IndyPresPreview(BaseModel):
 
     type: Optional[str] = Field(
         None,
-        alias='@type',
-        description='Message type identifier',
-        example='did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/present-proof/1.0/presentation-preview',
+        alias="@type",
+        description="Message type identifier",
+        example="did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/present-proof/1.0/presentation-preview",
     )
     attributes: List[IndyPresAttrSpec]
     predicates: List[IndyPresPredSpec]
@@ -1265,25 +1267,25 @@ class IndyProofIdentifier(BaseModel):
 
     cred_def_id: Optional[str] = Field(
         None,
-        description='Credential definition identifier',
-        example='WgWxqztrNooG92RXvxSTWv:3:CL:20:tag',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$',
+        description="Credential definition identifier",
+        example="WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
     )
     rev_reg_id: Optional[str] = Field(
         None,
-        description='Revocation registry identifier',
-        example='WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)',
+        description="Revocation registry identifier",
+        example="WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)",
     )
     schema_id: Optional[str] = Field(
         None,
-        description='Schema identifier',
-        example='WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0',
-        regex='^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$',
+        description="Schema identifier",
+        example="WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0",
+        regex="^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$",
     )
     timestamp: Optional[int] = Field(
         None,
-        description='Timestamp epoch',
+        description="Timestamp epoch",
         example=1640995199,
         ge=0,
         le=18446744073709551615,
@@ -1294,8 +1296,8 @@ class IndyProofProofAggregatedProof(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    c_hash: Optional[str] = Field(None, description='c_hash value')
-    c_list: Optional[List[List[int]]] = Field(None, description='c_list value')
+    c_hash: Optional[str] = Field(None, description="c_hash value")
+    c_list: Optional[List[List[int]]] = Field(None, description="c_list value")
 
 
 class IndyProofReqAttrSpecNonRevoked(IndyNonRevocationInterval):
@@ -1314,7 +1316,7 @@ class IndyProofRequestedProofPredicate(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    sub_proof_index: Optional[int] = Field(None, description='Sub-proof index')
+    sub_proof_index: Optional[int] = Field(None, description="Sub-proof index")
 
 
 class IndyProofRequestedProofRevealedAttr(BaseModel):
@@ -1322,10 +1324,10 @@ class IndyProofRequestedProofRevealedAttr(BaseModel):
         allow_population_by_field_name = True
 
     encoded: Optional[str] = Field(
-        None, description='Encoded value', example=-1, regex='^-?[0-9]*$'
+        None, description="Encoded value", example=-1, regex="^-?[0-9]*$"
     )
-    raw: Optional[str] = Field(None, description='Raw value')
-    sub_proof_index: Optional[int] = Field(None, description='Sub-proof index')
+    raw: Optional[str] = Field(None, description="Raw value")
+    sub_proof_index: Optional[int] = Field(None, description="Sub-proof index")
 
 
 class IndyRequestedCredsRequestedAttr(BaseModel):
@@ -1334,11 +1336,11 @@ class IndyRequestedCredsRequestedAttr(BaseModel):
 
     cred_id: str = Field(
         ...,
-        description='Wallet credential identifier (typically but not necessarily a UUID)',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Wallet credential identifier (typically but not necessarily a UUID)",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     revealed: Optional[bool] = Field(
-        None, description='Whether to reveal attribute in proof (default true)'
+        None, description="Whether to reveal attribute in proof (default true)"
     )
 
 
@@ -1348,12 +1350,12 @@ class IndyRequestedCredsRequestedPred(BaseModel):
 
     cred_id: str = Field(
         ...,
-        description='Wallet credential identifier (typically but not necessarily a UUID)',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Wallet credential identifier (typically but not necessarily a UUID)",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     timestamp: Optional[int] = Field(
         None,
-        description='Epoch timestamp of interest for non-revocation proof',
+        description="Epoch timestamp of interest for non-revocation proof",
         example=1640995199,
         ge=0,
         le=18446744073709551615,
@@ -1365,7 +1367,7 @@ class IndyRevRegDefValuePublicKeysAccumKey(BaseModel):
         allow_population_by_field_name = True
 
     z: Optional[str] = Field(
-        None, description='Value for z', example='1 120F522F81E6B7 1 09F7A59005C4939854'
+        None, description="Value for z", example="1 120F522F81E6B7 1 09F7A59005C4939854"
     )
 
 
@@ -1375,17 +1377,17 @@ class IndyRevRegEntryValue(BaseModel):
 
     accum: Optional[str] = Field(
         None,
-        description='Accumulator value',
-        example='21 11792B036AED0AAA12A4 4 298B2571FFC63A737',
+        description="Accumulator value",
+        example="21 11792B036AED0AAA12A4 4 298B2571FFC63A737",
     )
     prev_accum: Optional[str] = Field(
         None,
-        alias='prevAccum',
-        description='Previous accumulator value',
-        example='21 137AC810975E4 6 76F0384B6F23',
+        alias="prevAccum",
+        description="Previous accumulator value",
+        example="21 137AC810975E4 6 76F0384B6F23",
     )
     revoked: Optional[List[int]] = Field(
-        None, description='Revoked credential revocation identifiers'
+        None, description="Revoked credential revocation identifiers"
     )
 
 
@@ -1399,46 +1401,46 @@ class InvitationCreateRequest(BaseModel):
 
     accept: Optional[List[str]] = Field(
         None,
-        description='List of mime type in order of preference that should be use in responding to the message',
-        example=['didcomm/aip1', 'didcomm/aip2;env=rfc19'],
+        description="List of mime type in order of preference that should be use in responding to the message",
+        example=["didcomm/aip1", "didcomm/aip2;env=rfc19"],
     )
     alias: Optional[str] = Field(
-        None, description='Alias for connection', example='Barry'
+        None, description="Alias for connection", example="Barry"
     )
     attachments: Optional[List[AttachmentDef]] = Field(
-        None, description='Optional invitation attachments'
+        None, description="Optional invitation attachments"
     )
     goal: Optional[str] = Field(
         None,
-        description='A self-attested string that the receiver may want to display to the user about the context-specific goal of the out-of-band message',
-        example='To issue a Faber College Graduate credential',
+        description="A self-attested string that the receiver may want to display to the user about the context-specific goal of the out-of-band message",
+        example="To issue a Faber College Graduate credential",
     )
     goal_code: Optional[str] = Field(
         None,
-        description='A self-attested code the receiver may want to display to the user or use in automatically deciding what to do with the out-of-band message',
-        example='issue-vc',
+        description="A self-attested code the receiver may want to display to the user or use in automatically deciding what to do with the out-of-band message",
+        example="issue-vc",
     )
     handshake_protocols: Optional[List[str]] = None
     mediation_id: Optional[str] = Field(
         None,
-        description='Identifier for active mediation record to be used',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
-        regex='[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}',
+        description="Identifier for active mediation record to be used",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        regex="[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
     )
     metadata: Optional[Dict[str, Any]] = Field(
         None,
-        description='Optional metadata to attach to the connection created with the invitation',
+        description="Optional metadata to attach to the connection created with the invitation",
     )
     my_label: Optional[str] = Field(
         None,
-        description='Label for connection invitation',
-        example='Invitation to Barry',
+        description="Label for connection invitation",
+        example="Invitation to Barry",
     )
     protocol_version: Optional[str] = Field(
-        None, description='OOB protocol version', example='1.1'
+        None, description="OOB protocol version", example="1.1"
     )
     use_public_did: Optional[bool] = Field(
-        None, description='Whether to use public DID in invitation', example=False
+        None, description="Whether to use public DID in invitation", example=False
     )
 
 
@@ -1448,14 +1450,14 @@ class InvitationResult(BaseModel):
 
     connection_id: Optional[str] = Field(
         None,
-        description='Connection identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Connection identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     invitation: Optional[ConnectionInvitation] = None
     invitation_url: Optional[str] = Field(
         None,
-        description='Invitation URL',
-        example='http://192.168.56.101:8020/invite?c_i=eyJAdHlwZSI6Li4ufQ==',
+        description="Invitation URL",
+        example="http://192.168.56.101:8020/invite?c_i=eyJAdHlwZSI6Li4ufQ==",
     )
 
 
@@ -1469,49 +1471,49 @@ class IssuerCredRevRecord(BaseModel):
 
     created_at: Optional[str] = Field(
         None,
-        description='Time of record creation',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of record creation",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
     cred_def_id: Optional[str] = Field(
         None,
-        description='Credential definition identifier',
-        example='WgWxqztrNooG92RXvxSTWv:3:CL:20:tag',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$',
+        description="Credential definition identifier",
+        example="WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
     )
     cred_ex_id: Optional[str] = Field(
         None,
-        description='Credential exchange record identifier at credential issue',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Credential exchange record identifier at credential issue",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     cred_ex_version: Optional[str] = Field(
-        None, description='Credential exchange version'
+        None, description="Credential exchange version"
     )
     cred_rev_id: Optional[str] = Field(
         None,
-        description='Credential revocation identifier',
-        example='12345',
-        regex='^[1-9][0-9]*$',
+        description="Credential revocation identifier",
+        example="12345",
+        regex="^[1-9][0-9]*$",
     )
     record_id: Optional[str] = Field(
         None,
-        description='Issuer credential revocation record identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Issuer credential revocation record identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     rev_reg_id: Optional[str] = Field(
         None,
-        description='Revocation registry identifier',
-        example='WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)',
+        description="Revocation registry identifier",
+        example="WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)",
     )
     state: Optional[str] = Field(
-        None, description='Issue credential revocation record state', example='issued'
+        None, description="Issue credential revocation record state", example="issued"
     )
     updated_at: Optional[str] = Field(
         None,
-        description='Time of last record update',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of last record update",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
 
 
@@ -1521,18 +1523,18 @@ class JWSCreate(BaseModel):
 
     did: Optional[str] = Field(
         None,
-        description='DID of interest',
-        example='did:peer:WgWxqztrNooG92RXvxSTWv',
-        regex='^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\\/[^#?]*)?([?][^#]*)?(\\#.*)?$$',
+        description="DID of interest",
+        example="did:peer:WgWxqztrNooG92RXvxSTWv",
+        regex="^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\\/[^#?]*)?([?][^#]*)?(\\#.*)?$$",
     )
     headers: Optional[Dict[str, Any]] = None
     payload: Dict[str, Any]
     verification_method: Optional[str] = Field(
         None,
-        alias='verificationMethod',
-        description='Information used for proof verification',
-        example='did:key:z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL#z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL',
-        regex='\\w+:(\\/?\\/?)[^\\s]+',
+        alias="verificationMethod",
+        description="Information used for proof verification",
+        example="did:key:z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL#z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL",
+        regex="\\w+:(\\/?\\/?)[^\\s]+",
     )
 
 
@@ -1542,8 +1544,8 @@ class JWSVerify(BaseModel):
 
     jwt: Optional[str] = Field(
         None,
-        example='eyJhbGciOiJFZERTQSJ9.eyJhIjogIjAifQ.dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk',
-        regex='^[-_a-zA-Z0-9]*\\.[-_a-zA-Z0-9]*\\.[-_a-zA-Z0-9]*$',
+        example="eyJhbGciOiJFZERTQSJ9.eyJhIjogIjAifQ.dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk",
+        regex="^[-_a-zA-Z0-9]*\\.[-_a-zA-Z0-9]*\\.[-_a-zA-Z0-9]*$",
     )
 
 
@@ -1551,10 +1553,10 @@ class JWSVerifyResponse(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    error: Optional[str] = Field(None, description='Error text')
-    headers: Dict[str, Any] = Field(..., description='Headers from verified JWT.')
-    kid: str = Field(..., description='kid of signer')
-    payload: Dict[str, Any] = Field(..., description='Payload from verified JWT')
+    error: Optional[str] = Field(None, description="Error text")
+    headers: Dict[str, Any] = Field(..., description="Headers from verified JWT.")
+    kid: str = Field(..., description="kid of signer")
+    payload: Dict[str, Any] = Field(..., description="Payload from verified JWT")
     valid: bool
 
 
@@ -1563,7 +1565,7 @@ class KeylistQueryFilterRequest(BaseModel):
         allow_population_by_field_name = True
 
     filter: Optional[Dict[str, Any]] = Field(
-        None, description='Filter for keylist query'
+        None, description="Filter for keylist query"
     )
 
 
@@ -1572,23 +1574,23 @@ class KeylistQueryPaginate(BaseModel):
         allow_population_by_field_name = True
 
     limit: Optional[int] = Field(
-        None, description='Limit for keylist query', example=30
+        None, description="Limit for keylist query", example=30
     )
-    offset: Optional[int] = Field(None, description='Offset value for query', example=0)
+    offset: Optional[int] = Field(None, description="Offset value for query", example=0)
 
 
 class KeylistUpdateRule(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    action: Literal['add', 'remove'] = Field(
-        ..., description='Action for specific key', example='add'
+    action: Literal["add", "remove"] = Field(
+        ..., description="Action for specific key", example="add"
     )
     recipient_key: str = Field(
         ...,
-        description='Key to remove or add',
-        example='did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH',
-        regex='^did:key:z[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]+$|^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$',
+        description="Key to remove or add",
+        example="did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH",
+        regex="^did:key:z[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]+$|^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$",
     )
 
 
@@ -1598,36 +1600,36 @@ class LDProofVCDetailOptions(BaseModel):
 
     challenge: Optional[str] = Field(
         None,
-        description='A challenge to include in the proof. SHOULD be provided by the requesting party of the credential (=holder)',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="A challenge to include in the proof. SHOULD be provided by the requesting party of the credential (=holder)",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     created: Optional[str] = Field(
         None,
-        description='The date and time of the proof (with a maximum accuracy in seconds). Defaults to current system time',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="The date and time of the proof (with a maximum accuracy in seconds). Defaults to current system time",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
     credential_status: Optional[CredentialStatusOptions] = Field(
         None,
-        alias='credentialStatus',
-        description='The credential status mechanism to use for the credential. Omitting the property indicates the issued credential will not include a credential status',
+        alias="credentialStatus",
+        description="The credential status mechanism to use for the credential. Omitting the property indicates the issued credential will not include a credential status",
     )
     domain: Optional[str] = Field(
         None,
-        description='The intended domain of validity for the proof',
-        example='example.com',
+        description="The intended domain of validity for the proof",
+        example="example.com",
     )
     proof_purpose: Optional[str] = Field(
         None,
-        alias='proofPurpose',
-        description='The proof purpose used for the proof. Should match proof purposes registered in the Linked Data Proofs Specification',
-        example='assertionMethod',
+        alias="proofPurpose",
+        description="The proof purpose used for the proof. Should match proof purposes registered in the Linked Data Proofs Specification",
+        example="assertionMethod",
     )
     proof_type: str = Field(
         ...,
-        alias='proofType',
-        description='The proof type used for the proof. Should match suites registered in the Linked Data Cryptographic Suite Registry',
-        example='Ed25519Signature2018',
+        alias="proofType",
+        description="The proof type used for the proof. Should match suites registered in the Linked Data Cryptographic Suite Registry",
+        example="Ed25519Signature2018",
     )
 
 
@@ -1635,13 +1637,13 @@ class LedgerConfigInstance(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    genesis_file: Optional[str] = Field(None, description='genesis_file')
+    genesis_file: Optional[str] = Field(None, description="genesis_file")
     genesis_transactions: Optional[str] = Field(
-        None, description='genesis_transactions'
+        None, description="genesis_transactions"
     )
-    genesis_url: Optional[str] = Field(None, description='genesis_url')
-    id: Optional[str] = Field(None, description='ledger_id')
-    is_production: Optional[bool] = Field(None, description='is_production')
+    genesis_url: Optional[str] = Field(None, description="genesis_url")
+    id: Optional[str] = Field(None, description="ledger_id")
+    is_production: Optional[bool] = Field(None, description="is_production")
 
 
 class LedgerConfigList(BaseModel):
@@ -1661,54 +1663,54 @@ class LinkedDataProof(BaseModel):
 
     challenge: Optional[str] = Field(
         None,
-        description='Associates a challenge with a proof, for use with a proofPurpose such as authentication',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Associates a challenge with a proof, for use with a proofPurpose such as authentication",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     created: str = Field(
         ...,
-        description='The string value of an ISO8601 combined date and time string generated by the Signature Algorithm',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="The string value of an ISO8601 combined date and time string generated by the Signature Algorithm",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
     domain: Optional[str] = Field(
         None,
-        description='A string value specifying the restricted domain of the signature.',
-        example='example.com',
-        regex='\\w+:(\\/?\\/?)[^\\s]+',
+        description="A string value specifying the restricted domain of the signature.",
+        example="example.com",
+        regex="\\w+:(\\/?\\/?)[^\\s]+",
     )
     jws: Optional[str] = Field(
         None,
-        description='Associates a Detached Json Web Signature with a proof',
-        example='eyJhbGciOiAiRWREUc2UsICJjcml0IjogWyJiNjQiXX0..lKJU0Df_keblRKhZAS9Qq6zybm-HqUXNVZ8vgEPNTAjQ1Ch6YBKY7UBAjg6iBX5qBQ',
+        description="Associates a Detached Json Web Signature with a proof",
+        example="eyJhbGciOiAiRWREUc2UsICJjcml0IjogWyJiNjQiXX0..lKJU0Df_keblRKhZAS9Qq6zybm-HqUXNVZ8vgEPNTAjQ1Ch6YBKY7UBAjg6iBX5qBQ",
     )
     nonce: Optional[str] = Field(
         None,
-        description='The nonce',
-        example='CF69iO3nfvqRsRBNElE8b4wO39SyJHPM7Gg1nExltW5vSfQA1lvDCR/zXX1To0/4NLo==',
+        description="The nonce",
+        example="CF69iO3nfvqRsRBNElE8b4wO39SyJHPM7Gg1nExltW5vSfQA1lvDCR/zXX1To0/4NLo==",
     )
     proof_purpose: str = Field(
         ...,
-        alias='proofPurpose',
-        description='Proof purpose',
-        example='assertionMethod',
+        alias="proofPurpose",
+        description="Proof purpose",
+        example="assertionMethod",
     )
     proof_value: Optional[str] = Field(
         None,
-        alias='proofValue',
-        description='The proof value of a proof',
-        example='sy1AahqbzJQ63n9RtekmwzqZeVj494VppdAVJBnMYrTwft6cLJJGeTSSxCCJ6HKnRtwE7jjDh6sB2z2AAiZY9BBnCD8wUVgwqH3qchGRCuC2RugA4eQ9fUrR4Yuycac3caiaaay',
+        alias="proofValue",
+        description="The proof value of a proof",
+        example="sy1AahqbzJQ63n9RtekmwzqZeVj494VppdAVJBnMYrTwft6cLJJGeTSSxCCJ6HKnRtwE7jjDh6sB2z2AAiZY9BBnCD8wUVgwqH3qchGRCuC2RugA4eQ9fUrR4Yuycac3caiaaay",
     )
     type: str = Field(
         ...,
-        description='Identifies the digital signature suite that was used to create the signature',
-        example='Ed25519Signature2018',
+        description="Identifies the digital signature suite that was used to create the signature",
+        example="Ed25519Signature2018",
     )
     verification_method: str = Field(
         ...,
-        alias='verificationMethod',
-        description='Information used for proof verification',
-        example='did:key:z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL#z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL',
-        regex='\\w+:(\\/?\\/?)[^\\s]+',
+        alias="verificationMethod",
+        description="Information used for proof verification",
+        example="did:key:z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL#z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL",
+        regex="\\w+:(\\/?\\/?)[^\\s]+",
     )
 
 
@@ -1722,15 +1724,15 @@ class MediationDeny(BaseModel):
 
     id: Optional[str] = Field(
         None,
-        alias='@id',
-        description='Message identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        alias="@id",
+        description="Message identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     type: Optional[str] = Field(
         None,
-        alias='@type',
-        description='Message type',
-        example='https://didcomm.org/my-family/1.0/my-message-type',
+        alias="@type",
+        description="Message type",
+        example="https://didcomm.org/my-family/1.0/my-message-type",
     )
     mediator_terms: Optional[List[str]] = None
     recipient_terms: Optional[List[str]] = None
@@ -1742,20 +1744,20 @@ class MediationGrant(BaseModel):
 
     id: Optional[str] = Field(
         None,
-        alias='@id',
-        description='Message identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        alias="@id",
+        description="Message identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     type: Optional[str] = Field(
         None,
-        alias='@type',
-        description='Message type',
-        example='https://didcomm.org/my-family/1.0/my-message-type',
+        alias="@type",
+        description="Message type",
+        example="https://didcomm.org/my-family/1.0/my-message-type",
     )
     endpoint: Optional[str] = Field(
         None,
-        description='endpoint on which messages destined for the recipient are received.',
-        example='http://192.168.56.102:8020/',
+        description="endpoint on which messages destined for the recipient are received.",
+        example="http://192.168.56.102:8020/",
     )
     routing_keys: Optional[List[str]] = None
 
@@ -1766,8 +1768,8 @@ class MediationIdMatchInfo(BaseModel):
 
     mediation_id: Optional[UUID] = Field(
         None,
-        description='Mediation record identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Mediation record identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
 
 
@@ -1777,8 +1779,8 @@ class RoutingKey2(BaseModel):
 
     __root__: str = Field(
         ...,
-        example='did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH',
-        regex='^did:key:z[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]+$',
+        example="did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH",
+        regex="^did:key:z[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]+$",
     )
 
 
@@ -1789,9 +1791,9 @@ class MediationRecord(BaseModel):
     connection_id: str
     created_at: Optional[str] = Field(
         None,
-        description='Time of record creation',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of record creation",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
     endpoint: Optional[str] = None
     mediation_id: Optional[str] = None
@@ -1800,13 +1802,13 @@ class MediationRecord(BaseModel):
     role: str
     routing_keys: Optional[List[RoutingKey2]] = None
     state: Optional[str] = Field(
-        None, description='Current record state', example='active'
+        None, description="Current record state", example="active"
     )
     updated_at: Optional[str] = Field(
         None,
-        description='Time of last record update',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of last record update",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
 
 
@@ -1815,22 +1817,22 @@ class MenuFormParam(BaseModel):
         allow_population_by_field_name = True
 
     default: Optional[str] = Field(
-        None, description='Default parameter value', example='0'
+        None, description="Default parameter value", example="0"
     )
     description: Optional[str] = Field(
         None,
-        description='Additional descriptive text for menu form parameter',
-        example='Delay in seconds before starting',
+        description="Additional descriptive text for menu form parameter",
+        example="Delay in seconds before starting",
     )
-    name: str = Field(..., description='Menu parameter name', example='delay')
+    name: str = Field(..., description="Menu parameter name", example="delay")
     required: Optional[bool] = Field(
-        None, description='Whether parameter is required', example=False
+        None, description="Whether parameter is required", example=False
     )
     title: str = Field(
-        ..., description='Menu parameter title', example='Delay in seconds'
+        ..., description="Menu parameter title", example="Delay in seconds"
     )
     type: Optional[str] = Field(
-        None, description='Menu form parameter input type', example='int'
+        None, description="Menu form parameter input type", example="int"
     )
 
 
@@ -1842,22 +1844,22 @@ class PerformRequest(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    name: Optional[str] = Field(None, description='Menu option name', example='Query')
-    params: Optional[Dict[str, str]] = Field(None, description='Input parameter values')
+    name: Optional[str] = Field(None, description="Menu option name", example="Query")
+    params: Optional[Dict[str, str]] = Field(None, description="Input parameter values")
 
 
 class PingRequest(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    comment: Optional[str] = Field(None, description='Comment for the ping message')
+    comment: Optional[str] = Field(None, description="Comment for the ping message")
 
 
 class PingRequestResponse(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    thread_id: Optional[str] = Field(None, description='Thread ID of the ping message')
+    thread_id: Optional[str] = Field(None, description="Thread ID of the ping message")
 
 
 class PresentationProposal(BaseModel):
@@ -1866,17 +1868,17 @@ class PresentationProposal(BaseModel):
 
     id: Optional[str] = Field(
         None,
-        alias='@id',
-        description='Message identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        alias="@id",
+        description="Message identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     type: Optional[str] = Field(
         None,
-        alias='@type',
-        description='Message type',
-        example='https://didcomm.org/my-family/1.0/my-message-type',
+        alias="@type",
+        description="Message type",
+        example="https://didcomm.org/my-family/1.0/my-message-type",
     )
-    comment: Optional[str] = Field(None, description='Human-readable comment')
+    comment: Optional[str] = Field(None, description="Human-readable comment")
     presentation_proposal: IndyPresPreview
 
 
@@ -1886,11 +1888,11 @@ class ProfileSettings(BaseModel):
 
     settings: Optional[Dict[str, Any]] = Field(
         None,
-        description='Profile settings dict',
+        description="Profile settings dict",
         example={
-            'debug.invite_public': True,
-            'log.level': 'INFO',
-            'public_invites': False,
+            "debug.invite_public": True,
+            "log.level": "INFO",
+            "public_invites": False,
         },
     )
 
@@ -1900,7 +1902,7 @@ class ProtocolDescriptor(BaseModel):
         allow_population_by_field_name = True
 
     pid: str
-    roles: Optional[List[str]] = Field(None, description='List of roles')
+    roles: Optional[List[str]] = Field(None, description="List of roles")
 
 
 class Rrid2cridItem(PurgeItem):
@@ -1912,7 +1914,7 @@ class PublishRevocations(BaseModel):
         allow_population_by_field_name = True
 
     rrid2crid: Optional[Dict[str, List[Rrid2cridItem]]] = Field(
-        None, description='Credential revocation ids by revocation registry id'
+        None, description="Credential revocation ids by revocation registry id"
     )
 
 
@@ -1922,15 +1924,15 @@ class Query(BaseModel):
 
     id: Optional[str] = Field(
         None,
-        alias='@id',
-        description='Message identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        alias="@id",
+        description="Message identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     type: Optional[str] = Field(
         None,
-        alias='@type',
-        description='Message type',
-        example='https://didcomm.org/my-family/1.0/my-message-type',
+        alias="@type",
+        description="Message type",
+        example="https://didcomm.org/my-family/1.0/my-message-type",
     )
     comment: Optional[str] = None
     query: str
@@ -1940,10 +1942,10 @@ class QueryItem(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    feature_type: Literal['protocol', 'goal-code'] = Field(
-        ..., alias='feature-type', description='feature type'
+    feature_type: Literal["protocol", "goal-code"] = Field(
+        ..., alias="feature-type", description="feature type"
     )
-    match: str = Field(..., description='match')
+    match: str = Field(..., description="match")
 
 
 class RawEncoded(BaseModel):
@@ -1951,9 +1953,9 @@ class RawEncoded(BaseModel):
         allow_population_by_field_name = True
 
     encoded: Optional[str] = Field(
-        None, description='Encoded value', example=-1, regex='^-?[0-9]*$'
+        None, description="Encoded value", example=-1, regex="^-?[0-9]*$"
     )
-    raw: Optional[str] = Field(None, description='Raw value')
+    raw: Optional[str] = Field(None, description="Raw value")
 
 
 class RoutingKey3(RoutingKey):
@@ -1966,42 +1968,42 @@ class ReceiveInvitationRequest(BaseModel):
 
     id: Optional[str] = Field(
         None,
-        alias='@id',
-        description='Message identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        alias="@id",
+        description="Message identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     type: Optional[str] = Field(
         None,
-        alias='@type',
-        description='Message type',
-        example='https://didcomm.org/my-family/1.0/my-message-type',
+        alias="@type",
+        description="Message type",
+        example="https://didcomm.org/my-family/1.0/my-message-type",
     )
     did: Optional[str] = Field(
         None,
-        description='DID for connection invitation',
-        example='did:peer:WgWxqztrNooG92RXvxSTWv',
-        regex='^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\\/[^#?]*)?([?][^#]*)?(\\#.*)?$$',
+        description="DID for connection invitation",
+        example="did:peer:WgWxqztrNooG92RXvxSTWv",
+        regex="^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\\/[^#?]*)?([?][^#]*)?(\\#.*)?$$",
     )
     image_url: Optional[str] = Field(
         None,
-        alias='imageUrl',
-        description='Optional image URL for connection invitation',
-        example='http://192.168.56.101/img/logo.jpg',
+        alias="imageUrl",
+        description="Optional image URL for connection invitation",
+        example="http://192.168.56.101/img/logo.jpg",
     )
     label: Optional[str] = Field(
-        None, description='Optional label for connection invitation', example='Bob'
+        None, description="Optional label for connection invitation", example="Bob"
     )
     recipient_keys: Optional[List[RecipientKey]] = Field(
-        None, alias='recipientKeys', description='List of recipient keys'
+        None, alias="recipientKeys", description="List of recipient keys"
     )
     routing_keys: Optional[List[RoutingKey3]] = Field(
-        None, alias='routingKeys', description='List of routing keys'
+        None, alias="routingKeys", description="List of routing keys"
     )
     service_endpoint: Optional[str] = Field(
         None,
-        alias='serviceEndpoint',
-        description='Service endpoint at which to reach this agent',
-        example='http://192.168.56.101:8020',
+        alias="serviceEndpoint",
+        description="Service endpoint at which to reach this agent",
+        example="http://192.168.56.101:8020",
     )
 
 
@@ -2011,8 +2013,8 @@ class RemoveWalletRequest(BaseModel):
 
     wallet_key: Optional[str] = Field(
         None,
-        description='Master key used for key derivation. Only required for         unmanaged wallets.',
-        example='MySecretKey123',
+        description="Master key used for key derivation. Only required for         unmanaged wallets.",
+        example="MySecretKey123",
     )
 
 
@@ -2020,8 +2022,8 @@ class ResolutionResult(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    did_document: Dict[str, Any] = Field(..., description='DID Document')
-    metadata: Dict[str, Any] = Field(..., description='Resolution metadata')
+    did_document: Dict[str, Any] = Field(..., description="DID Document")
+    metadata: Dict[str, Any] = Field(..., description="Resolution metadata")
 
 
 class RevRegCreateRequest(BaseModel):
@@ -2030,12 +2032,12 @@ class RevRegCreateRequest(BaseModel):
 
     credential_definition_id: Optional[str] = Field(
         None,
-        description='Credential definition identifier',
-        example='WgWxqztrNooG92RXvxSTWv:3:CL:20:tag',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$',
+        description="Credential definition identifier",
+        example="WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
     )
     max_cred_num: Optional[int] = Field(
-        None, description='Revocation registry size', example=1000, ge=4, le=32768
+        None, description="Revocation registry size", example=1000, ge=4, le=32768
     )
 
 
@@ -2045,7 +2047,7 @@ class RevRegIssuedResult(BaseModel):
 
     result: Optional[int] = Field(
         None,
-        description='Number of credentials issued against revocation registry',
+        description="Number of credentials issued against revocation registry",
         example=0,
         ge=0,
     )
@@ -2057,8 +2059,8 @@ class RevRegUpdateTailsFileUri(BaseModel):
 
     tails_public_uri: str = Field(
         ...,
-        description='Public URI to the tails file',
-        example='http://192.168.56.133:6543/revocation/registry/WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0/tails-file',
+        description="Public URI to the tails file",
+        example="http://192.168.56.133:6543/revocation/registry/WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0/tails-file",
     )
 
 
@@ -2067,13 +2069,13 @@ class RevRegWalletUpdatedResult(BaseModel):
         allow_population_by_field_name = True
 
     accum_calculated: Optional[Dict[str, Any]] = Field(
-        None, description='Calculated accumulator for phantom revocations'
+        None, description="Calculated accumulator for phantom revocations"
     )
     accum_fixed: Optional[Dict[str, Any]] = Field(
-        None, description='Applied ledger transaction to fix revocations'
+        None, description="Applied ledger transaction to fix revocations"
     )
     rev_reg_delta: Optional[Dict[str, Any]] = Field(
-        None, description='Indy revocation registry delta'
+        None, description="Indy revocation registry delta"
     )
 
 
@@ -2083,9 +2085,9 @@ class RevRegId(BaseModel):
 
     __root__: str = Field(
         ...,
-        description='Revocation registry identifiers',
-        example='WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)',
+        description="Revocation registry identifiers",
+        example="WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)",
     )
 
 
@@ -2105,46 +2107,46 @@ class RevokeRequest(BaseModel):
         allow_population_by_field_name = True
 
     comment: Optional[str] = Field(
-        None, description='Optional comment to include in revocation notification'
+        None, description="Optional comment to include in revocation notification"
     )
     connection_id: Optional[str] = Field(
         None,
-        description='Connection ID to which the revocation notification will be sent; required if notify is true',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
-        regex='[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}',
+        description="Connection ID to which the revocation notification will be sent; required if notify is true",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        regex="[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
     )
     cred_ex_id: Optional[str] = Field(
         None,
-        description='Credential exchange identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
-        regex='[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}',
+        description="Credential exchange identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        regex="[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
     )
     cred_rev_id: Optional[str] = Field(
         None,
-        description='Credential revocation identifier',
-        example='12345',
-        regex='^[1-9][0-9]*$',
+        description="Credential revocation identifier",
+        example="12345",
+        regex="^[1-9][0-9]*$",
     )
     notify: Optional[bool] = Field(
-        None, description='Send a notification to the credential recipient'
+        None, description="Send a notification to the credential recipient"
     )
-    notify_version: Optional[Literal['v1_0', 'v2_0']] = Field(
+    notify_version: Optional[Literal["v1_0", "v2_0"]] = Field(
         None,
-        description='Specify which version of the revocation notification should be sent',
+        description="Specify which version of the revocation notification should be sent",
     )
     publish: Optional[bool] = Field(
         None,
-        description='(True) publish revocation to ledger immediately, or (default, False) mark it pending',
+        description="(True) publish revocation to ledger immediately, or (default, False) mark it pending",
     )
     rev_reg_id: Optional[str] = Field(
         None,
-        description='Revocation registry identifier',
-        example='WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)',
+        description="Revocation registry identifier",
+        example="WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)",
     )
     thread_id: Optional[str] = Field(
         None,
-        description='Thread ID of the credential exchange message thread resulting in the credential now being revoked; required if notify is true',
+        description="Thread ID of the credential exchange message thread resulting in the credential now being revoked; required if notify is true",
     )
 
 
@@ -2155,21 +2157,21 @@ class RouteRecord(BaseModel):
     connection_id: Optional[str] = None
     created_at: Optional[str] = Field(
         None,
-        description='Time of record creation',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of record creation",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
     recipient_key: str
     record_id: Optional[str] = None
     role: Optional[str] = None
     state: Optional[str] = Field(
-        None, description='Current record state', example='active'
+        None, description="Current record state", example="active"
     )
     updated_at: Optional[str] = Field(
         None,
-        description='Time of last record update',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of last record update",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
     wallet_id: Optional[str] = None
 
@@ -2179,23 +2181,23 @@ class Schema(BaseModel):
         allow_population_by_field_name = True
 
     attr_names: Optional[List[str]] = Field(
-        None, alias='attrNames', description='Schema attribute names'
+        None, alias="attrNames", description="Schema attribute names"
     )
     id: Optional[str] = Field(
         None,
-        description='Schema identifier',
-        example='WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0',
-        regex='^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$',
+        description="Schema identifier",
+        example="WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0",
+        regex="^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$",
     )
-    name: Optional[str] = Field(None, description='Schema name', example='schema_name')
+    name: Optional[str] = Field(None, description="Schema name", example="schema_name")
     seq_no: Optional[int] = Field(
-        None, alias='seqNo', description='Schema sequence number', example=10, ge=1
+        None, alias="seqNo", description="Schema sequence number", example=10, ge=1
     )
     ver: Optional[str] = Field(
-        None, description='Node protocol version', example='1.0', regex='^[0-9.]+$'
+        None, description="Node protocol version", example="1.0", regex="^[0-9.]+$"
     )
     version: Optional[str] = Field(
-        None, description='Schema version', example='1.0', regex='^[0-9.]+$'
+        None, description="Schema version", example="1.0", regex="^[0-9.]+$"
     )
 
 
@@ -2203,25 +2205,25 @@ class SchemaGetResult(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    schema_: Optional[Schema] = Field(None, alias='schema')
+    schema_: Optional[Schema] = Field(None, alias="schema")
 
 
 class SchemaInputDescriptor(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    required: Optional[bool] = Field(None, description='Required')
-    uri: Optional[str] = Field(None, description='URI')
+    required: Optional[bool] = Field(None, description="Required")
+    uri: Optional[str] = Field(None, description="URI")
 
 
 class SchemaSendRequest(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    attributes: List[str] = Field(..., description='List of schema attributes')
-    schema_name: str = Field(..., description='Schema name', example='prefs')
+    attributes: List[str] = Field(..., description="List of schema attributes")
+    schema_name: str = Field(..., description="Schema name", example="prefs")
     schema_version: str = Field(
-        ..., description='Schema version', example='1.0', regex='^[0-9.]+$'
+        ..., description="Schema version", example="1.0", regex="^[0-9.]+$"
     )
 
 
@@ -2229,12 +2231,12 @@ class SchemaSendResult(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    schema_: Schema = Field(..., alias='schema', description='Schema definition')
+    schema_: Schema = Field(..., alias="schema", description="Schema definition")
     schema_id: str = Field(
         ...,
-        description='Schema identifier',
-        example='WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0',
-        regex='^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$',
+        description="Schema identifier",
+        example="WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0",
+        regex="^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$",
     )
 
 
@@ -2244,9 +2246,9 @@ class SchemaId(BaseModel):
 
     __root__: str = Field(
         ...,
-        description='Schema identifiers',
-        example='WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0',
-        regex='^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$',
+        description="Schema identifiers",
+        example="WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0",
+        regex="^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$",
     )
 
 
@@ -2261,7 +2263,7 @@ class SchemasInputDescriptorFilter(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    oneof_filter: Optional[bool] = Field(None, description='oneOf')
+    oneof_filter: Optional[bool] = Field(None, description="oneOf")
     uri_groups: Optional[List[List[SchemaInputDescriptor]]] = None
 
 
@@ -2269,7 +2271,7 @@ class SendMessage(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    content: Optional[str] = Field(None, description='Message content', example='Hello')
+    content: Optional[str] = Field(None, description="Message content", example="Hello")
 
 
 class ServiceDecorator(BaseModel):
@@ -2277,16 +2279,16 @@ class ServiceDecorator(BaseModel):
         allow_population_by_field_name = True
 
     recipient_keys: List[RecipientKey] = Field(
-        ..., alias='recipientKeys', description='List of recipient keys'
+        ..., alias="recipientKeys", description="List of recipient keys"
     )
     routing_keys: Optional[List[RoutingKey3]] = Field(
-        None, alias='routingKeys', description='List of routing keys'
+        None, alias="routingKeys", description="List of routing keys"
     )
     service_endpoint: str = Field(
         ...,
-        alias='serviceEndpoint',
-        description='Service endpoint at which to reach this agent',
-        example='http://192.168.56.101:8020',
+        alias="serviceEndpoint",
+        description="Service endpoint at which to reach this agent",
+        example="http://192.168.56.101:8020",
     )
 
 
@@ -2294,8 +2296,8 @@ class SignResponse(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    error: Optional[str] = Field(None, description='Error text')
-    signed_doc: Optional[Dict[str, Any]] = Field(None, description='Signed document')
+    error: Optional[str] = Field(None, description="Error text")
+    signed_doc: Optional[Dict[str, Any]] = Field(None, description="Signed document")
 
 
 class SignatureOptions(BaseModel):
@@ -2304,30 +2306,30 @@ class SignatureOptions(BaseModel):
 
     challenge: Optional[str] = None
     domain: Optional[str] = None
-    proof_purpose: str = Field(..., alias='proofPurpose')
+    proof_purpose: str = Field(..., alias="proofPurpose")
     type: Optional[str] = None
-    verification_method: str = Field(..., alias='verificationMethod')
+    verification_method: str = Field(..., alias="verificationMethod")
 
 
 class SignedDoc(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    proof: SignatureOptions = Field(..., description='Linked data proof')
+    proof: SignatureOptions = Field(..., description="Linked data proof")
 
 
 class SubmissionRequirements(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    count: Optional[int] = Field(None, description='Count Value', example=1234)
-    from_: Optional[str] = Field(None, alias='from', description='From')
+    count: Optional[int] = Field(None, description="Count Value", example=1234)
+    from_: Optional[str] = Field(None, alias="from", description="From")
     from_nested: Optional[List[Dict[str, Any]]] = None
-    max: Optional[int] = Field(None, description='Max Value', example=1234)
-    min: Optional[int] = Field(None, description='Min Value', example=1234)
-    name: Optional[str] = Field(None, description='Name')
-    purpose: Optional[str] = Field(None, description='Purpose')
-    rule: Optional[Literal['all', 'pick']] = Field(None, description='Selection')
+    max: Optional[int] = Field(None, description="Max Value", example=1234)
+    min: Optional[int] = Field(None, description="Min Value", example=1234)
+    name: Optional[str] = Field(None, description="Name")
+    purpose: Optional[str] = Field(None, description="Purpose")
+    rule: Optional[Literal["all", "pick"]] = Field(None, description="Selection")
 
 
 class TAAAccept(BaseModel):
@@ -2368,11 +2370,11 @@ class TransactionJobs(BaseModel):
         allow_population_by_field_name = True
 
     transaction_my_job: Optional[
-        Literal['TRANSACTION_AUTHOR', 'TRANSACTION_ENDORSER', 'reset']
-    ] = Field(None, description='My transaction related job')
+        Literal["TRANSACTION_AUTHOR", "TRANSACTION_ENDORSER", "reset"]
+    ] = Field(None, description="My transaction related job")
     transaction_their_job: Optional[
-        Literal['TRANSACTION_AUTHOR', 'TRANSACTION_ENDORSER', 'reset']
-    ] = Field(None, description='Their transaction related job')
+        Literal["TRANSACTION_AUTHOR", "TRANSACTION_ENDORSER", "reset"]
+    ] = Field(None, description="Their transaction related job")
 
 
 class TransactionRecord(BaseModel):
@@ -2380,22 +2382,22 @@ class TransactionRecord(BaseModel):
         allow_population_by_field_name = True
 
     type: Optional[str] = Field(
-        None, alias='_type', description='Transaction type', example='101'
+        None, alias="_type", description="Transaction type", example="101"
     )
     connection_id: Optional[str] = Field(
         None,
-        description='The connection identifier for thie particular transaction record',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="The connection identifier for thie particular transaction record",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     created_at: Optional[str] = Field(
         None,
-        description='Time of record creation',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of record creation",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
     endorser_write_txn: Optional[bool] = Field(
         None,
-        description='If True, Endorser will write the transaction after endorsing it',
+        description="If True, Endorser will write the transaction after endorsing it",
         example=True,
     )
     formats: Optional[List[Dict[str, str]]] = None
@@ -2403,36 +2405,36 @@ class TransactionRecord(BaseModel):
     meta_data: Optional[Dict[str, Any]] = Field(
         None,
         example={
-            'context': {'param1': 'param1_value', 'param2': 'param2_value'},
-            'post_process': [{'topic': 'topic_value', 'other': 'other_value'}],
+            "context": {"param1": "param1_value", "param2": "param2_value"},
+            "post_process": [{"topic": "topic_value", "other": "other_value"}],
         },
     )
     signature_request: Optional[List[Dict[str, Any]]] = None
     signature_response: Optional[List[Dict[str, Any]]] = None
     state: Optional[str] = Field(
-        None, description='Current record state', example='active'
+        None, description="Current record state", example="active"
     )
     thread_id: Optional[str] = Field(
         None,
-        description='Thread Identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Thread Identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     timing: Optional[Dict[str, Any]] = Field(
-        None, example={'expires_time': '2020-12-13T17:29:06+0000'}
+        None, example={"expires_time": "2020-12-13T17:29:06+0000"}
     )
     trace: Optional[bool] = Field(
-        None, description='Record trace information, based on agent configuration'
+        None, description="Record trace information, based on agent configuration"
     )
     transaction_id: Optional[str] = Field(
         None,
-        description='Transaction identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Transaction identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     updated_at: Optional[str] = Field(
         None,
-        description='Time of last record update',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of last record update",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
 
 
@@ -2443,7 +2445,7 @@ class TxnOrCredentialDefinitionSendResult(BaseModel):
 
     sent: Optional[CredentialDefinitionSendResult] = None
     txn: Optional[TransactionRecord] = Field(
-        None, description='Credential definition transaction to endorse'
+        None, description="Credential definition transaction to endorse"
     )
 
 
@@ -2454,7 +2456,7 @@ class TxnOrPublishRevocationsResult(BaseModel):
 
     sent: Optional[PublishRevocations] = None
     txn: Optional[TransactionRecord] = Field(
-        None, description='Revocation registry revocations transaction to endorse'
+        None, description="Revocation registry revocations transaction to endorse"
     )
 
 
@@ -2463,10 +2465,10 @@ class TxnOrRegisterLedgerNymResponse(BaseModel):
         allow_population_by_field_name = True
 
     success: Optional[bool] = Field(
-        None, description='Success of nym registration operation', example=True
+        None, description="Success of nym registration operation", example=True
     )
     txn: Optional[TransactionRecord] = Field(
-        None, description='DID transaction to endorse'
+        None, description="DID transaction to endorse"
     )
 
 
@@ -2475,9 +2477,9 @@ class TxnOrSchemaSendResult(BaseModel):
         extra = Extra.forbid
         allow_population_by_field_name = True
 
-    sent: Optional[SchemaSendResult] = Field(None, description='Content sent')
+    sent: Optional[SchemaSendResult] = Field(None, description="Content sent")
     txn: Optional[TransactionRecord] = Field(
-        None, description='Schema transaction to endorse'
+        None, description="Schema transaction to endorse"
     )
 
 
@@ -2487,11 +2489,11 @@ class UpdateProfileSettings(BaseModel):
 
     extra_settings: Optional[Dict[str, Any]] = Field(
         None,
-        description='Agent config key-value pairs',
+        description="Agent config key-value pairs",
         example={
-            'ACAPY_INVITE_PUBLIC': True,
-            'log-level': 'INFO',
-            'public-invites': False,
+            "ACAPY_INVITE_PUBLIC": True,
+            "log-level": "INFO",
+            "public-invites": False,
         },
     )
 
@@ -2501,25 +2503,25 @@ class UpdateWalletRequest(BaseModel):
         allow_population_by_field_name = True
 
     extra_settings: Optional[Dict[str, Any]] = Field(
-        None, description='Agent config key-value pairs'
+        None, description="Agent config key-value pairs"
     )
     image_url: Optional[str] = Field(
         None,
-        description='Image url for this wallet. This image url is publicized        (self-attested) to other agents as part of forming a connection.',
-        example='https://aries.ca/images/sample.png',
+        description="Image url for this wallet. This image url is publicized        (self-attested) to other agents as part of forming a connection.",
+        example="https://aries.ca/images/sample.png",
     )
     label: Optional[str] = Field(
         None,
-        description='Label for this wallet. This label is publicized        (self-attested) to other agents as part of forming a connection.',
-        example='Alice',
+        description="Label for this wallet. This label is publicized        (self-attested) to other agents as part of forming a connection.",
+        example="Alice",
     )
-    wallet_dispatch_type: Optional[Literal['default', 'both', 'base']] = Field(
+    wallet_dispatch_type: Optional[Literal["default", "both", "base"]] = Field(
         None,
-        description='Webhook target dispatch type for this wallet.         default - Dispatch only to webhooks associated with this wallet.         base - Dispatch only to webhooks associated with the base wallet.         both - Dispatch to both webhook targets.',
-        example='default',
+        description="Webhook target dispatch type for this wallet.         default - Dispatch only to webhooks associated with this wallet.         base - Dispatch only to webhooks associated with the base wallet.         both - Dispatch to both webhook targets.",
+        example="default",
     )
     wallet_webhook_urls: Optional[List[str]] = Field(
-        None, description='List of Webhook URLs associated with this subwallet'
+        None, description="List of Webhook URLs associated with this subwallet"
     )
 
 
@@ -2528,7 +2530,7 @@ class V10CredentialBoundOfferRequest(BaseModel):
         allow_population_by_field_name = True
 
     counter_proposal: Optional[CredentialProposal] = Field(
-        None, description='Optional counter-proposal'
+        None, description="Optional counter-proposal"
     )
 
 
@@ -2538,22 +2540,22 @@ class V10CredentialConnFreeOfferRequest(BaseModel):
 
     auto_issue: Optional[bool] = Field(
         None,
-        description='Whether to respond automatically to credential requests, creating and issuing requested credentials',
+        description="Whether to respond automatically to credential requests, creating and issuing requested credentials",
     )
     auto_remove: Optional[bool] = Field(
         None,
-        description='Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting)',
+        description="Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting)",
     )
-    comment: Optional[str] = Field(None, description='Human-readable comment')
+    comment: Optional[str] = Field(None, description="Human-readable comment")
     cred_def_id: str = Field(
         ...,
-        description='Credential definition identifier',
-        example='WgWxqztrNooG92RXvxSTWv:3:CL:20:tag',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$',
+        description="Credential definition identifier",
+        example="WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
     )
     credential_preview: CredentialPreview
     trace: Optional[bool] = Field(
-        None, description='Record trace information, based on agent configuration'
+        None, description="Record trace information, based on agent configuration"
     )
 
 
@@ -2563,42 +2565,42 @@ class V10CredentialCreate(BaseModel):
 
     auto_remove: Optional[bool] = Field(
         None,
-        description='Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting)',
+        description="Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting)",
     )
-    comment: Optional[str] = Field(None, description='Human-readable comment')
+    comment: Optional[str] = Field(None, description="Human-readable comment")
     cred_def_id: Optional[str] = Field(
         None,
-        description='Credential definition identifier',
-        example='WgWxqztrNooG92RXvxSTWv:3:CL:20:tag',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$',
+        description="Credential definition identifier",
+        example="WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
     )
     credential_proposal: CredentialPreview
     issuer_did: Optional[str] = Field(
         None,
-        description='Credential issuer DID',
-        example='WgWxqztrNooG92RXvxSTWv',
-        regex='^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$',
+        description="Credential issuer DID",
+        example="WgWxqztrNooG92RXvxSTWv",
+        regex="^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
     )
     schema_id: Optional[str] = Field(
         None,
-        description='Schema identifier',
-        example='WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0',
-        regex='^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$',
+        description="Schema identifier",
+        example="WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0",
+        regex="^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$",
     )
     schema_issuer_did: Optional[str] = Field(
         None,
-        description='Schema issuer DID',
-        example='WgWxqztrNooG92RXvxSTWv',
-        regex='^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$',
+        description="Schema issuer DID",
+        example="WgWxqztrNooG92RXvxSTWv",
+        regex="^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
     )
     schema_name: Optional[str] = Field(
-        None, description='Schema name', example='preferences'
+        None, description="Schema name", example="preferences"
     )
     schema_version: Optional[str] = Field(
-        None, description='Schema version', example='1.0', regex='^[0-9.]+$'
+        None, description="Schema version", example="1.0", regex="^[0-9.]+$"
     )
     trace: Optional[bool] = Field(
-        None, description='Record trace information, based on agent configuration'
+        None, description="Record trace information, based on agent configuration"
     )
 
 
@@ -2608,7 +2610,7 @@ class V10CredentialExchangeAutoRemoveRequest(BaseModel):
 
     auto_remove: Optional[bool] = Field(
         None,
-        description='Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting)',
+        description="Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting)",
     )
 
 
@@ -2618,27 +2620,27 @@ class V10CredentialFreeOfferRequest(BaseModel):
 
     auto_issue: Optional[bool] = Field(
         None,
-        description='Whether to respond automatically to credential requests, creating and issuing requested credentials',
+        description="Whether to respond automatically to credential requests, creating and issuing requested credentials",
     )
     auto_remove: Optional[bool] = Field(
         None,
-        description='Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting)',
+        description="Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting)",
     )
-    comment: Optional[str] = Field(None, description='Human-readable comment')
+    comment: Optional[str] = Field(None, description="Human-readable comment")
     connection_id: UUID = Field(
         ...,
-        description='Connection identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Connection identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     cred_def_id: str = Field(
         ...,
-        description='Credential definition identifier',
-        example='WgWxqztrNooG92RXvxSTWv:3:CL:20:tag',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$',
+        description="Credential definition identifier",
+        example="WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
     )
     credential_preview: CredentialPreview
     trace: Optional[bool] = Field(
-        None, description='Record trace information, based on agent configuration'
+        None, description="Record trace information, based on agent configuration"
     )
 
 
@@ -2646,7 +2648,7 @@ class V10CredentialIssueRequest(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    comment: Optional[str] = Field(None, description='Human-readable comment')
+    comment: Optional[str] = Field(None, description="Human-readable comment")
 
 
 class V10CredentialProblemReportRequest(BaseModel):
@@ -2662,47 +2664,47 @@ class V10CredentialProposalRequestMand(BaseModel):
 
     auto_remove: Optional[bool] = Field(
         None,
-        description='Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting)',
+        description="Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting)",
     )
-    comment: Optional[str] = Field(None, description='Human-readable comment')
+    comment: Optional[str] = Field(None, description="Human-readable comment")
     connection_id: UUID = Field(
         ...,
-        description='Connection identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Connection identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     cred_def_id: Optional[str] = Field(
         None,
-        description='Credential definition identifier',
-        example='WgWxqztrNooG92RXvxSTWv:3:CL:20:tag',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$',
+        description="Credential definition identifier",
+        example="WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
     )
     credential_proposal: CredentialPreview
     issuer_did: Optional[str] = Field(
         None,
-        description='Credential issuer DID',
-        example='WgWxqztrNooG92RXvxSTWv',
-        regex='^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$',
+        description="Credential issuer DID",
+        example="WgWxqztrNooG92RXvxSTWv",
+        regex="^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
     )
     schema_id: Optional[str] = Field(
         None,
-        description='Schema identifier',
-        example='WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0',
-        regex='^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$',
+        description="Schema identifier",
+        example="WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0",
+        regex="^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$",
     )
     schema_issuer_did: Optional[str] = Field(
         None,
-        description='Schema issuer DID',
-        example='WgWxqztrNooG92RXvxSTWv',
-        regex='^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$',
+        description="Schema issuer DID",
+        example="WgWxqztrNooG92RXvxSTWv",
+        regex="^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
     )
     schema_name: Optional[str] = Field(
-        None, description='Schema name', example='preferences'
+        None, description="Schema name", example="preferences"
     )
     schema_version: Optional[str] = Field(
-        None, description='Schema version', example='1.0', regex='^[0-9.]+$'
+        None, description="Schema version", example="1.0", regex="^[0-9.]+$"
     )
     trace: Optional[bool] = Field(
-        None, description='Record trace information, based on agent configuration'
+        None, description="Record trace information, based on agent configuration"
     )
 
 
@@ -2712,47 +2714,47 @@ class V10CredentialProposalRequestOpt(BaseModel):
 
     auto_remove: Optional[bool] = Field(
         None,
-        description='Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting)',
+        description="Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting)",
     )
-    comment: Optional[str] = Field(None, description='Human-readable comment')
+    comment: Optional[str] = Field(None, description="Human-readable comment")
     connection_id: UUID = Field(
         ...,
-        description='Connection identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Connection identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     cred_def_id: Optional[str] = Field(
         None,
-        description='Credential definition identifier',
-        example='WgWxqztrNooG92RXvxSTWv:3:CL:20:tag',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$',
+        description="Credential definition identifier",
+        example="WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
     )
     credential_proposal: Optional[CredentialPreview] = None
     issuer_did: Optional[str] = Field(
         None,
-        description='Credential issuer DID',
-        example='WgWxqztrNooG92RXvxSTWv',
-        regex='^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$',
+        description="Credential issuer DID",
+        example="WgWxqztrNooG92RXvxSTWv",
+        regex="^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
     )
     schema_id: Optional[str] = Field(
         None,
-        description='Schema identifier',
-        example='WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0',
-        regex='^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$',
+        description="Schema identifier",
+        example="WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0",
+        regex="^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$",
     )
     schema_issuer_did: Optional[str] = Field(
         None,
-        description='Schema issuer DID',
-        example='WgWxqztrNooG92RXvxSTWv',
-        regex='^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$',
+        description="Schema issuer DID",
+        example="WgWxqztrNooG92RXvxSTWv",
+        regex="^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
     )
     schema_name: Optional[str] = Field(
-        None, description='Schema name', example='preferences'
+        None, description="Schema name", example="preferences"
     )
     schema_version: Optional[str] = Field(
-        None, description='Schema version', example='1.0', regex='^[0-9.]+$'
+        None, description="Schema version", example="1.0", regex="^[0-9.]+$"
     )
     trace: Optional[bool] = Field(
-        None, description='Record trace information, based on agent configuration'
+        None, description="Record trace information, based on agent configuration"
     )
 
 
@@ -2777,21 +2779,21 @@ class V10PresentationProposalRequest(BaseModel):
 
     auto_present: Optional[bool] = Field(
         None,
-        description='Whether to respond automatically to presentation requests, building and presenting requested proof',
+        description="Whether to respond automatically to presentation requests, building and presenting requested proof",
     )
     auto_remove: Optional[bool] = Field(
         None,
-        description='Whether to remove the presentation exchange record on completion (overrides --preserve-exchange-records configuration setting)',
+        description="Whether to remove the presentation exchange record on completion (overrides --preserve-exchange-records configuration setting)",
     )
-    comment: Optional[str] = Field(None, description='Human-readable comment')
+    comment: Optional[str] = Field(None, description="Human-readable comment")
     connection_id: UUID = Field(
         ...,
-        description='Connection identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Connection identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     presentation_proposal: IndyPresPreview
     trace: Optional[bool] = Field(
-        None, description='Whether to trace event (default false)', example=False
+        None, description="Whether to trace event (default false)", example=False
     )
 
 
@@ -2801,21 +2803,21 @@ class V10PresentationSendRequest(BaseModel):
 
     auto_remove: Optional[bool] = Field(
         None,
-        description='Whether to remove the presentation exchange record on completion (overrides --preserve-exchange-records configuration setting)',
+        description="Whether to remove the presentation exchange record on completion (overrides --preserve-exchange-records configuration setting)",
     )
     requested_attributes: Dict[str, IndyRequestedCredsRequestedAttr] = Field(
         ...,
-        description='Nested object mapping proof request attribute referents to requested-attribute specifiers',
+        description="Nested object mapping proof request attribute referents to requested-attribute specifiers",
     )
     requested_predicates: Dict[str, IndyRequestedCredsRequestedPred] = Field(
         ...,
-        description='Nested object mapping proof request predicate referents to requested-predicate specifiers',
+        description="Nested object mapping proof request predicate referents to requested-predicate specifiers",
     )
     self_attested_attributes: Dict[str, str] = Field(
-        ..., description='Self-attested attributes to build into proof'
+        ..., description="Self-attested attributes to build into proof"
     )
     trace: Optional[bool] = Field(
-        None, description='Whether to trace event (default false)', example=False
+        None, description="Whether to trace event (default false)", example=False
     )
 
 
@@ -2825,15 +2827,15 @@ class V10PresentationSendRequestToProposal(BaseModel):
 
     auto_remove: Optional[bool] = Field(
         None,
-        description='Whether to remove the presentation exchange record on completion (overrides --preserve-exchange-records configuration setting)',
+        description="Whether to remove the presentation exchange record on completion (overrides --preserve-exchange-records configuration setting)",
     )
     auto_verify: Optional[bool] = Field(
         None,
-        description='Verifier choice to auto-verify proof presentation',
+        description="Verifier choice to auto-verify proof presentation",
         example=False,
     )
     trace: Optional[bool] = Field(
-        None, description='Whether to trace event (default false)', example=False
+        None, description="Whether to trace event (default false)", example=False
     )
 
 
@@ -2857,48 +2859,48 @@ class V20CredExRecordIndy(BaseModel):
 
     created_at: Optional[str] = Field(
         None,
-        description='Time of record creation',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of record creation",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
     cred_ex_id: Optional[str] = Field(
         None,
-        description='Corresponding v2.0 credential exchange record identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Corresponding v2.0 credential exchange record identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     cred_ex_indy_id: Optional[str] = Field(
         None,
-        description='Record identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Record identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     cred_id_stored: Optional[str] = Field(
         None,
-        description='Credential identifier stored in wallet',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Credential identifier stored in wallet",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     cred_request_metadata: Optional[Dict[str, Any]] = Field(
-        None, description='Credential request metadata for indy holder'
+        None, description="Credential request metadata for indy holder"
     )
     cred_rev_id: Optional[str] = Field(
         None,
-        description='Credential revocation identifier within revocation registry',
-        example='12345',
-        regex='^[1-9][0-9]*$',
+        description="Credential revocation identifier within revocation registry",
+        example="12345",
+        regex="^[1-9][0-9]*$",
     )
     rev_reg_id: Optional[str] = Field(
         None,
-        description='Revocation registry identifier',
-        example='WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)',
+        description="Revocation registry identifier",
+        example="WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)",
     )
     state: Optional[str] = Field(
-        None, description='Current record state', example='active'
+        None, description="Current record state", example="active"
     )
     updated_at: Optional[str] = Field(
         None,
-        description='Time of last record update',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of last record update",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
 
 
@@ -2908,33 +2910,33 @@ class V20CredExRecordLDProof(BaseModel):
 
     created_at: Optional[str] = Field(
         None,
-        description='Time of record creation',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of record creation",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
     cred_ex_id: Optional[str] = Field(
         None,
-        description='Corresponding v2.0 credential exchange record identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Corresponding v2.0 credential exchange record identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     cred_ex_ld_proof_id: Optional[str] = Field(
         None,
-        description='Record identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Record identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     cred_id_stored: Optional[str] = Field(
         None,
-        description='Credential identifier stored in wallet',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Credential identifier stored in wallet",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     state: Optional[str] = Field(
-        None, description='Current record state', example='active'
+        None, description="Current record state", example="active"
     )
     updated_at: Optional[str] = Field(
         None,
-        description='Time of last record update',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of last record update",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
 
 
@@ -2944,33 +2946,33 @@ class V20CredFilterIndy(BaseModel):
 
     cred_def_id: Optional[str] = Field(
         None,
-        description='Credential definition identifier',
-        example='WgWxqztrNooG92RXvxSTWv:3:CL:20:tag',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$',
+        description="Credential definition identifier",
+        example="WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
     )
     issuer_did: Optional[str] = Field(
         None,
-        description='Credential issuer DID',
-        example='WgWxqztrNooG92RXvxSTWv',
-        regex='^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$',
+        description="Credential issuer DID",
+        example="WgWxqztrNooG92RXvxSTWv",
+        regex="^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
     )
     schema_id: Optional[str] = Field(
         None,
-        description='Schema identifier',
-        example='WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0',
-        regex='^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$',
+        description="Schema identifier",
+        example="WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0",
+        regex="^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$",
     )
     schema_issuer_did: Optional[str] = Field(
         None,
-        description='Schema issuer DID',
-        example='WgWxqztrNooG92RXvxSTWv',
-        regex='^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$',
+        description="Schema issuer DID",
+        example="WgWxqztrNooG92RXvxSTWv",
+        regex="^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
     )
     schema_name: Optional[str] = Field(
-        None, description='Schema name', example='preferences'
+        None, description="Schema name", example="preferences"
     )
     schema_version: Optional[str] = Field(
-        None, description='Schema version', example='1.0', regex='^[0-9.]+$'
+        None, description="Schema version", example="1.0", regex="^[0-9.]+$"
     )
 
 
@@ -2980,13 +2982,13 @@ class V20CredFormat(BaseModel):
 
     attach_id: str = Field(
         ...,
-        description='Attachment identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Attachment identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     format: str = Field(
         ...,
-        description='Attachment format specifier',
-        example='aries/ld-proof-vc-detail@v1.0',
+        description="Attachment format specifier",
+        example="aries/ld-proof-vc-detail@v1.0",
     )
 
 
@@ -3004,9 +3006,9 @@ class V20CredPreview(BaseModel):
 
     type: Optional[str] = Field(
         None,
-        alias='@type',
-        description='Message type identifier',
-        example='issue-credential/2.0/credential-preview',
+        alias="@type",
+        description="Message type identifier",
+        example="issue-credential/2.0/credential-preview",
     )
     attributes: List[V20CredAttrSpec]
 
@@ -3017,12 +3019,12 @@ class V20CredRequestRequest(BaseModel):
 
     auto_remove: Optional[bool] = Field(
         None,
-        description='Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting)',
+        description="Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting)",
     )
     holder_did: Optional[str] = Field(
         None,
-        description='Holder DID to substitute for the credentialSubject.id',
-        example='did:key:ahsdkjahsdkjhaskjdhakjshdkajhsdkjahs',
+        description="Holder DID to substitute for the credentialSubject.id",
+        example="did:key:ahsdkjahsdkjhaskjdhakjshdkajhsdkjahs",
     )
 
 
@@ -3049,13 +3051,13 @@ class V20PresFormat(BaseModel):
 
     attach_id: str = Field(
         ...,
-        description='Attachment identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Attachment identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     format: str = Field(
         ...,
-        description='Attachment format specifier',
-        example='dif/presentation-exchange/submission@v1.0',
+        description="Attachment format specifier",
+        example="dif/presentation-exchange/submission@v1.0",
     )
 
 
@@ -3077,9 +3079,9 @@ class Context(BaseModel):
 
     __root__: str = Field(
         ...,
-        description='Context',
-        example='https://myhost:8021',
-        regex='^[A-Za-z0-9\\.\\-\\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$',
+        description="Context",
+        example="https://myhost:8021",
+        regex="^[A-Za-z0-9\\.\\-\\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$",
     )
 
 
@@ -3090,22 +3092,22 @@ class VCRecord(BaseModel):
     contexts: Optional[List[Context]] = None
     cred_tags: Optional[Dict[str, str]] = None
     cred_value: Optional[Dict[str, Any]] = Field(
-        None, description='(JSON-serializable) credential value'
+        None, description="(JSON-serializable) credential value"
     )
     expanded_types: Optional[List[str]] = None
     given_id: Optional[str] = Field(
         None,
-        description='Credential identifier',
-        example='http://example.edu/credentials/3732',
+        description="Credential identifier",
+        example="http://example.edu/credentials/3732",
     )
     issuer_id: Optional[str] = Field(
-        None, description='Issuer identifier', example='https://example.edu/issuers/14'
+        None, description="Issuer identifier", example="https://example.edu/issuers/14"
     )
     proof_types: Optional[List[str]] = None
     record_id: Optional[str] = Field(
         None,
-        description='Record identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Record identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     schema_ids: Optional[List[str]] = None
     subject_ids: Optional[List[str]] = None
@@ -3122,9 +3124,9 @@ class VerifyRequest(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    doc: SignedDoc = Field(..., description='Signed document')
+    doc: SignedDoc = Field(..., description="Signed document")
     verkey: Optional[str] = Field(
-        None, description='Verkey to use for doc verification'
+        None, description="Verkey to use for doc verification"
     )
 
 
@@ -3132,7 +3134,7 @@ class VerifyResponse(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    error: Optional[str] = Field(None, description='Error text')
+    error: Optional[str] = Field(None, description="Error text")
     valid: bool
 
 
@@ -3142,9 +3144,9 @@ class Context1(BaseModel):
 
     __root__: str = Field(
         ...,
-        description='Credential context to match',
-        example='https://myhost:8021',
-        regex='^[A-Za-z0-9\\.\\-\\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$',
+        description="Credential context to match",
+        example="https://myhost:8021",
+        regex="^[A-Za-z0-9\\.\\-\\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$",
     )
 
 
@@ -3154,9 +3156,9 @@ class SchemaId1(BaseModel):
 
     __root__: str = Field(
         ...,
-        description='Credential schema identifier',
-        example='https://myhost:8021',
-        regex='^[A-Za-z0-9\\.\\-\\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$',
+        description="Credential schema identifier",
+        example="https://myhost:8021",
+        regex="^[A-Za-z0-9\\.\\-\\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$",
     )
 
 
@@ -3166,9 +3168,9 @@ class Type(BaseModel):
 
     __root__: str = Field(
         ...,
-        description='Credential type to match',
-        example='https://myhost:8021',
-        regex='^[A-Za-z0-9\\.\\-\\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$',
+        description="Credential type to match",
+        example="https://myhost:8021",
+        regex="^[A-Za-z0-9\\.\\-\\+]+://([A-Za-z0-9][.A-Za-z0-9-_]+[A-Za-z0-9])+(:[1-9][0-9]*)?(/[^?&#]+)?$",
     )
 
 
@@ -3177,21 +3179,21 @@ class W3CCredentialsListRequest(BaseModel):
         allow_population_by_field_name = True
 
     contexts: Optional[List[Context1]] = None
-    given_id: Optional[str] = Field(None, description='Given credential id to match')
+    given_id: Optional[str] = Field(None, description="Given credential id to match")
     issuer_id: Optional[str] = Field(
-        None, description='Credential issuer identifier to match'
+        None, description="Credential issuer identifier to match"
     )
     max_results: Optional[int] = Field(
-        None, description='Maximum number of results to return'
+        None, description="Maximum number of results to return"
     )
     proof_types: Optional[List[str]] = None
     schema_ids: Optional[List[SchemaId1]] = Field(
-        None, description='Schema identifiers, all of which to match'
+        None, description="Schema identifiers, all of which to match"
     )
     subject_ids: Optional[List[str]] = Field(
-        None, description='Subject identifiers, all of which to match'
+        None, description="Subject identifiers, all of which to match"
     )
-    tag_query: Optional[Dict[str, str]] = Field(None, description='Tag filter')
+    tag_query: Optional[Dict[str, str]] = Field(None, description="Tag filter")
     types: Optional[List[Type]] = None
 
 
@@ -3205,29 +3207,29 @@ class WalletRecord(BaseModel):
 
     created_at: Optional[str] = Field(
         None,
-        description='Time of record creation',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of record creation",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
-    key_management_mode: Literal['managed', 'unmanaged'] = Field(
-        ..., description='Mode regarding management of wallet key'
+    key_management_mode: Literal["managed", "unmanaged"] = Field(
+        ..., description="Mode regarding management of wallet key"
     )
     settings: Optional[Dict[str, Any]] = Field(
-        None, description='Settings for this wallet.'
+        None, description="Settings for this wallet."
     )
     state: Optional[str] = Field(
-        None, description='Current record state', example='active'
+        None, description="Current record state", example="active"
     )
     updated_at: Optional[str] = Field(
         None,
-        description='Time of last record update',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of last record update",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
     wallet_id: str = Field(
         ...,
-        description='Wallet record ID',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Wallet record ID",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
 
 
@@ -3245,12 +3247,12 @@ class AttachDecoratorData1JWS(BaseModel):
     header: AttachDecoratorDataJWSHeader
     protected: Optional[str] = Field(
         None,
-        description='protected JWS header',
-        example='ey4uLn0',
-        regex='^[-_a-zA-Z0-9]*$',
+        description="protected JWS header",
+        example="ey4uLn0",
+        regex="^[-_a-zA-Z0-9]*$",
     )
     signature: str = Field(
-        ..., description='signature', example='ey4uLn0', regex='^[-_a-zA-Z0-9]*$'
+        ..., description="signature", example="ey4uLn0", regex="^[-_a-zA-Z0-9]*$"
     )
 
 
@@ -3261,15 +3263,15 @@ class AttachDecoratorDataJWS(BaseModel):
     header: Optional[AttachDecoratorDataJWSHeader] = None
     protected: Optional[str] = Field(
         None,
-        description='protected JWS header',
-        example='ey4uLn0',
-        regex='^[-_a-zA-Z0-9]*$',
+        description="protected JWS header",
+        example="ey4uLn0",
+        regex="^[-_a-zA-Z0-9]*$",
     )
     signature: Optional[str] = Field(
-        None, description='signature', example='ey4uLn0', regex='^[-_a-zA-Z0-9]*$'
+        None, description="signature", example="ey4uLn0", regex="^[-_a-zA-Z0-9]*$"
     )
     signatures: Optional[List[AttachDecoratorData1JWS]] = Field(
-        None, description='List of signatures'
+        None, description="List of signatures"
     )
 
 
@@ -3277,11 +3279,11 @@ class CredDefValuePrimary(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    n: Optional[str] = Field(None, example='0', regex='^[0-9]*$')
+    n: Optional[str] = Field(None, example="0", regex="^[0-9]*$")
     r: Optional[Generated] = None
-    rctxt: Optional[str] = Field(None, example='0', regex='^[0-9]*$')
-    s: Optional[str] = Field(None, example='0', regex='^[0-9]*$')
-    z: Optional[str] = Field(None, example='0', regex='^[0-9]*$')
+    rctxt: Optional[str] = Field(None, example="0", regex="^[0-9]*$")
+    s: Optional[str] = Field(None, example="0", regex="^[0-9]*$")
+    z: Optional[str] = Field(None, example="0", regex="^[0-9]*$")
 
 
 class CredInfoList(BaseModel):
@@ -3311,55 +3313,55 @@ class Credential(BaseModel):
 
     context: List[Union[Dict[str, Any], str]] = Field(
         ...,
-        alias='@context',
-        description='The JSON-LD context of the credential',
+        alias="@context",
+        description="The JSON-LD context of the credential",
         example=[
-            'https://www.w3.org/2018/credentials/v1',
-            'https://www.w3.org/2018/credentials/examples/v1',
+            "https://www.w3.org/2018/credentials/v1",
+            "https://www.w3.org/2018/credentials/examples/v1",
         ],
     )
     credential_subject: Dict[str, Any] = Field(
-        ..., alias='credentialSubject', example=''
+        ..., alias="credentialSubject", example=""
     )
     expiration_date: Optional[str] = Field(
         None,
-        alias='expirationDate',
-        description='The expiration date',
-        example='2010-01-01 19:23:24+00:00',
-        regex='^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$',
+        alias="expirationDate",
+        description="The expiration date",
+        example="2010-01-01 19:23:24+00:00",
+        regex="^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$",
     )
     id: Optional[str] = Field(
         None,
-        example='http://example.edu/credentials/1872',
-        regex='\\w+:(\\/?\\/?)[^\\s]+',
+        example="http://example.edu/credentials/1872",
+        regex="\\w+:(\\/?\\/?)[^\\s]+",
     )
     issuance_date: str = Field(
         ...,
-        alias='issuanceDate',
-        description='The issuance date',
-        example='2010-01-01 19:23:24+00:00',
-        regex='^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$',
+        alias="issuanceDate",
+        description="The issuance date",
+        example="2010-01-01 19:23:24+00:00",
+        regex="^([0-9]{4})-([0-9]{2})-([0-9]{2})([Tt ]([0-9]{2}):([0-9]{2}):([0-9]{2})(\\.[0-9]+)?)?(([Zz]|([+-])([0-9]{2}):([0-9]{2})))?$",
     )
     issuer: Union[Dict[str, Any], str] = Field(
         ...,
-        description='The JSON-LD Verifiable Credential Issuer. Either string of object with id field.',
-        example='did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH',
+        description="The JSON-LD Verifiable Credential Issuer. Either string of object with id field.",
+        example="did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH",
     )
     proof: Optional[LinkedDataProof] = Field(
         None,
-        description='The proof of the credential',
+        description="The proof of the credential",
         example={
-            'created': '2019-12-11 03:50:55',
-            'jws': 'eyJhbGciOiAiRWREU0EiLCAiYjY0IjogZmFsc2UsICJjcml0JiNjQiXX0..lKJU0Df_keblRKhZAS9Qq6zybm-HqUXNVZ8vgEPNTAjQKBhQDxvXNo7nvtUBb_Eq1Ch6YBKY5qBQ',
-            'proofPurpose': 'assertionMethod',
-            'type': 'Ed25519Signature2018',
-            'verificationMethod': 'did:key:z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL#z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL',
+            "created": "2019-12-11 03:50:55",
+            "jws": "eyJhbGciOiAiRWREU0EiLCAiYjY0IjogZmFsc2UsICJjcml0JiNjQiXX0..lKJU0Df_keblRKhZAS9Qq6zybm-HqUXNVZ8vgEPNTAjQKBhQDxvXNo7nvtUBb_Eq1Ch6YBKY5qBQ",
+            "proofPurpose": "assertionMethod",
+            "type": "Ed25519Signature2018",
+            "verificationMethod": "did:key:z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL#z6Mkgg342Ycpuk263R9d8Aq6MUaxPn1DDeHyGo38EefXmgDL",
         },
     )
     type: List[str] = Field(
         ...,
-        description='The JSON-LD type of the credential',
-        example=['VerifiableCredential', 'AlumniCredential'],
+        description="The JSON-LD type of the credential",
+        example=["VerifiableCredential", "AlumniCredential"],
     )
 
 
@@ -3370,16 +3372,16 @@ class DIDCreate(BaseModel):
     method: Optional[str] = Field(
         None,
         description="Method for the requested DID.Supported methods are 'key', 'sov', and any other registered method.",
-        example='sov',
+        example="sov",
     )
     options: Optional[DIDCreateOptions] = Field(
         None,
-        description='To define a key type and/or a did depending on chosen DID method.',
+        description="To define a key type and/or a did depending on chosen DID method.",
     )
     seed: Optional[str] = Field(
         None,
-        description='Optional seed to use for DID, Must beenabled in configuration before use.',
-        example='000000000000000000000000Trustee1',
+        description="Optional seed to use for DID, Must beenabled in configuration before use.",
+        example="000000000000000000000000Trustee1",
     )
 
 
@@ -3388,12 +3390,12 @@ class DIFField(BaseModel):
         allow_population_by_field_name = True
 
     filter: Optional[Filter] = None
-    id: Optional[str] = Field(None, description='ID')
+    id: Optional[str] = Field(None, description="ID")
     path: Optional[List[str]] = None
-    predicate: Optional[Literal['required', 'preferred']] = Field(
-        None, description='Preference'
+    predicate: Optional[Literal["required", "preferred"]] = Field(
+        None, description="Preference"
     )
-    purpose: Optional[str] = Field(None, description='Purpose')
+    purpose: Optional[str] = Field(None, description="Purpose")
 
 
 class Disclose(BaseModel):
@@ -3402,18 +3404,18 @@ class Disclose(BaseModel):
 
     id: Optional[str] = Field(
         None,
-        alias='@id',
-        description='Message identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        alias="@id",
+        description="Message identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     type: Optional[str] = Field(
         None,
-        alias='@type',
-        description='Message type',
-        example='https://didcomm.org/my-family/1.0/my-message-type',
+        alias="@type",
+        description="Message type",
+        example="https://didcomm.org/my-family/1.0/my-message-type",
     )
     protocols: List[ProtocolDescriptor] = Field(
-        ..., description='List of protocol descriptors'
+        ..., description="List of protocol descriptors"
     )
 
 
@@ -3421,8 +3423,8 @@ class Doc(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    credential: Dict[str, Any] = Field(..., description='Credential to sign')
-    options: SignatureOptions = Field(..., description='Signature options')
+    credential: Dict[str, Any] = Field(..., description="Credential to sign")
+    options: SignatureOptions = Field(..., description="Signature options")
 
 
 class IndyCredAbstract(BaseModel):
@@ -3431,21 +3433,21 @@ class IndyCredAbstract(BaseModel):
 
     cred_def_id: str = Field(
         ...,
-        description='Credential definition identifier',
-        example='WgWxqztrNooG92RXvxSTWv:3:CL:20:tag',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$',
+        description="Credential definition identifier",
+        example="WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
     )
     key_correctness_proof: IndyKeyCorrectnessProof = Field(
-        ..., description='Key correctness proof'
+        ..., description="Key correctness proof"
     )
     nonce: str = Field(
-        ..., description='Nonce in credential abstract', example='0', regex='^[0-9]*$'
+        ..., description="Nonce in credential abstract", example="0", regex="^[0-9]*$"
     )
     schema_id: str = Field(
         ...,
-        description='Schema identifier',
-        example='WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0',
-        regex='^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$',
+        description="Schema identifier",
+        example="WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0",
+        regex="^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$",
     )
 
 
@@ -3453,9 +3455,9 @@ class IndyCredPrecis(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    cred_info: Optional[IndyCredInfo] = Field(None, description='Credential info')
+    cred_info: Optional[IndyCredInfo] = Field(None, description="Credential info")
     interval: Optional[IndyNonRevocationInterval] = Field(
-        None, description='Non-revocation interval from presentation request'
+        None, description="Non-revocation interval from presentation request"
     )
     presentation_referents: Optional[List[str]] = None
 
@@ -3464,8 +3466,8 @@ class IndyGEProof(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    alpha: Optional[str] = Field(None, example='0', regex='^[0-9]*$')
-    mj: Optional[str] = Field(None, example='0', regex='^[0-9]*$')
+    alpha: Optional[str] = Field(None, example="0", regex="^[0-9]*$")
+    mj: Optional[str] = Field(None, example="0", regex="^[0-9]*$")
     predicate: Optional[IndyGEProofPred] = None
     r: Optional[Dict[str, str]] = None
     t: Optional[Dict[str, str]] = None
@@ -3478,17 +3480,17 @@ class IndyPresSpec(BaseModel):
 
     requested_attributes: Dict[str, IndyRequestedCredsRequestedAttr] = Field(
         ...,
-        description='Nested object mapping proof request attribute referents to requested-attribute specifiers',
+        description="Nested object mapping proof request attribute referents to requested-attribute specifiers",
     )
     requested_predicates: Dict[str, IndyRequestedCredsRequestedPred] = Field(
         ...,
-        description='Nested object mapping proof request predicate referents to requested-predicate specifiers',
+        description="Nested object mapping proof request predicate referents to requested-predicate specifiers",
     )
     self_attested_attributes: Dict[str, str] = Field(
-        ..., description='Self-attested attributes to build into proof'
+        ..., description="Self-attested attributes to build into proof"
     )
     trace: Optional[bool] = Field(
-        None, description='Whether to trace event (default false)', example=False
+        None, description="Whether to trace event (default false)", example=False
     )
 
 
@@ -3496,8 +3498,8 @@ class IndyPrimaryProof(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    eq_proof: Optional[IndyEQProof] = Field(None, description='Indy equality proof')
-    ge_proofs: Optional[List[IndyGEProof]] = Field(None, description='Indy GE proofs')
+    eq_proof: Optional[IndyEQProof] = Field(None, description="Indy equality proof")
+    ge_proofs: Optional[List[IndyGEProof]] = Field(None, description="Indy GE proofs")
 
 
 class IndyProofProofProofsProof(BaseModel):
@@ -3505,10 +3507,10 @@ class IndyProofProofProofsProof(BaseModel):
         allow_population_by_field_name = True
 
     non_revoc_proof: Optional[IndyNonRevocProof] = Field(
-        None, description='Indy non-revocation proof'
+        None, description="Indy non-revocation proof"
     )
     primary_proof: Optional[IndyPrimaryProof] = Field(
-        None, description='Indy primary proof'
+        None, description="Indy primary proof"
     )
 
 
@@ -3517,13 +3519,13 @@ class IndyProofReqAttrSpec(BaseModel):
         allow_population_by_field_name = True
 
     name: Optional[str] = Field(
-        None, description='Attribute name', example='favouriteDrink'
+        None, description="Attribute name", example="favouriteDrink"
     )
-    names: Optional[List[str]] = Field(None, description='Attribute name group')
+    names: Optional[List[str]] = Field(None, description="Attribute name group")
     non_revoked: Optional[IndyProofReqAttrSpecNonRevoked] = None
     restrictions: Optional[List[Dict[str, str]]] = Field(
         None,
-        description='If present, credential must satisfy one of given restrictions: specify schema_id, schema_issuer_did, schema_name, schema_version, issuer_did, cred_def_id, and/or attr::<attribute-name>::value where <attribute-name> represents a credential attribute name',
+        description="If present, credential must satisfy one of given restrictions: specify schema_id, schema_issuer_did, schema_name, schema_version, issuer_did, cred_def_id, and/or attr::<attribute-name>::value where <attribute-name> represents a credential attribute name",
     )
 
 
@@ -3531,15 +3533,15 @@ class IndyProofReqPredSpec(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    name: str = Field(..., description='Attribute name', example='index')
+    name: str = Field(..., description="Attribute name", example="index")
     non_revoked: Optional[IndyProofReqPredSpecNonRevoked] = None
-    p_type: Literal['<', '<=', '>=', '>'] = Field(
-        ..., description="Predicate type ('<', '<=', '>=', or '>')", example='>='
+    p_type: Literal["<", "<=", ">=", ">"] = Field(
+        ..., description="Predicate type ('<', '<=', '>=', or '>')", example=">="
     )
-    p_value: int = Field(..., description='Threshold value')
+    p_value: int = Field(..., description="Threshold value")
     restrictions: Optional[List[Dict[str, str]]] = Field(
         None,
-        description='If present, credential must satisfy one of given restrictions: specify schema_id, schema_issuer_did, schema_name, schema_version, issuer_did, cred_def_id, and/or attr::<attribute-name>::value where <attribute-name> represents a credential attribute name',
+        description="If present, credential must satisfy one of given restrictions: specify schema_id, schema_issuer_did, schema_name, schema_version, issuer_did, cred_def_id, and/or attr::<attribute-name>::value where <attribute-name> represents a credential attribute name",
     )
 
 
@@ -3548,20 +3550,20 @@ class IndyProofRequest(BaseModel):
         allow_population_by_field_name = True
 
     name: Optional[str] = Field(
-        None, description='Proof request name', example='Proof request'
+        None, description="Proof request name", example="Proof request"
     )
     non_revoked: Optional[IndyProofRequestNonRevoked] = None
     nonce: Optional[str] = Field(
-        None, description='Nonce', example='1', regex='^[1-9][0-9]*$'
+        None, description="Nonce", example="1", regex="^[1-9][0-9]*$"
     )
     requested_attributes: Dict[str, IndyProofReqAttrSpec] = Field(
-        ..., description='Requested attribute specifications of proof request'
+        ..., description="Requested attribute specifications of proof request"
     )
     requested_predicates: Dict[str, IndyProofReqPredSpec] = Field(
-        ..., description='Requested predicate specifications of proof request'
+        ..., description="Requested predicate specifications of proof request"
     )
     version: Optional[str] = Field(
-        None, description='Proof request version', example='1.0', regex='^[0-9.]+$'
+        None, description="Proof request version", example="1.0", regex="^[0-9.]+$"
     )
 
 
@@ -3569,9 +3571,9 @@ class IndyProofRequestedProofRevealedAttrGroup(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    sub_proof_index: Optional[int] = Field(None, description='Sub-proof index')
+    sub_proof_index: Optional[int] = Field(None, description="Sub-proof index")
     values: Optional[Dict[str, RawEncoded]] = Field(
-        None, description='Indy proof requested proof revealed attr groups group value'
+        None, description="Indy proof requested proof revealed attr groups group value"
     )
 
 
@@ -3580,7 +3582,7 @@ class IndyRevRegDefValuePublicKeys(BaseModel):
         allow_population_by_field_name = True
 
     accum_key: Optional[IndyRevRegDefValuePublicKeysAccumKey] = Field(
-        None, alias='accumKey'
+        None, alias="accumKey"
     )
 
 
@@ -3589,13 +3591,13 @@ class IndyRevRegEntry(BaseModel):
         allow_population_by_field_name = True
 
     value: Optional[IndyRevRegEntryValue] = Field(
-        None, description='Revocation registry entry value'
+        None, description="Revocation registry entry value"
     )
     ver: Optional[str] = Field(
         None,
-        description='Version of revocation registry entry',
-        example='1.0',
-        regex='^[0-9.]+$',
+        description="Version of revocation registry entry",
+        example="1.0",
+        regex="^[0-9.]+$",
     )
 
 
@@ -3604,7 +3606,7 @@ class Keylist(BaseModel):
         allow_population_by_field_name = True
 
     results: Optional[List[RouteRecord]] = Field(
-        None, description='List of keylist records'
+        None, description="List of keylist records"
     )
 
 
@@ -3614,21 +3616,21 @@ class KeylistQuery(BaseModel):
 
     id: Optional[str] = Field(
         None,
-        alias='@id',
-        description='Message identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        alias="@id",
+        description="Message identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     type: Optional[str] = Field(
         None,
-        alias='@type',
-        description='Message type',
-        example='https://didcomm.org/my-family/1.0/my-message-type',
+        alias="@type",
+        description="Message type",
+        example="https://didcomm.org/my-family/1.0/my-message-type",
     )
     filter: Optional[Dict[str, Any]] = Field(
-        None, description='Query dictionary object', example={'filter': {}}
+        None, description="Query dictionary object", example={"filter": {}}
     )
     paginate: Optional[KeylistQueryPaginate] = Field(
-        None, description='Pagination info'
+        None, description="Pagination info"
     )
 
 
@@ -3638,18 +3640,18 @@ class KeylistUpdate(BaseModel):
 
     id: Optional[str] = Field(
         None,
-        alias='@id',
-        description='Message identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        alias="@id",
+        description="Message identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     type: Optional[str] = Field(
         None,
-        alias='@type',
-        description='Message type',
-        example='https://didcomm.org/my-family/1.0/my-message-type',
+        alias="@type",
+        description="Message type",
+        example="https://didcomm.org/my-family/1.0/my-message-type",
     )
     updates: Optional[List[KeylistUpdateRule]] = Field(
-        None, description='List of update rules'
+        None, description="List of update rules"
     )
 
 
@@ -3666,30 +3668,30 @@ class LDProofVCDetail(BaseModel):
 
     credential: Credential = Field(
         ...,
-        description='Detail of the JSON-LD Credential to be issued',
+        description="Detail of the JSON-LD Credential to be issued",
         example={
-            '@context': [
-                'https://www.w3.org/2018/credentials/v1',
-                'https://w3id.org/citizenship/v1',
+            "@context": [
+                "https://www.w3.org/2018/credentials/v1",
+                "https://w3id.org/citizenship/v1",
             ],
-            'credentialSubject': {
-                'familyName': 'SMITH',
-                'gender': 'Male',
-                'givenName': 'JOHN',
-                'type': ['PermanentResident', 'Person'],
+            "credentialSubject": {
+                "familyName": "SMITH",
+                "gender": "Male",
+                "givenName": "JOHN",
+                "type": ["PermanentResident", "Person"],
             },
-            'description': 'Government of Example Permanent Resident Card.',
-            'identifier': '83627465',
-            'issuanceDate': '2019-12-03 12:19:52+00:00',
-            'issuer': 'did:key:z6MkmjY8GnV5i9YTDtPETC2uUAW6ejw3nk5mXF5yci5ab7th',
-            'name': 'Permanent Resident Card',
-            'type': ['VerifiableCredential', 'PermanentResidentCard'],
+            "description": "Government of Example Permanent Resident Card.",
+            "identifier": "83627465",
+            "issuanceDate": "2019-12-03 12:19:52+00:00",
+            "issuer": "did:key:z6MkmjY8GnV5i9YTDtPETC2uUAW6ejw3nk5mXF5yci5ab7th",
+            "name": "Permanent Resident Card",
+            "type": ["VerifiableCredential", "PermanentResidentCard"],
         },
     )
     options: LDProofVCDetailOptions = Field(
         ...,
-        description='Options for specifying how the linked data proof is created.',
-        example={'proofType': 'Ed25519Signature2018'},
+        description="Options for specifying how the linked data proof is created.",
+        example={"proofType": "Ed25519Signature2018"},
     )
 
 
@@ -3698,7 +3700,7 @@ class MediationList(BaseModel):
         allow_population_by_field_name = True
 
     results: Optional[List[MediationRecord]] = Field(
-        None, description='List of mediation records'
+        None, description="List of mediation records"
     )
 
 
@@ -3708,20 +3710,20 @@ class MenuForm(BaseModel):
 
     description: Optional[str] = Field(
         None,
-        description='Additional descriptive text for menu form',
-        example='Window preference settings',
+        description="Additional descriptive text for menu form",
+        example="Window preference settings",
     )
     params: Optional[List[MenuFormParam]] = Field(
-        None, description='List of form parameters'
+        None, description="List of form parameters"
     )
     submit_label: Optional[str] = Field(
         None,
-        alias='submit-label',
-        description='Alternative label for form submit button',
-        example='Send',
+        alias="submit-label",
+        description="Alternative label for form submit button",
+        example="Send",
     )
     title: Optional[str] = Field(
-        None, description='Menu form title', example='Preferences'
+        None, description="Menu form title", example="Preferences"
     )
 
 
@@ -3731,18 +3733,18 @@ class MenuOption(BaseModel):
 
     description: Optional[str] = Field(
         None,
-        description='Additional descriptive text for menu option',
-        example='Window display preferences',
+        description="Additional descriptive text for menu option",
+        example="Window display preferences",
     )
     disabled: Optional[bool] = Field(
-        None, description='Whether to show option as disabled', example=False
+        None, description="Whether to show option as disabled", example=False
     )
     form: Optional[MenuForm] = None
     name: str = Field(
-        ..., description='Menu option name (unique identifier)', example='window_prefs'
+        ..., description="Menu option name (unique identifier)", example="window_prefs"
     )
     title: str = Field(
-        ..., description='Menu option title', example='Window Preferences'
+        ..., description="Menu option title", example="Window Preferences"
     )
 
 
@@ -3752,15 +3754,15 @@ class Queries(BaseModel):
 
     id: Optional[str] = Field(
         None,
-        alias='@id',
-        description='Message identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        alias="@id",
+        description="Message identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     type: Optional[str] = Field(
         None,
-        alias='@type',
-        description='Message type',
-        example='https://didcomm.org/my-family/1.0/my-message-type',
+        alias="@type",
+        description="Message type",
+        example="https://didcomm.org/my-family/1.0/my-message-type",
     )
     queries: Optional[List[QueryItem]] = None
 
@@ -3770,7 +3772,7 @@ class SignRequest(BaseModel):
         allow_population_by_field_name = True
 
     doc: Doc
-    verkey: str = Field(..., description='Verkey to use for signing')
+    verkey: str = Field(..., description="Verkey to use for signing")
 
 
 class TAAInfo(BaseModel):
@@ -3795,7 +3797,7 @@ class TransactionList(BaseModel):
         allow_population_by_field_name = True
 
     results: Optional[List[TransactionRecord]] = Field(
-        None, description='List of transaction records'
+        None, description="List of transaction records"
     )
 
 
@@ -3805,38 +3807,38 @@ class V10DiscoveryRecord(BaseModel):
 
     connection_id: Optional[str] = Field(
         None,
-        description='Connection identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Connection identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     created_at: Optional[str] = Field(
         None,
-        description='Time of record creation',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of record creation",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
-    disclose: Optional[Disclose] = Field(None, description='Disclose message')
+    disclose: Optional[Disclose] = Field(None, description="Disclose message")
     discovery_exchange_id: Optional[str] = Field(
         None,
-        description='Credential exchange identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Credential exchange identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
-    query_msg: Optional[Query] = Field(None, description='Query message')
+    query_msg: Optional[Query] = Field(None, description="Query message")
     state: Optional[str] = Field(
-        None, description='Current record state', example='active'
+        None, description="Current record state", example="active"
     )
     thread_id: Optional[str] = Field(
         None,
-        description='Thread identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Thread identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     trace: Optional[bool] = Field(
-        None, description='Record trace information, based on agent configuration'
+        None, description="Record trace information, based on agent configuration"
     )
     updated_at: Optional[str] = Field(
         None,
-        description='Time of last record update',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of last record update",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
 
 
@@ -3846,17 +3848,17 @@ class V10PresentationCreateRequestRequest(BaseModel):
 
     auto_remove: Optional[bool] = Field(
         None,
-        description='Whether to remove the presentation exchange record on completion (overrides --preserve-exchange-records configuration setting)',
+        description="Whether to remove the presentation exchange record on completion (overrides --preserve-exchange-records configuration setting)",
     )
     auto_verify: Optional[bool] = Field(
         None,
-        description='Verifier choice to auto-verify proof presentation',
+        description="Verifier choice to auto-verify proof presentation",
         example=False,
     )
     comment: Optional[str] = None
     proof_request: IndyProofRequest
     trace: Optional[bool] = Field(
-        None, description='Whether to trace event (default false)', example=False
+        None, description="Whether to trace event (default false)", example=False
     )
 
 
@@ -3866,22 +3868,22 @@ class V10PresentationSendRequestRequest(BaseModel):
 
     auto_remove: Optional[bool] = Field(
         None,
-        description='Whether to remove the presentation exchange record on completion (overrides --preserve-exchange-records configuration setting)',
+        description="Whether to remove the presentation exchange record on completion (overrides --preserve-exchange-records configuration setting)",
     )
     auto_verify: Optional[bool] = Field(
         None,
-        description='Verifier choice to auto-verify proof presentation',
+        description="Verifier choice to auto-verify proof presentation",
         example=False,
     )
     comment: Optional[str] = None
     connection_id: UUID = Field(
         ...,
-        description='Connection identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Connection identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     proof_request: IndyProofRequest
     trace: Optional[bool] = Field(
-        None, description='Whether to trace event (default false)', example=False
+        None, description="Whether to trace event (default false)", example=False
     )
 
 
@@ -3890,10 +3892,10 @@ class V20CredFilter(BaseModel):
         allow_population_by_field_name = True
 
     indy: Optional[V20CredFilterIndy] = Field(
-        None, description='Credential filter for indy'
+        None, description="Credential filter for indy"
     )
     ld_proof: Optional[LDProofVCDetail] = Field(
-        None, description='Credential filter for linked data proof'
+        None, description="Credential filter for linked data proof"
     )
 
 
@@ -3902,7 +3904,7 @@ class V20CredFilterLDProof(BaseModel):
         allow_population_by_field_name = True
 
     ld_proof: LDProofVCDetail = Field(
-        ..., description='Credential filter for linked data proof'
+        ..., description="Credential filter for linked data proof"
     )
 
 
@@ -3912,24 +3914,24 @@ class V20CredOfferConnFreeRequest(BaseModel):
 
     auto_issue: Optional[bool] = Field(
         None,
-        description='Whether to respond automatically to credential requests, creating and issuing requested credentials',
+        description="Whether to respond automatically to credential requests, creating and issuing requested credentials",
     )
     auto_remove: Optional[bool] = Field(
         None,
-        description='Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting)',
+        description="Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting)",
     )
-    comment: Optional[str] = Field(None, description='Human-readable comment')
+    comment: Optional[str] = Field(None, description="Human-readable comment")
     credential_preview: Optional[V20CredPreview] = None
     filter: V20CredFilter = Field(
-        ..., description='Credential specification criteria by format'
+        ..., description="Credential specification criteria by format"
     )
     replacement_id: Optional[str] = Field(
         None,
-        description='Optional identifier used to manage credential replacement',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Optional identifier used to manage credential replacement",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     trace: Optional[bool] = Field(
-        None, description='Record trace information, based on agent configuration'
+        None, description="Record trace information, based on agent configuration"
     )
 
 
@@ -3939,29 +3941,29 @@ class V20CredOfferRequest(BaseModel):
 
     auto_issue: Optional[bool] = Field(
         None,
-        description='Whether to respond automatically to credential requests, creating and issuing requested credentials',
+        description="Whether to respond automatically to credential requests, creating and issuing requested credentials",
     )
     auto_remove: Optional[bool] = Field(
         None,
-        description='Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting)',
+        description="Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting)",
     )
-    comment: Optional[str] = Field(None, description='Human-readable comment')
+    comment: Optional[str] = Field(None, description="Human-readable comment")
     connection_id: UUID = Field(
         ...,
-        description='Connection identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Connection identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     credential_preview: Optional[V20CredPreview] = None
     filter: V20CredFilter = Field(
-        ..., description='Credential specification criteria by format'
+        ..., description="Credential specification criteria by format"
     )
     replacement_id: Optional[str] = Field(
         None,
-        description='Optional identifier used to manage credential replacement',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Optional identifier used to manage credential replacement",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     trace: Optional[bool] = Field(
-        None, description='Record trace information, based on agent configuration'
+        None, description="Record trace information, based on agent configuration"
     )
 
 
@@ -3971,24 +3973,24 @@ class V20CredRequestFree(BaseModel):
 
     auto_remove: Optional[bool] = Field(
         None,
-        description='Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting)',
+        description="Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting)",
     )
-    comment: Optional[str] = Field(None, description='Human-readable comment')
+    comment: Optional[str] = Field(None, description="Human-readable comment")
     connection_id: UUID = Field(
         ...,
-        description='Connection identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Connection identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     filter: V20CredFilterLDProof = Field(
-        ..., description='Credential specification criteria by format'
+        ..., description="Credential specification criteria by format"
     )
     holder_did: Optional[str] = Field(
         None,
-        description='Holder DID to substitute for the credentialSubject.id',
-        example='did:key:ahsdkjahsdkjhaskjdhakjshdkajhsdkjahs',
+        description="Holder DID to substitute for the credentialSubject.id",
+        example="did:key:ahsdkjahsdkjhaskjdhakjshdkajhsdkjahs",
     )
     trace: Optional[bool] = Field(
-        None, description='Whether to trace event (default false)', example=False
+        None, description="Whether to trace event (default false)", example=False
     )
 
 
@@ -3998,38 +4000,38 @@ class V20DiscoveryRecord(BaseModel):
 
     connection_id: Optional[str] = Field(
         None,
-        description='Connection identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Connection identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     created_at: Optional[str] = Field(
         None,
-        description='Time of record creation',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of record creation",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
-    disclosures: Optional[Disclosures] = Field(None, description='Disclosures message')
+    disclosures: Optional[Disclosures] = Field(None, description="Disclosures message")
     discovery_exchange_id: Optional[str] = Field(
         None,
-        description='Credential exchange identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Credential exchange identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
-    queries_msg: Optional[Queries] = Field(None, description='Queries message')
+    queries_msg: Optional[Queries] = Field(None, description="Queries message")
     state: Optional[str] = Field(
-        None, description='Current record state', example='active'
+        None, description="Current record state", example="active"
     )
     thread_id: Optional[str] = Field(
         None,
-        description='Thread identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Thread identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     trace: Optional[bool] = Field(
-        None, description='Record trace information, based on agent configuration'
+        None, description="Record trace information, based on agent configuration"
     )
     updated_at: Optional[str] = Field(
         None,
-        description='Time of last record update',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of last record update",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
 
 
@@ -4039,20 +4041,20 @@ class V20IssueCredSchemaCore(BaseModel):
 
     auto_remove: Optional[bool] = Field(
         None,
-        description='Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting)',
+        description="Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting)",
     )
-    comment: Optional[str] = Field(None, description='Human-readable comment')
+    comment: Optional[str] = Field(None, description="Human-readable comment")
     credential_preview: Optional[V20CredPreview] = None
     filter: V20CredFilter = Field(
-        ..., description='Credential specification criteria by format'
+        ..., description="Credential specification criteria by format"
     )
     replacement_id: Optional[str] = Field(
         None,
-        description='Optional identifier used to manage credential replacement',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Optional identifier used to manage credential replacement",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     trace: Optional[bool] = Field(
-        None, description='Record trace information, based on agent configuration'
+        None, description="Record trace information, based on agent configuration"
     )
 
 
@@ -4061,7 +4063,7 @@ class WalletList(BaseModel):
         allow_population_by_field_name = True
 
     results: Optional[List[WalletRecord]] = Field(
-        None, description='List of wallet records'
+        None, description="List of wallet records"
     )
 
 
@@ -4071,27 +4073,27 @@ class AttachDecoratorData(BaseModel):
 
     base64: Optional[str] = Field(
         None,
-        description='Base64-encoded data',
-        example='ey4uLn0=',
-        regex='^[a-zA-Z0-9+/]*={0,2}$',
+        description="Base64-encoded data",
+        example="ey4uLn0=",
+        regex="^[a-zA-Z0-9+/]*={0,2}$",
     )
     json_: Optional[Dict[str, Any]] = Field(
         None,
-        alias='json',
-        description='JSON-serialized data',
+        alias="json",
+        description="JSON-serialized data",
         example='{"sample": "content"}',
     )
     jws: Optional[AttachDecoratorDataJWS] = Field(
-        None, description='Detached Java Web Signature'
+        None, description="Detached Java Web Signature"
     )
     links: Optional[List[str]] = Field(
-        None, description='List of hypertext links to data'
+        None, description="List of hypertext links to data"
     )
     sha256: Optional[str] = Field(
         None,
-        description='SHA256 hash (binhex encoded) of content',
-        example='617a48c7c8afe0521efdc03e5bb0ad9e655893e6b4b51f0e794d70fba132aacb',
-        regex='^[a-fA-F0-9+/]{64}$',
+        description="SHA256 hash (binhex encoded) of content",
+        example="617a48c7c8afe0521efdc03e5bb0ad9e655893e6b4b51f0e794d70fba132aacb",
+        regex="^[a-fA-F0-9+/]{64}$",
     )
 
 
@@ -4101,12 +4103,12 @@ class Constraints(BaseModel):
 
     fields: Optional[List[DIFField]] = None
     is_holder: Optional[List[DIFHolder]] = None
-    limit_disclosure: Optional[str] = Field(None, description='LimitDisclosure')
-    status_active: Optional[Literal['required', 'allowed', 'disallowed']] = None
-    status_revoked: Optional[Literal['required', 'allowed', 'disallowed']] = None
-    status_suspended: Optional[Literal['required', 'allowed', 'disallowed']] = None
-    subject_is_issuer: Optional[Literal['required', 'preferred']] = Field(
-        None, description='SubjectIsIssuer'
+    limit_disclosure: Optional[str] = Field(None, description="LimitDisclosure")
+    status_active: Optional[Literal["required", "allowed", "disallowed"]] = None
+    status_revoked: Optional[Literal["required", "allowed", "disallowed"]] = None
+    status_suspended: Optional[Literal["required", "allowed", "disallowed"]] = None
+    subject_is_issuer: Optional[Literal["required", "preferred"]] = Field(
+        None, description="SubjectIsIssuer"
     )
 
 
@@ -4115,10 +4117,10 @@ class CredDefValue(BaseModel):
         allow_population_by_field_name = True
 
     primary: Optional[CredDefValuePrimary] = Field(
-        None, description='Primary value for credential definition'
+        None, description="Primary value for credential definition"
     )
     revocation: Optional[CredDefValueRevocation] = Field(
-        None, description='Revocation value for credential definition'
+        None, description="Revocation value for credential definition"
     )
 
 
@@ -4128,27 +4130,27 @@ class CredentialDefinition(BaseModel):
 
     id: Optional[str] = Field(
         None,
-        description='Credential definition identifier',
-        example='WgWxqztrNooG92RXvxSTWv:3:CL:20:tag',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$',
+        description="Credential definition identifier",
+        example="WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
     )
     schema_id: Optional[str] = Field(
         None,
-        alias='schemaId',
-        description='Schema identifier within credential definition identifier',
-        example='20',
+        alias="schemaId",
+        description="Schema identifier within credential definition identifier",
+        example="20",
     )
     tag: Optional[str] = Field(
-        None, description='Tag within credential definition identifier', example='tag'
+        None, description="Tag within credential definition identifier", example="tag"
     )
     type: Optional[Dict[str, Any]] = Field(
-        None, description='Signature type: CL for Camenisch-Lysyanskaya', example='CL'
+        None, description="Signature type: CL for Camenisch-Lysyanskaya", example="CL"
     )
     value: Optional[CredDefValue] = Field(
-        None, description='Credential definition primary and revocation values'
+        None, description="Credential definition primary and revocation values"
     )
     ver: Optional[str] = Field(
-        None, description='Node protocol version', example='1.0', regex='^[0-9.]+$'
+        None, description="Node protocol version", example="1.0", regex="^[0-9.]+$"
     )
 
 
@@ -4164,10 +4166,10 @@ class IndyProofProof(BaseModel):
         allow_population_by_field_name = True
 
     aggregated_proof: Optional[IndyProofProofAggregatedProof] = Field(
-        None, description='Indy proof aggregated proof'
+        None, description="Indy proof aggregated proof"
     )
     proofs: Optional[List[IndyProofProofProofsProof]] = Field(
-        None, description='Indy proof proofs'
+        None, description="Indy proof proofs"
     )
 
 
@@ -4176,19 +4178,19 @@ class IndyProofRequestedProof(BaseModel):
         allow_population_by_field_name = True
 
     predicates: Optional[Dict[str, IndyProofRequestedProofPredicate]] = Field(
-        None, description='Proof requested proof predicates.'
+        None, description="Proof requested proof predicates."
     )
     revealed_attr_groups: Optional[
         Dict[str, IndyProofRequestedProofRevealedAttrGroup]
-    ] = Field(None, description='Proof requested proof revealed attribute groups')
+    ] = Field(None, description="Proof requested proof revealed attribute groups")
     revealed_attrs: Optional[Dict[str, IndyProofRequestedProofRevealedAttr]] = Field(
-        None, description='Proof requested proof revealed attributes'
+        None, description="Proof requested proof revealed attributes"
     )
     self_attested_attrs: Optional[Dict[str, Any]] = Field(
-        None, description='Proof requested proof self-attested attributes'
+        None, description="Proof requested proof self-attested attributes"
     )
     unrevealed_attrs: Optional[Dict[str, Any]] = Field(
-        None, description='Unrevealed attributes'
+        None, description="Unrevealed attributes"
     )
 
 
@@ -4196,28 +4198,28 @@ class IndyRevRegDefValue(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    issuance_type: Optional[
-        Literal['ISSUANCE_ON_DEMAND', 'ISSUANCE_BY_DEFAULT']
-    ] = Field(None, alias='issuanceType', description='Issuance type')
+    issuance_type: Optional[Literal["ISSUANCE_ON_DEMAND", "ISSUANCE_BY_DEFAULT"]] = (
+        Field(None, alias="issuanceType", description="Issuance type")
+    )
     max_cred_num: Optional[int] = Field(
         None,
-        alias='maxCredNum',
-        description='Maximum number of credentials; registry size',
+        alias="maxCredNum",
+        description="Maximum number of credentials; registry size",
         example=10,
         ge=1,
     )
     public_keys: Optional[IndyRevRegDefValuePublicKeys] = Field(
-        None, alias='publicKeys', description='Public keys'
+        None, alias="publicKeys", description="Public keys"
     )
     tails_hash: Optional[str] = Field(
         None,
-        alias='tailsHash',
-        description='Tails hash value',
-        example='H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV',
-        regex='^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$',
+        alias="tailsHash",
+        description="Tails hash value",
+        example="H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV",
+        regex="^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$",
     )
     tails_location: Optional[str] = Field(
-        None, alias='tailsLocation', description='Tails file location'
+        None, alias="tailsLocation", description="Tails file location"
     )
 
 
@@ -4227,24 +4229,24 @@ class InputDescriptors(BaseModel):
 
     constraints: Optional[Constraints] = None
     group: Optional[List[str]] = None
-    id: Optional[str] = Field(None, description='ID')
-    metadata: Optional[Dict[str, Any]] = Field(None, description='Metadata dictionary')
-    name: Optional[str] = Field(None, description='Name')
-    purpose: Optional[str] = Field(None, description='Purpose')
+    id: Optional[str] = Field(None, description="ID")
+    metadata: Optional[Dict[str, Any]] = Field(None, description="Metadata dictionary")
+    name: Optional[str] = Field(None, description="Name")
+    purpose: Optional[str] = Field(None, description="Purpose")
     schema_: Optional[SchemasInputDescriptorFilter] = Field(
         None,
-        alias='schema',
-        description='Accepts a list of schema or a dict containing filters like oneof_filter.',
+        alias="schema",
+        description="Accepts a list of schema or a dict containing filters like oneof_filter.",
         example={
-            'oneof_filter': [
+            "oneof_filter": [
                 [
-                    {'uri': 'https://www.w3.org/Test1#Test1'},
-                    {'uri': 'https://www.w3.org/Test2#Test2'},
+                    {"uri": "https://www.w3.org/Test1#Test1"},
+                    {"uri": "https://www.w3.org/Test2#Test2"},
                 ],
                 {
-                    'oneof_filter': [
-                        [{'uri': 'https://www.w3.org/Test1#Test1'}],
-                        [{'uri': 'https://www.w3.org/Test2#Test2'}],
+                    "oneof_filter": [
+                        [{"uri": "https://www.w3.org/Test1#Test1"}],
+                        [{"uri": "https://www.w3.org/Test2#Test2"}],
                     ]
                 },
             ]
@@ -4258,28 +4260,28 @@ class Menu(BaseModel):
 
     id: Optional[str] = Field(
         None,
-        alias='@id',
-        description='Message identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        alias="@id",
+        description="Message identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     type: Optional[str] = Field(
         None,
-        alias='@type',
-        description='Message type',
-        example='https://didcomm.org/my-family/1.0/my-message-type',
+        alias="@type",
+        description="Message type",
+        example="https://didcomm.org/my-family/1.0/my-message-type",
     )
     description: Optional[str] = Field(
         None,
-        description='Introductory text for the menu',
-        example='This menu presents options',
+        description="Introductory text for the menu",
+        example="This menu presents options",
     )
     errormsg: Optional[str] = Field(
         None,
-        description='An optional error message to display in menu header',
-        example='Error: item not found',
+        description="An optional error message to display in menu header",
+        example="Error: item not found",
     )
-    options: List[MenuOption] = Field(..., description='List of menu options')
-    title: Optional[str] = Field(None, description='Menu title', example='My Menu')
+    options: List[MenuOption] = Field(..., description="List of menu options")
+    title: Optional[str] = Field(None, description="Menu title", example="My Menu")
 
 
 class MenuJson(BaseModel):
@@ -4288,16 +4290,16 @@ class MenuJson(BaseModel):
 
     description: Optional[str] = Field(
         None,
-        description='Introductory text for the menu',
-        example='User preferences for window settings',
+        description="Introductory text for the menu",
+        example="User preferences for window settings",
     )
     errormsg: Optional[str] = Field(
         None,
-        description='Optional error message to display in menu header',
-        example='Error: item not present',
+        description="Optional error message to display in menu header",
+        example="Error: item not present",
     )
-    options: List[MenuOption] = Field(..., description='List of menu options')
-    title: Optional[str] = Field(None, description='Menu title', example='My Menu')
+    options: List[MenuOption] = Field(..., description="List of menu options")
+    title: Optional[str] = Field(None, description="Menu title", example="My Menu")
 
 
 class PresentationDefinition(BaseModel):
@@ -4307,14 +4309,14 @@ class PresentationDefinition(BaseModel):
     format: Optional[ClaimFormat] = None
     id: Optional[str] = Field(
         None,
-        description='Unique Resource Identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
-        regex='[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}',
+        description="Unique Resource Identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        regex="[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
     )
     input_descriptors: Optional[List[InputDescriptors]] = None
     name: Optional[str] = Field(
         None,
-        description='Human-friendly name that describes what the presentation definition pertains to',
+        description="Human-friendly name that describes what the presentation definition pertains to",
     )
     purpose: Optional[str] = Field(
         None,
@@ -4327,7 +4329,7 @@ class SendMenu(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    menu: MenuJson = Field(..., description='Menu to send to connection')
+    menu: MenuJson = Field(..., description="Menu to send to connection")
 
 
 class V10DiscoveryExchangeListResult(BaseModel):
@@ -4342,10 +4344,10 @@ class V20CredBoundOfferRequest(BaseModel):
         allow_population_by_field_name = True
 
     counter_preview: Optional[V20CredPreview] = Field(
-        None, description='Optional content for counter-proposal'
+        None, description="Optional content for counter-proposal"
     )
     filter: Optional[V20CredFilter] = Field(
-        None, description='Credential specification criteria by format'
+        None, description="Credential specification criteria by format"
     )
 
 
@@ -4355,28 +4357,28 @@ class V20CredExFree(BaseModel):
 
     auto_remove: Optional[bool] = Field(
         None,
-        description='Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting)',
+        description="Whether to remove the credential exchange record on completion (overrides --preserve-exchange-records configuration setting)",
     )
-    comment: Optional[str] = Field(None, description='Human-readable comment')
+    comment: Optional[str] = Field(None, description="Human-readable comment")
     connection_id: UUID = Field(
         ...,
-        description='Connection identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Connection identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     credential_preview: Optional[V20CredPreview] = None
     filter: V20CredFilter = Field(
-        ..., description='Credential specification criteria by format'
+        ..., description="Credential specification criteria by format"
     )
     replacement_id: Optional[str] = Field(
         None,
-        description='Optional identifier used to manage credential replacement',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Optional identifier used to manage credential replacement",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     trace: Optional[bool] = Field(
-        None, description='Record trace information, based on agent configuration'
+        None, description="Record trace information, based on agent configuration"
     )
     verification_method: Optional[str] = Field(
-        None, description='For ld-proofs. Verification method for signing.'
+        None, description="For ld-proofs. Verification method for signing."
     )
 
 
@@ -4392,7 +4394,7 @@ class V20DiscoveryExchangeResult(BaseModel):
         allow_population_by_field_name = True
 
     results: Optional[V20DiscoveryRecord] = Field(
-        None, description='Discover Features v2.0 exchange record'
+        None, description="Discover Features v2.0 exchange record"
     )
 
 
@@ -4400,7 +4402,7 @@ class ActionMenuFetchResult(BaseModel):
     class Config:
         allow_population_by_field_name = True
 
-    result: Optional[Menu] = Field(None, description='Action menu')
+    result: Optional[Menu] = Field(None, description="Action menu")
 
 
 class AttachDecorator(BaseModel):
@@ -4409,30 +4411,30 @@ class AttachDecorator(BaseModel):
 
     id: Optional[str] = Field(
         None,
-        alias='@id',
-        description='Attachment identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        alias="@id",
+        description="Attachment identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     byte_count: Optional[int] = Field(
-        None, description='Byte count of data included by reference', example=1234
+        None, description="Byte count of data included by reference", example=1234
     )
     data: AttachDecoratorData
     description: Optional[str] = Field(
         None,
-        description='Human-readable description of content',
-        example='view from doorway, facing east, with lights off',
+        description="Human-readable description of content",
+        example="view from doorway, facing east, with lights off",
     )
     filename: Optional[str] = Field(
-        None, description='File name', example='IMG1092348.png'
+        None, description="File name", example="IMG1092348.png"
     )
     lastmod_time: Optional[str] = Field(
         None,
-        description='Hint regarding last modification datetime, in ISO-8601 format',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Hint regarding last modification datetime, in ISO-8601 format",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
     mime_type: Optional[str] = Field(
-        None, alias='mime-type', description='MIME type', example='image/png'
+        None, alias="mime-type", description="MIME type", example="image/png"
     )
 
 
@@ -4442,19 +4444,19 @@ class CredentialOffer(BaseModel):
 
     id: Optional[str] = Field(
         None,
-        alias='@id',
-        description='Message identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        alias="@id",
+        description="Message identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     type: Optional[str] = Field(
         None,
-        alias='@type',
-        description='Message type',
-        example='https://didcomm.org/my-family/1.0/my-message-type',
+        alias="@type",
+        description="Message type",
+        example="https://didcomm.org/my-family/1.0/my-message-type",
     )
-    comment: Optional[str] = Field(None, description='Human-readable comment')
+    comment: Optional[str] = Field(None, description="Human-readable comment")
     credential_preview: Optional[CredentialPreview] = None
-    offers_attach: List[AttachDecorator] = Field(..., alias='offers~attach')
+    offers_attach: List[AttachDecorator] = Field(..., alias="offers~attach")
 
 
 class DIDXRequest(BaseModel):
@@ -4463,41 +4465,41 @@ class DIDXRequest(BaseModel):
 
     id: Optional[str] = Field(
         None,
-        alias='@id',
-        description='Message identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        alias="@id",
+        description="Message identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     type: Optional[str] = Field(
         None,
-        alias='@type',
-        description='Message type',
-        example='https://didcomm.org/my-family/1.0/my-message-type',
+        alias="@type",
+        description="Message type",
+        example="https://didcomm.org/my-family/1.0/my-message-type",
     )
     did: Optional[str] = Field(
         None,
-        description='DID of exchange',
-        example='did:peer:WgWxqztrNooG92RXvxSTWv',
-        regex='^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\\/[^#?]*)?([?][^#]*)?(\\#.*)?$$',
+        description="DID of exchange",
+        example="did:peer:WgWxqztrNooG92RXvxSTWv",
+        regex="^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$|^did:([a-zA-Z0-9_]+):([a-zA-Z0-9_.%-]+(:[a-zA-Z0-9_.%-]+)*)((;[a-zA-Z0-9_.:%-]+=[a-zA-Z0-9_.:%-]*)*)(\\/[^#?]*)?([?][^#]*)?(\\#.*)?$$",
     )
     did_doc_attach: Optional[AttachDecorator] = Field(
         None,
-        alias='did_doc~attach',
-        description='As signed attachment, DID Doc associated with DID',
+        alias="did_doc~attach",
+        description="As signed attachment, DID Doc associated with DID",
     )
     goal: Optional[str] = Field(
         None,
-        description='A self-attested string that the receiver may want to display to the user about the context-specific goal of the out-of-band message',
-        example='To issue a Faber College Graduate credential',
+        description="A self-attested string that the receiver may want to display to the user about the context-specific goal of the out-of-band message",
+        example="To issue a Faber College Graduate credential",
     )
     goal_code: Optional[str] = Field(
         None,
-        description='A self-attested code the receiver may want to display to the user or use in automatically deciding what to do with the out-of-band message',
-        example='issue-vc',
+        description="A self-attested code the receiver may want to display to the user or use in automatically deciding what to do with the out-of-band message",
+        example="issue-vc",
     )
     label: str = Field(
         ...,
-        description='Label for DID exchange request',
-        example='Request to connect with Bob',
+        description="Label for DID exchange request",
+        example="Request to connect with Bob",
     )
 
 
@@ -4507,37 +4509,37 @@ class DIFPresSpec(BaseModel):
 
     issuer_id: Optional[str] = Field(
         None,
-        description='Issuer identifier to sign the presentation, if different from current public DID',
+        description="Issuer identifier to sign the presentation, if different from current public DID",
     )
     presentation_definition: Optional[PresentationDefinition] = None
     record_ids: Optional[Dict[str, Any]] = Field(
         None,
-        description='Mapping of input_descriptor id to list of stored W3C credential record_id',
+        description="Mapping of input_descriptor id to list of stored W3C credential record_id",
         example={
-            '<input descriptor id_1>': ['<record id_1>', '<record id_2>'],
-            '<input descriptor id_2>': ['<record id>'],
+            "<input descriptor id_1>": ["<record id_1>", "<record id_2>"],
+            "<input descriptor id_2>": ["<record id>"],
         },
     )
     reveal_doc: Optional[Dict[str, Any]] = Field(
         None,
-        description='reveal doc [JSON-LD frame] dict used to derive the credential when selective disclosure is required',
+        description="reveal doc [JSON-LD frame] dict used to derive the credential when selective disclosure is required",
         example={
-            '@context': [
-                'https://www.w3.org/2018/credentials/v1',
-                'https://w3id.org/security/bbs/v1',
+            "@context": [
+                "https://www.w3.org/2018/credentials/v1",
+                "https://w3id.org/security/bbs/v1",
             ],
-            '@explicit': True,
-            '@requireAll': True,
-            'credentialSubject': {
-                '@explicit': True,
-                '@requireAll': True,
-                'Observation': [
-                    {'effectiveDateTime': {}, '@explicit': True, '@requireAll': True}
+            "@explicit": True,
+            "@requireAll": True,
+            "credentialSubject": {
+                "@explicit": True,
+                "@requireAll": True,
+                "Observation": [
+                    {"effectiveDateTime": {}, "@explicit": True, "@requireAll": True}
                 ],
             },
-            'issuanceDate': {},
-            'issuer': {},
-            'type': ['VerifiableCredential', 'LabReport'],
+            "issuanceDate": {},
+            "issuer": {},
+            "type": ["VerifiableCredential", "LabReport"],
         },
     )
 
@@ -4563,13 +4565,13 @@ class IndyProof(BaseModel):
         allow_population_by_field_name = True
 
     identifiers: Optional[List[IndyProofIdentifier]] = Field(
-        None, description='Indy proof.identifiers content'
+        None, description="Indy proof.identifiers content"
     )
     proof: Optional[IndyProofProof] = Field(
-        None, description='Indy proof.proof content'
+        None, description="Indy proof.proof content"
     )
     requested_proof: Optional[IndyProofRequestedProof] = Field(
-        None, description='Indy proof.requested_proof content'
+        None, description="Indy proof.requested_proof content"
     )
 
 
@@ -4579,32 +4581,32 @@ class IndyRevRegDef(BaseModel):
 
     cred_def_id: Optional[str] = Field(
         None,
-        alias='credDefId',
-        description='Credential definition identifier',
-        example='WgWxqztrNooG92RXvxSTWv:3:CL:20:tag',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$',
+        alias="credDefId",
+        description="Credential definition identifier",
+        example="WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
     )
     id: Optional[str] = Field(
         None,
-        description='Indy revocation registry identifier',
-        example='WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)',
+        description="Indy revocation registry identifier",
+        example="WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)",
     )
-    revoc_def_type: Optional[Literal['CL_ACCUM']] = Field(
+    revoc_def_type: Optional[Literal["CL_ACCUM"]] = Field(
         None,
-        alias='revocDefType',
-        description='Revocation registry type (specify CL_ACCUM)',
-        example='CL_ACCUM',
+        alias="revocDefType",
+        description="Revocation registry type (specify CL_ACCUM)",
+        example="CL_ACCUM",
     )
-    tag: Optional[str] = Field(None, description='Revocation registry tag')
+    tag: Optional[str] = Field(None, description="Revocation registry tag")
     value: Optional[IndyRevRegDefValue] = Field(
-        None, description='Revocation registry definition value'
+        None, description="Revocation registry definition value"
     )
     ver: Optional[str] = Field(
         None,
-        description='Version of revocation registry definition',
-        example='1.0',
-        regex='^[0-9.]+$',
+        description="Version of revocation registry definition",
+        example="1.0",
+        regex="^[0-9.]+$",
     )
 
 
@@ -4614,58 +4616,58 @@ class InvitationMessage(BaseModel):
 
     id: Optional[str] = Field(
         None,
-        alias='@id',
-        description='Message identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        alias="@id",
+        description="Message identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     type: Optional[str] = Field(
         None,
-        alias='@type',
-        description='Message type',
-        example='https://didcomm.org/my-family/1.0/my-message-type',
+        alias="@type",
+        description="Message type",
+        example="https://didcomm.org/my-family/1.0/my-message-type",
     )
     accept: Optional[List[str]] = Field(
         None,
-        description='List of mime type in order of preference',
-        example=['didcomm/aip1', 'didcomm/aip2;env=rfc19'],
+        description="List of mime type in order of preference",
+        example=["didcomm/aip1", "didcomm/aip2;env=rfc19"],
     )
     goal: Optional[str] = Field(
         None,
-        description='A self-attested string that the receiver may want to display to the user about the context-specific goal of the out-of-band message',
-        example='To issue a Faber College Graduate credential',
+        description="A self-attested string that the receiver may want to display to the user about the context-specific goal of the out-of-band message",
+        example="To issue a Faber College Graduate credential",
     )
     goal_code: Optional[str] = Field(
         None,
-        description='A self-attested code the receiver may want to display to the user or use in automatically deciding what to do with the out-of-band message',
-        example='issue-vc',
+        description="A self-attested code the receiver may want to display to the user or use in automatically deciding what to do with the out-of-band message",
+        example="issue-vc",
     )
     handshake_protocols: Optional[List[str]] = None
     image_url: Optional[str] = Field(
         None,
-        alias='imageUrl',
-        description='Optional image URL for out-of-band invitation',
-        example='http://192.168.56.101/img/logo.jpg',
+        alias="imageUrl",
+        description="Optional image URL for out-of-band invitation",
+        example="http://192.168.56.101/img/logo.jpg",
     )
-    label: Optional[str] = Field(None, description='Optional label', example='Bob')
+    label: Optional[str] = Field(None, description="Optional label", example="Bob")
     requests_attach: Optional[List[AttachDecorator]] = Field(
-        None, alias='requests~attach', description='Optional request attachment'
+        None, alias="requests~attach", description="Optional request attachment"
     )
     services: Optional[List[Union[Dict[str, Any], str]]] = Field(
         None,
         example=[
             {
-                'did': 'WgWxqztrNooG92RXvxSTWv',
-                'id': 'string',
-                'recipientKeys': [
-                    'did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH'
+                "did": "WgWxqztrNooG92RXvxSTWv",
+                "id": "string",
+                "recipientKeys": [
+                    "did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH"
                 ],
-                'routingKeys': [
-                    'did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH'
+                "routingKeys": [
+                    "did:key:z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH"
                 ],
-                'serviceEndpoint': 'http://192.168.56.101:8020',
-                'type': 'string',
+                "serviceEndpoint": "http://192.168.56.101:8020",
+                "type": "string",
             },
-            'did:sov:WgWxqztrNooG92RXvxSTWv',
+            "did:sov:WgWxqztrNooG92RXvxSTWv",
         ],
     )
 
@@ -4676,44 +4678,44 @@ class InvitationRecord(BaseModel):
 
     created_at: Optional[str] = Field(
         None,
-        description='Time of record creation',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of record creation",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
     invi_msg_id: Optional[str] = Field(
         None,
-        description='Invitation message identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Invitation message identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     invitation: Optional[InvitationMessage] = Field(
-        None, description='Out of band invitation message'
+        None, description="Out of band invitation message"
     )
     invitation_id: Optional[str] = Field(
         None,
-        description='Invitation record identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Invitation record identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     invitation_url: Optional[str] = Field(
         None,
-        description='Invitation message URL',
-        example='https://example.com/endpoint?c_i=eyJAdHlwZSI6ICIuLi4iLCAiLi4uIjogIi4uLiJ9XX0=',
+        description="Invitation message URL",
+        example="https://example.com/endpoint?c_i=eyJAdHlwZSI6ICIuLi4iLCAiLi4uIjogIi4uLiJ9XX0=",
     )
     oob_id: Optional[str] = Field(
         None,
-        description='Out of band record identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Out of band record identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     state: Optional[str] = Field(
-        None, description='Out of band message exchange state', example='await_response'
+        None, description="Out of band message exchange state", example="await_response"
     )
     trace: Optional[bool] = Field(
-        None, description='Record trace information, based on agent configuration'
+        None, description="Record trace information, based on agent configuration"
     )
     updated_at: Optional[str] = Field(
         None,
-        description='Time of last record update',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of last record update",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
 
 
@@ -4723,79 +4725,79 @@ class IssuerRevRegRecord(BaseModel):
 
     created_at: Optional[str] = Field(
         None,
-        description='Time of record creation',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of record creation",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
     cred_def_id: Optional[str] = Field(
         None,
-        description='Credential definition identifier',
-        example='WgWxqztrNooG92RXvxSTWv:3:CL:20:tag',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$',
+        description="Credential definition identifier",
+        example="WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
     )
     error_msg: Optional[str] = Field(
-        None, description='Error message', example='Revocation registry undefined'
+        None, description="Error message", example="Revocation registry undefined"
     )
     issuer_did: Optional[str] = Field(
         None,
-        description='Issuer DID',
-        example='WgWxqztrNooG92RXvxSTWv',
-        regex='^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$',
+        description="Issuer DID",
+        example="WgWxqztrNooG92RXvxSTWv",
+        regex="^(did:sov:)?[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}$",
     )
     max_cred_num: Optional[int] = Field(
         None,
-        description='Maximum number of credentials for revocation registry',
+        description="Maximum number of credentials for revocation registry",
         example=1000,
     )
     pending_pub: Optional[List[str]] = Field(
         None,
-        description='Credential revocation identifier for credential revoked and pending publication to ledger',
+        description="Credential revocation identifier for credential revoked and pending publication to ledger",
     )
     record_id: Optional[str] = Field(
         None,
-        description='Issuer revocation registry record identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Issuer revocation registry record identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
-    revoc_def_type: Optional[Literal['CL_ACCUM']] = Field(
+    revoc_def_type: Optional[Literal["CL_ACCUM"]] = Field(
         None,
-        description='Revocation registry type (specify CL_ACCUM)',
-        example='CL_ACCUM',
+        description="Revocation registry type (specify CL_ACCUM)",
+        example="CL_ACCUM",
     )
     revoc_reg_def: Optional[IndyRevRegDef] = Field(
-        None, description='Revocation registry definition'
+        None, description="Revocation registry definition"
     )
     revoc_reg_entry: Optional[IndyRevRegEntry] = Field(
-        None, description='Revocation registry entry'
+        None, description="Revocation registry entry"
     )
     revoc_reg_id: Optional[str] = Field(
         None,
-        description='Revocation registry identifier',
-        example='WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)',
+        description="Revocation registry identifier",
+        example="WgWxqztrNooG92RXvxSTWv:4:WgWxqztrNooG92RXvxSTWv:3:CL:20:tag:CL_ACCUM:0",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):4:([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+))(:.+)?:CL_ACCUM:(.+$)",
     )
     state: Optional[str] = Field(
-        None, description='Issue revocation registry record state', example='active'
+        None, description="Issue revocation registry record state", example="active"
     )
     tag: Optional[str] = Field(
-        None, description='Tag within issuer revocation registry identifier'
+        None, description="Tag within issuer revocation registry identifier"
     )
     tails_hash: Optional[str] = Field(
         None,
-        description='Tails hash',
-        example='H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV',
-        regex='^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$',
+        description="Tails hash",
+        example="H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV",
+        regex="^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{43,44}$",
     )
     tails_local_path: Optional[str] = Field(
-        None, description='Local path to tails file'
+        None, description="Local path to tails file"
     )
     tails_public_uri: Optional[str] = Field(
-        None, description='Public URI for tails file'
+        None, description="Public URI for tails file"
     )
     updated_at: Optional[str] = Field(
         None,
-        description='Time of last record update',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of last record update",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
 
 
@@ -4805,61 +4807,61 @@ class OobRecord(BaseModel):
 
     attach_thread_id: Optional[str] = Field(
         None,
-        description='Connection record identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Connection record identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     connection_id: Optional[str] = Field(
         None,
-        description='Connection record identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Connection record identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     created_at: Optional[str] = Field(
         None,
-        description='Time of record creation',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of record creation",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
     invi_msg_id: str = Field(
         ...,
-        description='Invitation message identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Invitation message identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     invitation: InvitationMessage = Field(
-        ..., description='Out of band invitation message'
+        ..., description="Out of band invitation message"
     )
     oob_id: str = Field(
         ...,
-        description='Oob record identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Oob record identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     our_recipient_key: Optional[str] = Field(
         None,
-        description='Recipient key used for oob invitation',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Recipient key used for oob invitation",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
-    role: Optional[Literal['sender', 'receiver']] = Field(
-        None, description='OOB Role', example='receiver'
+    role: Optional[Literal["sender", "receiver"]] = Field(
+        None, description="OOB Role", example="receiver"
     )
     state: Literal[
-        'initial',
-        'prepare-response',
-        'await-response',
-        'reuse-not-accepted',
-        'reuse-accepted',
-        'done',
-        'deleted',
+        "initial",
+        "prepare-response",
+        "await-response",
+        "reuse-not-accepted",
+        "reuse-accepted",
+        "done",
+        "deleted",
     ] = Field(
-        ..., description='Out of band message exchange state', example='await-response'
+        ..., description="Out of band message exchange state", example="await-response"
     )
     their_service: Optional[ServiceDecorator] = None
     trace: Optional[bool] = Field(
-        None, description='Record trace information, based on agent configuration'
+        None, description="Record trace information, based on agent configuration"
     )
     updated_at: Optional[str] = Field(
         None,
-        description='Time of last record update',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of last record update",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
 
 
@@ -4869,19 +4871,19 @@ class PresentationRequest(BaseModel):
 
     id: Optional[str] = Field(
         None,
-        alias='@id',
-        description='Message identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        alias="@id",
+        description="Message identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     type: Optional[str] = Field(
         None,
-        alias='@type',
-        description='Message type',
-        example='https://didcomm.org/my-family/1.0/my-message-type',
+        alias="@type",
+        description="Message type",
+        example="https://didcomm.org/my-family/1.0/my-message-type",
     )
-    comment: Optional[str] = Field(None, description='Human-readable comment')
+    comment: Optional[str] = Field(None, description="Human-readable comment")
     request_presentations_attach: List[AttachDecorator] = Field(
-        ..., alias='request_presentations~attach'
+        ..., alias="request_presentations~attach"
     )
 
 
@@ -4899,7 +4901,7 @@ class TxnOrRevRegResult(BaseModel):
 
     sent: Optional[RevRegResult] = None
     txn: Optional[TransactionRecord] = Field(
-        None, description='Revocation registry definition transaction to endorse'
+        None, description="Revocation registry definition transaction to endorse"
     )
 
 
@@ -4909,113 +4911,113 @@ class V10CredentialExchange(BaseModel):
 
     auto_issue: Optional[bool] = Field(
         None,
-        description='Issuer choice to issue to request in this credential exchange',
+        description="Issuer choice to issue to request in this credential exchange",
         example=False,
     )
     auto_offer: Optional[bool] = Field(
         None,
-        description='Holder choice to accept offer in this credential exchange',
+        description="Holder choice to accept offer in this credential exchange",
         example=False,
     )
     auto_remove: Optional[bool] = Field(
         None,
-        description='Issuer choice to remove this credential exchange record when complete',
+        description="Issuer choice to remove this credential exchange record when complete",
         example=False,
     )
     connection_id: Optional[str] = Field(
         None,
-        description='Connection identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Connection identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     created_at: Optional[str] = Field(
         None,
-        description='Time of record creation',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of record creation",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
-    credential: Optional[IndyCredInfo] = Field(None, description='Credential as stored')
+    credential: Optional[IndyCredInfo] = Field(None, description="Credential as stored")
     credential_definition_id: Optional[str] = Field(
         None,
-        description='Credential definition identifier',
-        example='WgWxqztrNooG92RXvxSTWv:3:CL:20:tag',
-        regex='^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$',
+        description="Credential definition identifier",
+        example="WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+        regex="^([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}):3:CL:(([1-9][0-9]*)|([123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+)):(.+)?$",
     )
     credential_exchange_id: Optional[str] = Field(
         None,
-        description='Credential exchange identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Credential exchange identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     credential_id: Optional[str] = Field(
         None,
-        description='Credential identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Credential identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     credential_offer: Optional[IndyCredAbstract] = Field(
-        None, description='(Indy) credential offer'
+        None, description="(Indy) credential offer"
     )
     credential_offer_dict: Optional[CredentialOffer] = Field(
-        None, description='Credential offer message'
+        None, description="Credential offer message"
     )
     credential_proposal_dict: Optional[CredentialProposal] = Field(
-        None, description='Credential proposal message'
+        None, description="Credential proposal message"
     )
     credential_request: Optional[IndyCredRequest] = Field(
-        None, description='(Indy) credential request'
+        None, description="(Indy) credential request"
     )
     credential_request_metadata: Optional[Dict[str, Any]] = Field(
-        None, description='(Indy) credential request metadata'
+        None, description="(Indy) credential request metadata"
     )
     error_msg: Optional[str] = Field(
         None,
-        description='Error message',
-        example='Credential definition identifier is not set in proposal',
+        description="Error message",
+        example="Credential definition identifier is not set in proposal",
     )
-    initiator: Optional[Literal['self', 'external']] = Field(
+    initiator: Optional[Literal["self", "external"]] = Field(
         None,
-        description='Issue-credential exchange initiator: self or external',
-        example='self',
+        description="Issue-credential exchange initiator: self or external",
+        example="self",
     )
     parent_thread_id: Optional[str] = Field(
         None,
-        description='Parent thread identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Parent thread identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     raw_credential: Optional[IndyCredential] = Field(
-        None, description='Credential as received, prior to storage in holder wallet'
+        None, description="Credential as received, prior to storage in holder wallet"
     )
     revoc_reg_id: Optional[str] = Field(
-        None, description='Revocation registry identifier'
+        None, description="Revocation registry identifier"
     )
     revocation_id: Optional[str] = Field(
-        None, description='Credential identifier within revocation registry'
+        None, description="Credential identifier within revocation registry"
     )
-    role: Optional[Literal['holder', 'issuer']] = Field(
+    role: Optional[Literal["holder", "issuer"]] = Field(
         None,
-        description='Issue-credential exchange role: holder or issuer',
-        example='issuer',
+        description="Issue-credential exchange role: holder or issuer",
+        example="issuer",
     )
     schema_id: Optional[str] = Field(
         None,
-        description='Schema identifier',
-        example='WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0',
-        regex='^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$',
+        description="Schema identifier",
+        example="WgWxqztrNooG92RXvxSTWv:2:schema_name:1.0",
+        regex="^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{21,22}:2:.+:[0-9.]+$",
     )
     state: Optional[str] = Field(
-        None, description='Issue-credential exchange state', example='credential_acked'
+        None, description="Issue-credential exchange state", example="credential_acked"
     )
     thread_id: Optional[str] = Field(
         None,
-        description='Thread identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Thread identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     trace: Optional[bool] = Field(
-        None, description='Record trace information, based on agent configuration'
+        None, description="Record trace information, based on agent configuration"
     )
     updated_at: Optional[str] = Field(
         None,
-        description='Time of last record update',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of last record update",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
 
 
@@ -5024,7 +5026,7 @@ class V10CredentialExchangeListResult(BaseModel):
         allow_population_by_field_name = True
 
     results: Optional[List[V10CredentialExchange]] = Field(
-        None, description='Aries#0036 v1.0 credential exchange records'
+        None, description="Aries#0036 v1.0 credential exchange records"
     )
 
 
@@ -5034,79 +5036,79 @@ class V10PresentationExchange(BaseModel):
 
     auto_present: Optional[bool] = Field(
         None,
-        description='Prover choice to auto-present proof as verifier requests',
+        description="Prover choice to auto-present proof as verifier requests",
         example=False,
     )
     auto_remove: Optional[bool] = Field(
         None,
-        description='Verifier choice to remove this presentation exchange record when complete',
+        description="Verifier choice to remove this presentation exchange record when complete",
         example=False,
     )
     auto_verify: Optional[bool] = Field(
-        None, description='Verifier choice to auto-verify proof presentation'
+        None, description="Verifier choice to auto-verify proof presentation"
     )
     connection_id: Optional[str] = Field(
         None,
-        description='Connection identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Connection identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     created_at: Optional[str] = Field(
         None,
-        description='Time of record creation',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of record creation",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
     error_msg: Optional[str] = Field(
-        None, description='Error message', example='Invalid structure'
+        None, description="Error message", example="Invalid structure"
     )
-    initiator: Optional[Literal['self', 'external']] = Field(
+    initiator: Optional[Literal["self", "external"]] = Field(
         None,
-        description='Present-proof exchange initiator: self or external',
-        example='self',
+        description="Present-proof exchange initiator: self or external",
+        example="self",
     )
     presentation: Optional[IndyProof] = Field(
-        None, description='(Indy) presentation (also known as proof)'
+        None, description="(Indy) presentation (also known as proof)"
     )
     presentation_exchange_id: Optional[str] = Field(
         None,
-        description='Presentation exchange identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Presentation exchange identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     presentation_proposal_dict: Optional[PresentationProposal] = Field(
-        None, description='Presentation proposal message'
+        None, description="Presentation proposal message"
     )
     presentation_request: Optional[IndyProofRequest] = Field(
-        None, description='(Indy) presentation request (also known as proof request)'
+        None, description="(Indy) presentation request (also known as proof request)"
     )
     presentation_request_dict: Optional[PresentationRequest] = Field(
-        None, description='Presentation request message'
+        None, description="Presentation request message"
     )
-    role: Optional[Literal['prover', 'verifier']] = Field(
+    role: Optional[Literal["prover", "verifier"]] = Field(
         None,
-        description='Present-proof exchange role: prover or verifier',
-        example='prover',
+        description="Present-proof exchange role: prover or verifier",
+        example="prover",
     )
     state: Optional[str] = Field(
-        None, description='Present-proof exchange state', example='verified'
+        None, description="Present-proof exchange state", example="verified"
     )
     thread_id: Optional[str] = Field(
         None,
-        description='Thread identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Thread identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     trace: Optional[bool] = Field(
-        None, description='Record trace information, based on agent configuration'
+        None, description="Record trace information, based on agent configuration"
     )
     updated_at: Optional[str] = Field(
         None,
-        description='Time of last record update',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of last record update",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
-    verified: Optional[Literal['true', 'false']] = Field(
+    verified: Optional[Literal["true", "false"]] = Field(
         None,
-        description='Whether presentation is verified: true or false',
-        example='true',
+        description="Whether presentation is verified: true or false",
+        example="true",
     )
     verified_msgs: Optional[List[str]] = None
 
@@ -5116,7 +5118,7 @@ class V10PresentationExchangeList(BaseModel):
         allow_population_by_field_name = True
 
     results: Optional[List[V10PresentationExchange]] = Field(
-        None, description='Aries RFC 37 v1.0 presentation exchange records'
+        None, description="Aries RFC 37 v1.0 presentation exchange records"
     )
 
 
@@ -5126,27 +5128,27 @@ class V20CredIssue(BaseModel):
 
     id: Optional[str] = Field(
         None,
-        alias='@id',
-        description='Message identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        alias="@id",
+        description="Message identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     type: Optional[str] = Field(
         None,
-        alias='@type',
-        description='Message type',
-        example='https://didcomm.org/my-family/1.0/my-message-type',
+        alias="@type",
+        description="Message type",
+        example="https://didcomm.org/my-family/1.0/my-message-type",
     )
-    comment: Optional[str] = Field(None, description='Human-readable comment')
+    comment: Optional[str] = Field(None, description="Human-readable comment")
     credentials_attach: List[AttachDecorator] = Field(
-        ..., alias='credentials~attach', description='Credential attachments'
+        ..., alias="credentials~attach", description="Credential attachments"
     )
     formats: List[V20CredFormat] = Field(
-        ..., description='Acceptable attachment formats'
+        ..., description="Acceptable attachment formats"
     )
     replacement_id: Optional[str] = Field(
         None,
-        description='Issuer-unique identifier to coordinate credential replacement',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Issuer-unique identifier to coordinate credential replacement",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
 
 
@@ -5156,28 +5158,28 @@ class V20CredOffer(BaseModel):
 
     id: Optional[str] = Field(
         None,
-        alias='@id',
-        description='Message identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        alias="@id",
+        description="Message identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     type: Optional[str] = Field(
         None,
-        alias='@type',
-        description='Message type',
-        example='https://didcomm.org/my-family/1.0/my-message-type',
+        alias="@type",
+        description="Message type",
+        example="https://didcomm.org/my-family/1.0/my-message-type",
     )
-    comment: Optional[str] = Field(None, description='Human-readable comment')
+    comment: Optional[str] = Field(None, description="Human-readable comment")
     credential_preview: Optional[V20CredPreview] = None
     formats: List[V20CredFormat] = Field(
-        ..., description='Acceptable credential formats'
+        ..., description="Acceptable credential formats"
     )
     offers_attach: List[AttachDecorator] = Field(
-        ..., alias='offers~attach', description='Offer attachments'
+        ..., alias="offers~attach", description="Offer attachments"
     )
     replacement_id: Optional[str] = Field(
         None,
-        description='Issuer-unique identifier to coordinate credential replacement',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Issuer-unique identifier to coordinate credential replacement",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
 
 
@@ -5187,26 +5189,26 @@ class V20CredProposal(BaseModel):
 
     id: Optional[str] = Field(
         None,
-        alias='@id',
-        description='Message identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        alias="@id",
+        description="Message identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     type: Optional[str] = Field(
         None,
-        alias='@type',
-        description='Message type',
-        example='https://didcomm.org/my-family/1.0/my-message-type',
+        alias="@type",
+        description="Message type",
+        example="https://didcomm.org/my-family/1.0/my-message-type",
     )
-    comment: Optional[str] = Field(None, description='Human-readable comment')
+    comment: Optional[str] = Field(None, description="Human-readable comment")
     credential_preview: Optional[V20CredPreview] = Field(
-        None, description='Credential preview'
+        None, description="Credential preview"
     )
     filters_attach: List[AttachDecorator] = Field(
         ...,
-        alias='filters~attach',
-        description='Credential filter per acceptable format on corresponding identifier',
+        alias="filters~attach",
+        description="Credential filter per acceptable format on corresponding identifier",
     )
-    formats: List[V20CredFormat] = Field(..., description='Attachment formats')
+    formats: List[V20CredFormat] = Field(..., description="Attachment formats")
 
 
 class V20CredRequest(BaseModel):
@@ -5215,22 +5217,22 @@ class V20CredRequest(BaseModel):
 
     id: Optional[str] = Field(
         None,
-        alias='@id',
-        description='Message identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        alias="@id",
+        description="Message identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     type: Optional[str] = Field(
         None,
-        alias='@type',
-        description='Message type',
-        example='https://didcomm.org/my-family/1.0/my-message-type',
+        alias="@type",
+        description="Message type",
+        example="https://didcomm.org/my-family/1.0/my-message-type",
     )
-    comment: Optional[str] = Field(None, description='Human-readable comment')
+    comment: Optional[str] = Field(None, description="Human-readable comment")
     formats: List[V20CredFormat] = Field(
-        ..., description='Acceptable attachment formats'
+        ..., description="Acceptable attachment formats"
     )
     requests_attach: List[AttachDecorator] = Field(
-        ..., alias='requests~attach', description='Request attachments'
+        ..., alias="requests~attach", description="Request attachments"
     )
 
 
@@ -5240,22 +5242,22 @@ class V20Pres(BaseModel):
 
     id: Optional[str] = Field(
         None,
-        alias='@id',
-        description='Message identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        alias="@id",
+        description="Message identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     type: Optional[str] = Field(
         None,
-        alias='@type',
-        description='Message type',
-        example='https://didcomm.org/my-family/1.0/my-message-type',
+        alias="@type",
+        description="Message type",
+        example="https://didcomm.org/my-family/1.0/my-message-type",
     )
-    comment: Optional[str] = Field(None, description='Human-readable comment')
+    comment: Optional[str] = Field(None, description="Human-readable comment")
     formats: List[V20PresFormat] = Field(
-        ..., description='Acceptable attachment formats'
+        ..., description="Acceptable attachment formats"
     )
     presentations_attach: List[AttachDecorator] = Field(
-        ..., alias='presentations~attach'
+        ..., alias="presentations~attach"
     )
 
 
@@ -5265,22 +5267,22 @@ class V20PresProposal(BaseModel):
 
     id: Optional[str] = Field(
         None,
-        alias='@id',
-        description='Message identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        alias="@id",
+        description="Message identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     type: Optional[str] = Field(
         None,
-        alias='@type',
-        description='Message type',
-        example='https://didcomm.org/my-family/1.0/my-message-type',
+        alias="@type",
+        description="Message type",
+        example="https://didcomm.org/my-family/1.0/my-message-type",
     )
-    comment: Optional[str] = Field(None, description='Human-readable comment')
+    comment: Optional[str] = Field(None, description="Human-readable comment")
     formats: List[V20PresFormat]
     proposals_attach: List[AttachDecorator] = Field(
         ...,
-        alias='proposals~attach',
-        description='Attachment per acceptable format on corresponding identifier',
+        alias="proposals~attach",
+        description="Attachment per acceptable format on corresponding identifier",
     )
 
 
@@ -5289,10 +5291,10 @@ class V20PresProposalByFormat(BaseModel):
         allow_population_by_field_name = True
 
     dif: Optional[DIFProofProposal] = Field(
-        None, description='Presentation proposal for DIF'
+        None, description="Presentation proposal for DIF"
     )
     indy: Optional[IndyProofRequest] = Field(
-        None, description='Presentation proposal for indy'
+        None, description="Presentation proposal for indy"
     )
 
 
@@ -5302,21 +5304,21 @@ class V20PresProposalRequest(BaseModel):
 
     auto_present: Optional[bool] = Field(
         None,
-        description='Whether to respond automatically to presentation requests, building and presenting requested proof',
+        description="Whether to respond automatically to presentation requests, building and presenting requested proof",
     )
     auto_remove: Optional[bool] = Field(
         None,
-        description='Whether to remove the presentation exchange record on completion (overrides --preserve-exchange-records configuration setting)',
+        description="Whether to remove the presentation exchange record on completion (overrides --preserve-exchange-records configuration setting)",
     )
-    comment: Optional[str] = Field(None, description='Human-readable comment')
+    comment: Optional[str] = Field(None, description="Human-readable comment")
     connection_id: UUID = Field(
         ...,
-        description='Connection identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Connection identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     presentation_proposal: V20PresProposalByFormat
     trace: Optional[bool] = Field(
-        None, description='Whether to trace event (default false)', example=False
+        None, description="Whether to trace event (default false)", example=False
     )
 
 
@@ -5326,25 +5328,25 @@ class V20PresRequest(BaseModel):
 
     id: Optional[str] = Field(
         None,
-        alias='@id',
-        description='Message identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        alias="@id",
+        description="Message identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     type: Optional[str] = Field(
         None,
-        alias='@type',
-        description='Message type',
-        example='https://didcomm.org/my-family/1.0/my-message-type',
+        alias="@type",
+        description="Message type",
+        example="https://didcomm.org/my-family/1.0/my-message-type",
     )
-    comment: Optional[str] = Field(None, description='Human-readable comment')
+    comment: Optional[str] = Field(None, description="Human-readable comment")
     formats: List[V20PresFormat]
     request_presentations_attach: List[AttachDecorator] = Field(
         ...,
-        alias='request_presentations~attach',
-        description='Attachment per acceptable format on corresponding identifier',
+        alias="request_presentations~attach",
+        description="Attachment per acceptable format on corresponding identifier",
     )
     will_confirm: Optional[bool] = Field(
-        None, description='Whether verifier will send confirmation ack'
+        None, description="Whether verifier will send confirmation ack"
     )
 
 
@@ -5353,10 +5355,10 @@ class V20PresRequestByFormat(BaseModel):
         allow_population_by_field_name = True
 
     dif: Optional[DIFProofRequest] = Field(
-        None, description='Presentation request for DIF'
+        None, description="Presentation request for DIF"
     )
     indy: Optional[IndyProofRequest] = Field(
-        None, description='Presentation request for indy'
+        None, description="Presentation request for indy"
     )
 
 
@@ -5366,22 +5368,22 @@ class V20PresSendRequestRequest(BaseModel):
 
     auto_remove: Optional[bool] = Field(
         None,
-        description='Whether to remove the presentation exchange record on completion (overrides --preserve-exchange-records configuration setting)',
+        description="Whether to remove the presentation exchange record on completion (overrides --preserve-exchange-records configuration setting)",
     )
     auto_verify: Optional[bool] = Field(
         None,
-        description='Verifier choice to auto-verify proof presentation',
+        description="Verifier choice to auto-verify proof presentation",
         example=False,
     )
     comment: Optional[str] = None
     connection_id: UUID = Field(
         ...,
-        description='Connection identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Connection identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     presentation_request: V20PresRequestByFormat
     trace: Optional[bool] = Field(
-        None, description='Whether to trace event (default false)', example=False
+        None, description="Whether to trace event (default false)", example=False
     )
 
 
@@ -5391,17 +5393,17 @@ class V20PresSpecByFormatRequest(BaseModel):
 
     auto_remove: Optional[bool] = Field(
         None,
-        description='Whether to remove the presentation exchange record on completion (overrides --preserve-exchange-records configuration setting)',
+        description="Whether to remove the presentation exchange record on completion (overrides --preserve-exchange-records configuration setting)",
     )
     dif: Optional[DIFPresSpec] = Field(
         None,
         description="Optional Presentation specification for DIF, overrides the PresentionExchange record's PresRequest",
     )
     indy: Optional[IndyPresSpec] = Field(
-        None, description='Presentation specification for indy'
+        None, description="Presentation specification for indy"
     )
     trace: Optional[bool] = Field(
-        None, description='Record trace information, based on agent configuration'
+        None, description="Record trace information, based on agent configuration"
     )
 
 
@@ -5411,101 +5413,101 @@ class V20CredExRecord(BaseModel):
 
     auto_issue: Optional[bool] = Field(
         None,
-        description='Issuer choice to issue to request in this credential exchange',
+        description="Issuer choice to issue to request in this credential exchange",
         example=False,
     )
     auto_offer: Optional[bool] = Field(
         None,
-        description='Holder choice to accept offer in this credential exchange',
+        description="Holder choice to accept offer in this credential exchange",
         example=False,
     )
     auto_remove: Optional[bool] = Field(
         None,
-        description='Issuer choice to remove this credential exchange record when complete',
+        description="Issuer choice to remove this credential exchange record when complete",
         example=False,
     )
     by_format: Optional[V20CredExRecordByFormat] = Field(
         None,
-        description='Attachment content by format for proposal, offer, request, and issue',
+        description="Attachment content by format for proposal, offer, request, and issue",
     )
     connection_id: Optional[str] = Field(
         None,
-        description='Connection identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Connection identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     created_at: Optional[str] = Field(
         None,
-        description='Time of record creation',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of record creation",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
     cred_ex_id: Optional[str] = Field(
         None,
-        description='Credential exchange identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Credential exchange identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     cred_issue: Optional[V20CredIssue] = Field(
-        None, description='Serialized credential issue message'
+        None, description="Serialized credential issue message"
     )
     cred_offer: Optional[V20CredOffer] = Field(
-        None, description='Credential offer message'
+        None, description="Credential offer message"
     )
     cred_preview: Optional[V20CredPreview] = Field(
-        None, description='Credential preview from credential proposal'
+        None, description="Credential preview from credential proposal"
     )
     cred_proposal: Optional[V20CredProposal] = Field(
-        None, description='Credential proposal message'
+        None, description="Credential proposal message"
     )
     cred_request: Optional[V20CredRequest] = Field(
-        None, description='Serialized credential request message'
+        None, description="Serialized credential request message"
     )
     error_msg: Optional[str] = Field(
-        None, description='Error message', example='The front fell off'
+        None, description="Error message", example="The front fell off"
     )
-    initiator: Optional[Literal['self', 'external']] = Field(
+    initiator: Optional[Literal["self", "external"]] = Field(
         None,
-        description='Issue-credential exchange initiator: self or external',
-        example='self',
+        description="Issue-credential exchange initiator: self or external",
+        example="self",
     )
     parent_thread_id: Optional[str] = Field(
         None,
-        description='Parent thread identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Parent thread identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
-    role: Optional[Literal['issuer', 'holder']] = Field(
+    role: Optional[Literal["issuer", "holder"]] = Field(
         None,
-        description='Issue-credential exchange role: holder or issuer',
-        example='issuer',
+        description="Issue-credential exchange role: holder or issuer",
+        example="issuer",
     )
     state: Optional[
         Literal[
-            'proposal-sent',
-            'proposal-received',
-            'offer-sent',
-            'offer-received',
-            'request-sent',
-            'request-received',
-            'credential-issued',
-            'credential-received',
-            'done',
-            'credential-revoked',
-            'abandoned',
-            'deleted',
+            "proposal-sent",
+            "proposal-received",
+            "offer-sent",
+            "offer-received",
+            "request-sent",
+            "request-received",
+            "credential-issued",
+            "credential-received",
+            "done",
+            "credential-revoked",
+            "abandoned",
+            "deleted",
         ]
-    ] = Field(None, description='Issue-credential exchange state', example='done')
+    ] = Field(None, description="Issue-credential exchange state", example="done")
     thread_id: Optional[str] = Field(
         None,
-        description='Thread identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Thread identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     trace: Optional[bool] = Field(
-        None, description='Record trace information, based on agent configuration'
+        None, description="Record trace information, based on agent configuration"
     )
     updated_at: Optional[str] = Field(
         None,
-        description='Time of last record update',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of last record update",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
 
 
@@ -5514,7 +5516,7 @@ class V20CredExRecordDetail(BaseModel):
         allow_population_by_field_name = True
 
     cred_ex_record: Optional[V20CredExRecord] = Field(
-        None, description='Credential exchange record'
+        None, description="Credential exchange record"
     )
     indy: Optional[V20CredExRecordIndy] = None
     ld_proof: Optional[V20CredExRecordLDProof] = None
@@ -5525,7 +5527,7 @@ class V20CredExRecordListResult(BaseModel):
         allow_population_by_field_name = True
 
     results: Optional[List[V20CredExRecordDetail]] = Field(
-        None, description='Credential exchange records and corresponding detail records'
+        None, description="Credential exchange records and corresponding detail records"
     )
 
 
@@ -5535,17 +5537,17 @@ class V20PresCreateRequestRequest(BaseModel):
 
     auto_remove: Optional[bool] = Field(
         None,
-        description='Whether to remove the presentation exchange record on completion (overrides --preserve-exchange-records configuration setting)',
+        description="Whether to remove the presentation exchange record on completion (overrides --preserve-exchange-records configuration setting)",
     )
     auto_verify: Optional[bool] = Field(
         None,
-        description='Verifier choice to auto-verify proof presentation',
+        description="Verifier choice to auto-verify proof presentation",
         example=False,
     )
     comment: Optional[str] = None
     presentation_request: V20PresRequestByFormat
     trace: Optional[bool] = Field(
-        None, description='Whether to trace event (default false)', example=False
+        None, description="Whether to trace event (default false)", example=False
     )
 
 
@@ -5555,88 +5557,88 @@ class V20PresExRecord(BaseModel):
 
     auto_present: Optional[bool] = Field(
         None,
-        description='Prover choice to auto-present proof as verifier requests',
+        description="Prover choice to auto-present proof as verifier requests",
         example=False,
     )
     auto_remove: Optional[bool] = Field(
         None,
-        description='Verifier choice to remove this presentation exchange record when complete',
+        description="Verifier choice to remove this presentation exchange record when complete",
         example=False,
     )
     auto_verify: Optional[bool] = Field(
-        None, description='Verifier choice to auto-verify proof presentation'
+        None, description="Verifier choice to auto-verify proof presentation"
     )
     by_format: Optional[V20PresExRecordByFormat] = Field(
         None,
-        description='Attachment content by format for proposal, request, and presentation',
+        description="Attachment content by format for proposal, request, and presentation",
     )
     connection_id: Optional[str] = Field(
         None,
-        description='Connection identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Connection identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     created_at: Optional[str] = Field(
         None,
-        description='Time of record creation',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of record creation",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
     error_msg: Optional[str] = Field(
-        None, description='Error message', example='Invalid structure'
+        None, description="Error message", example="Invalid structure"
     )
-    initiator: Optional[Literal['self', 'external']] = Field(
+    initiator: Optional[Literal["self", "external"]] = Field(
         None,
-        description='Present-proof exchange initiator: self or external',
-        example='self',
+        description="Present-proof exchange initiator: self or external",
+        example="self",
     )
-    pres: Optional[V20Pres] = Field(None, description='Presentation message')
+    pres: Optional[V20Pres] = Field(None, description="Presentation message")
     pres_ex_id: Optional[str] = Field(
         None,
-        description='Presentation exchange identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Presentation exchange identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     pres_proposal: Optional[V20PresProposal] = Field(
-        None, description='Presentation proposal message'
+        None, description="Presentation proposal message"
     )
     pres_request: Optional[V20PresRequest] = Field(
-        None, description='Presentation request message'
+        None, description="Presentation request message"
     )
-    role: Optional[Literal['prover', 'verifier']] = Field(
+    role: Optional[Literal["prover", "verifier"]] = Field(
         None,
-        description='Present-proof exchange role: prover or verifier',
-        example='prover',
+        description="Present-proof exchange role: prover or verifier",
+        example="prover",
     )
     state: Optional[
         Literal[
-            'proposal-sent',
-            'proposal-received',
-            'request-sent',
-            'request-received',
-            'presentation-sent',
-            'presentation-received',
-            'done',
-            'abandoned',
-            'deleted',
+            "proposal-sent",
+            "proposal-received",
+            "request-sent",
+            "request-received",
+            "presentation-sent",
+            "presentation-received",
+            "done",
+            "abandoned",
+            "deleted",
         ]
-    ] = Field(None, description='Present-proof exchange state')
+    ] = Field(None, description="Present-proof exchange state")
     thread_id: Optional[str] = Field(
         None,
-        description='Thread identifier',
-        example='3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        description="Thread identifier",
+        example="3fa85f64-5717-4562-b3fc-2c963f66afa6",
     )
     trace: Optional[bool] = Field(
-        None, description='Record trace information, based on agent configuration'
+        None, description="Record trace information, based on agent configuration"
     )
     updated_at: Optional[str] = Field(
         None,
-        description='Time of last record update',
-        example='2021-12-31 23:59:59+00:00',
-        regex='^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$',
+        description="Time of last record update",
+        example="2021-12-31 23:59:59+00:00",
+        regex="^\\d{4}-\\d\\d-\\d\\d[T ]\\d\\d:\\d\\d(?:\\:(?:\\d\\d(?:\\.\\d{1,6})?))?(?:[+-]\\d\\d:?\\d\\d|Z|)$",
     )
-    verified: Optional[Literal['true', 'false']] = Field(
+    verified: Optional[Literal["true", "false"]] = Field(
         None,
         description="Whether presentation is verified: 'true' or 'false'",
-        example='true',
+        example="true",
     )
     verified_msgs: Optional[List[str]] = None
 
@@ -5646,5 +5648,5 @@ class V20PresExRecordList(BaseModel):
         allow_population_by_field_name = True
 
     results: Optional[List[V20PresExRecord]] = Field(
-        None, description='Presentation exchange records'
+        None, description="Presentation exchange records"
     )
