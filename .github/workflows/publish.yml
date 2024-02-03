@@ -1,7 +1,7 @@
-name: indicio-tech/acapy-webhook-example - Publish Image
+name: dbluhm/acapy-json-ld-receiver - Publish Image
 
 env:
-  IMAGE_NAME: acapy-webhook-example
+  IMAGE_NAME: acapy-json-ld-receiver
 
 on: 
   release:
