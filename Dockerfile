@@ -1,10 +1,10 @@
-FROM python:3.7-slim-bullseye AS base
-WORKDIR /app
+FROM python:3.9-slim-bookworm AS base
+WORKDIR /usr/src/app
 
 # Install and configure poetry
-ENV POETRY_VERSION=1.1.11
+ENV POETRY_VERSION="1.7.1"
 ENV POETRY_HOME=/opt/poetry
-RUN apt update && apt install -y curl && apt clean
+RUN apt-get update && apt-get install -y curl && apt-get clean
 RUN curl -sSL https://install.python-poetry.org | python -
 
 ENV PATH="/opt/poetry/bin:$PATH"
@@ -15,12 +15,12 @@ RUN mkdir src && touch src/__init__.py
 COPY pyproject.toml poetry.lock README.md ./
 RUN poetry install --no-dev -E server
 
-FROM python:3.7-slim-bullseye
+FROM python:3.9-slim-bookworm
 LABEL healthcheck="nc -z 127.0.0.1 80"
-WORKDIR /app
-COPY --from=base /app/.venv /app/.venv
-ENV PATH="/app/.venv/bin:$PATH"
-RUN apt update && apt install -y netcat && apt clean
+WORKDIR /usr/src/app
+COPY --from=base /usr/src//app/.venv /usr/src//app/.venv
+ENV PATH="/usr/src//app/.venv/bin:$PATH"
+RUN apt-get update && apt-get install -y netcat-traditional && apt-get clean
 EXPOSE 80
 
 COPY src src

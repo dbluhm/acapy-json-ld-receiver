@@ -1,13 +1,15 @@
-"""ACA-Py JSON-LD Receiver."""
-
 from enum import Enum
-from typing import Any
+from os import getenv
+from typing import Any, Optional
+from aiohttp import ClientSession
 
+from controller import Controller
 import fastapi
 from fastapi.params import Body
 
 from .models import (
     ConnRecord,
+    DIDResult,
     InvitationRecord,
     IssuerCredRevRecord,
     IssuerRevRegRecord,
@@ -30,9 +32,28 @@ tag_metadata = [
 
 app = fastapi.FastAPI(openapi_tags=tag_metadata)
 
+AGENT = getenv("AGENT", "http://localhost:3001")
+did: Optional[str] = None
+
+
+@app.on_event("startup")
+async def on_startup():
+    """Startup event."""
+    global did
+    print("Creating did:key for agent: ", AGENT)
+    controller = Controller(AGENT)
+    result = await controller.post(
+        "/wallet/did/create",
+        json={"method": "key"},
+        response=DIDResult,
+    )
+    assert result.result
+    did = result.result.did
+
 
 class Tags(Enum):
     """Tag names for OpenAPI documentation."""
+
     credentials = "credentials"
     connections = "connections"
     other = "other"
@@ -103,6 +124,24 @@ async def issue_credential(body: V10CredentialExchange):
 async def issue_credential_v2_0(body: V20CredExRecord):
     """ICv2 webhook."""
     print("issue_credential_v2_0 topic called with:", body.json(indent=2))
+
+    controller = Controller(AGENT)
+    if body.state == "offer-received":
+        print("Received credential offer, sending credential request")
+        cred_request = await controller.post(
+            f"/issue-credential-2.0/records/{body.cred_ex_id}/send-request",
+            json={"holder_did": did}
+        )
+        print("Credential request sent:", cred_request)
+    elif body.state == "credential-received":
+        assert body.cred_issue
+        print("Received credential:", body.cred_issue.json(indent=2))
+        await controller.post(
+            f"/issue-credential-2.0/records/{body.cred_ex_id}/store",
+        )
+        print("Credential stored.")
+    else:
+        print("Taking no action.")
 
 
 @app.post(
