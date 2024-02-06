@@ -121,10 +121,12 @@ async def test_anoncreds():
         )
 
         # Present the the credential's attributes
-        await indy_present_proof_v2(
+        _, pres_ex_record = await indy_present_proof_v2(
             bob,
             alice,
             bob_conn.connection_id,
             alice_conn.connection_id,
             requested_attributes=[{"name": "firstname"}],
         )
+        assert pres_ex_record.verified == "true"
+
