@@ -10,7 +10,7 @@ from os import getenv
 
 from controller import Controller
 from controller.logging import logging_to_stdout
-from controller.models import CredAttrSpec, V20CredExRecord, V20CredExRecordDetail, V20CredExRecordIndy, V20CredFilter, V20CredFilterIndy, V20CredOfferRequest, V20CredPreview, V20PresExRecord
+from controller.models import CredAttrSpec, CredentialPreview, V10CredentialExchange, V10CredentialFreeOfferRequest, V20CredExRecord, V20CredExRecordDetail, V20CredExRecordIndy, V20CredFilter, V20CredFilterIndy, V20CredOfferRequest, V20CredPreview, V20PresExRecord
 from controller.protocols import (
     didexchange,
     indy_anoncred_credential_artifacts,
@@ -96,8 +96,98 @@ async def indy_issue_credential_v2_issuer(
     return V20CredExRecordDetail(cred_ex_record=issuer_cred_ex, indy=issuer_indy_record)
 
 
+async def indy_issue_credential_v1_issuer(
+    issuer: Controller,
+    issuer_connection_id: str,
+    cred_def_id: str,
+    attributes: Mapping[str, str],
+) -> V10CredentialExchange:
+    """Issue an indy credential using issue-credential/1.0.
+
+    Issuer should already be connected.
+    """
+    issuer_cred_ex = await issuer.post(
+        "/issue-credential/send-offer",
+        json=V10CredentialFreeOfferRequest(
+            auto_issue=False,
+            auto_remove=False,
+            comment="Credential from minimal example",
+            trace=False,
+            connection_id=issuer_connection_id,
+            cred_def_id=cred_def_id,
+            credential_preview=CredentialPreview(
+                type="issue-credential/1.0/credential-preview",  # pyright: ignore
+                attributes=[
+                    CredAttrSpec(
+                        mime_type=None, name=name, value=value  # pyright: ignore
+                    )
+                    for name, value in attributes.items()
+                ],
+            ),
+        ),
+        response=V10CredentialExchange,
+    )
+    issuer_cred_ex_id = issuer_cred_ex.credential_exchange_id
+
+    await issuer.record_with_values(
+        topic="issue_credential",
+        credential_exchange_id=issuer_cred_ex_id,
+        state="request_received",
+    )
+
+    issuer_cred_ex = await issuer.post(
+        f"/issue-credential/records/{issuer_cred_ex_id}/issue",
+        json={},
+        response=V10CredentialExchange,
+    )
+
+    issuer_cred_ex = await issuer.record_with_values(
+        topic="issue_credential",
+        record_type=V10CredentialExchange,
+        credential_exchange_id=issuer_cred_ex_id,
+        state="credential_acked",
+    )
+
+    return issuer_cred_ex
+
+
 @pytest.mark.asyncio
-async def test_anoncreds():
+async def test_anoncreds_v1():
+    """Test Controller protocols."""
+    logging_to_stdout()
+    async with Controller(base_url=ALICE) as alice, Controller(base_url=BOB) as bob:
+        # Connecting
+        alice_conn, bob_conn = await didexchange(alice, bob)
+
+        # Issuance prep
+        await indy_anoncred_onboard(alice)
+        _, cred_def = await indy_anoncred_credential_artifacts(
+            alice,
+            ["firstname", "lastname"],
+            support_revocation=True,
+        )
+
+        # Issue a credential
+        await indy_issue_credential_v1_issuer(
+            alice,
+            alice_conn.connection_id,
+            cred_def.credential_definition_id,
+            {"firstname": "Bob", "lastname": "Builder"},
+        )
+
+        # Present the the credential's attributes
+        _, pres_ex_record = await indy_present_proof_v2(
+            bob,
+            alice,
+            bob_conn.connection_id,
+            alice_conn.connection_id,
+            requested_attributes=[{"name": "firstname"}],
+        )
+        assert pres_ex_record.verified == "true"
+
+
+@pytest.mark.asyncio
+async def test_anoncreds_v2():
     """Test Controller protocols."""
     logging_to_stdout()
     async with Controller(base_url=ALICE) as alice, Controller(base_url=BOB) as bob:
@@ -129,4 +219,3 @@ async def test_anoncreds():
             requested_attributes=[{"name": "firstname"}],
         )
         assert pres_ex_record.verified == "true"
-

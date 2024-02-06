@@ -116,6 +116,24 @@ async def issue_credential(body: V10CredentialExchange):
     """ICv1 webhook."""
     print("issue_credential topic called with:", body.json(indent=2))
 
+    controller = Controller(AGENT)
+    cred_rec = body
+    if cred_rec.state == "offer_received":
+        print("Received credential offer, sending credential request")
+        cred_request = await controller.post(
+            f"/issue-credential/records/{cred_rec.credential_exchange_id}/send-request",
+        )
+        print("Credential request sent:", cred_request)
+    elif cred_rec.state == "credential_received":
+        print("Received credential with id:", cred_rec.credential_exchange_id)
+
+        await controller.post(
+            f"/issue-credential/records/{cred_rec.credential_exchange_id}/store",
+        )
+        print("Credential stored.")
+    else:
+        print("Taking no action.")
+
 
 @app.post(
     "/topic/issue_credential_v2_0",
