@@ -304,8 +304,8 @@ pydantic = "^1.10.2"
 [package.source]
 type = "git"
 url = "https://github.com/indicio-tech/acapy-minimal-example.git"
-reference = "feature/simpler-client-session"
-resolved_reference = "17094933e3419a578ad7545607459f02894010b9"
+reference = "HEAD"
+resolved_reference = "80609bc5ca93863513cfa0cd5d0917e7892fee83"
 
 [[package]]
 name = "distlib"
@@ -1022,4 +1022,4 @@ server = ["uvicorn"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "378aad4375e0aa33bf87c355d1feec7b039e15f957eb5f143af85b2b32b6be7b"
+content-hash = "fdb2dcfd191282e857b04a517afcbaeee5defff92644ab24669b4d8984ca2f1e"
