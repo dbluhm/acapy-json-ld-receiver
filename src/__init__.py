@@ -1,9 +1,9 @@
 from enum import Enum
 from os import getenv
 from typing import Any, Optional
-from aiohttp import ClientSession
 
 from controller import Controller
+from controller.logging import logging_to_stdout
 import fastapi
 from fastapi.params import Body
 
@@ -18,6 +18,7 @@ from .models import (
     V10CredentialExchange,
     V10PresentationExchange,
     V20CredExRecord,
+    V20CredExRecordDetail,
     V20PresExRecord,
 )
 
@@ -39,6 +40,7 @@ did: Optional[str] = None
 @app.on_event("startup")
 async def on_startup():
     """Startup event."""
+    logging_to_stdout()
     global did
     print("Creating did:key for agent: ", AGENT)
     controller = Controller(AGENT)
@@ -126,18 +128,40 @@ async def issue_credential_v2_0(body: V20CredExRecord):
     print("issue_credential_v2_0 topic called with:", body.json(indent=2))
 
     controller = Controller(AGENT)
-    if body.state == "offer-received":
+    cred_rec = body
+    if not cred_rec.by_format:
+        cred_rec = (await controller.get(
+            f"/issue-credential-2.0/records/{cred_rec.cred_ex_id}",
+            response=V20CredExRecordDetail,
+        )).cred_ex_record
+        assert cred_rec
+
+    if cred_rec.state == "offer-received":
         print("Received credential offer, sending credential request")
+
+        if not cred_rec.by_format:
+            cred_rec = (await controller.get(
+                f"/issue-credential-2.0/records/{cred_rec.cred_ex_id}",
+                response=V20CredExRecordDetail,
+            )).cred_ex_record
+            assert cred_rec
+        assert cred_rec.by_format
+        if not cred_rec.by_format.cred_offer:
+            raise ValueError("Expected credential offer by format")
+
         cred_request = await controller.post(
-            f"/issue-credential-2.0/records/{body.cred_ex_id}/send-request",
-            json={"holder_did": did}
+            f"/issue-credential-2.0/records/{cred_rec.cred_ex_id}/send-request",
+            json={"holder_did": did} if "ld_proof" in cred_rec.by_format.cred_offer else {}
         )
         print("Credential request sent:", cred_request)
-    elif body.state == "credential-received":
-        assert body.cred_issue
-        print("Received credential:", body.cred_issue.json(indent=2))
+    elif cred_rec.state == "credential-received":
+        if cred_rec.cred_issue:
+            print("Received credential:", cred_rec.cred_issue.json(indent=2))
+        else:
+            print("Received credential with id:", cred_rec.cred_ex_id)
+
         await controller.post(
-            f"/issue-credential-2.0/records/{body.cred_ex_id}/store",
+            f"/issue-credential-2.0/records/{cred_rec.cred_ex_id}/store",
         )
         print("Credential stored.")
     else:

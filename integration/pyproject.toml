@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "integration"
+version = "0.1.0"
+description = ""
+authors = ["Daniel Bluhm <dbluhm@pm.me>"]
+license = "Apache-2.0"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+controller = {git = "https://github.com/indicio-tech/acapy-minimal-example.git"}
+pytest = "<8"
+pytest-asyncio = "^0.23.4"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "24.1.1"
+ruff = "0.1.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

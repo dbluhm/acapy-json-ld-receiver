@@ -1,9 +1,19 @@
 # ACA-Py JSON-LD Receiver
 
 This is a simple controller that enables an ACA-Py instance to use a did:key as
-the holder DID for JSON-LD Credential Issuance requests.
+the holder DID for JSON-LD Credential Issuance requests. It will also auto
+respond to AnonCreds credential offers.
 
-## Docker Compose Usage
+## Usage
+
+This controller requires:
+
+- The ACA-Py instance must be started and accissble before the controller starts.
+- `--debug-webhooks` MUST be enabled (present or `true` in yaml config)
+- `--auto-respond-credential-offer` MUST be disable (absent or `false` in yaml config)
+- `--auto-store-credential` MUST be disabled (absent or `false` in yaml config)
+
+### Docker Compose Usage
 
 Supposing you had a docker-compose service named `bob` like the following:
 
@@ -46,7 +56,7 @@ You can use this controller using a service like the following:
         condition: service_healthy
 ```
 
-## Building and Running
+### Building and Running
 
 ```sh
 $ docker build -t acapy-webhook .

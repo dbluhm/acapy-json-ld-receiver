@@ -13,7 +13,7 @@ python = "^3.9"
 fastapi = "^0.75.1"
 uvicorn = {version = "^0.17.6", optional = true}
 pydantic = "^1.9.0"
-controller = {git = "https://github.com/indicio-tech/acapy-minimal-example.git", rev = "feature/simpler-client-session"}
+controller = {git = "https://github.com/indicio-tech/acapy-minimal-example.git"}
 
 [tool.poetry.dev-dependencies]
 black = "^24.1.1"
